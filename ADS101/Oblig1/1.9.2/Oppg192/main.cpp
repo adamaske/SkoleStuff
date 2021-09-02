@@ -1,7 +1,7 @@
 #include <iostream>
 #include "stack.h"
 #include "charnode.h"
-using namespace std;
+
 
 int main()
 {
@@ -16,7 +16,7 @@ int main()
     s->Push(c);
 
     while(s->Size() != 0){
-        s->Top().Print();
+        s->Top()->Print();
         s->Pop();
         std::cout << "Stack size after pop: " << s->Size() << std::endl;
     }

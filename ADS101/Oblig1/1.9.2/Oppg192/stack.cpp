@@ -1,4 +1,5 @@
 #include "stack.h"
+/*
 template<class T>
 Stack<T>::Stack()
 {
@@ -6,12 +7,12 @@ Stack<T>::Stack()
 }
 template<class T>
 void Stack<T>::Pop(){
-    CharNode* ut = data;
+    T ut = data;
     data = ut->GetNext();
     delete ut;
 }
 template<class T>
-void Stack<T>::Push(T* node){
+void Stack<T>::Push(T node){
     data = node;
 }
 template<class T>
@@ -26,3 +27,4 @@ template<class T>
 void Stack<T>::Empty(){
 
 }
+*/
