@@ -1,22 +1,22 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "charnode.h"
+#define MAXSIZE 10
 class Queue
 {
 public:
     Queue();
 
-    CharNode* Front;
-    CharNode* Back;
+    char Front();
+    char Back();
 
-    void Push(CharNode*);
+    void Push(char);
     void Pop();
 
     int Size();
 private:
-    CharNode* first;
-    CharNode* back;
+    char data[MAXSIZE];
+    int index = 0;
 };
 
 #endif // QUEUE_H

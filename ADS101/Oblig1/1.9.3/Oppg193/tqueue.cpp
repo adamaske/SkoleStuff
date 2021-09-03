@@ -1,26 +1,26 @@
-#include "queue.h"
+#include "tqueue.h"
+
 #include <iostream>
+template<class T>
+TQueue<T>::TQueue(){
 
-Queue::Queue()
-{
-    index = 0;
 }
-
-char Queue::Front()
+template<class T>
+T TQueue<T>::Front()
 {
-    //returns index-1 because the index is always 1 larger than the amount of elements in the array
     return data[index-1];
 }
 
-char Queue::Back()
+template<class T>
+T TQueue<T>::Back()
 {
-    //Returns the bottom
     return data[0];
 }
 
-void Queue::Push(char node)
+template<class T>
+void TQueue<T>::Push(T node)
 {
-    if(index == MAXSIZE){
+    if(index == TMAXSIZE){
         std::cout << "Max amount of elements reached!" << std::endl;
         return;
     }
@@ -33,7 +33,7 @@ void Queue::Push(char node)
     }
 
     //Move every elenemt in the array one up
-    char a;
+    T a;
     for(int i = index; i > 0; i--){
         a = data[i-1];
         data[i] = a;
@@ -44,15 +44,18 @@ void Queue::Push(char node)
     index++;
 }
 
-void Queue::Pop()
+template<class T>
+void TQueue<T>::Pop()
 {
     //Sets the front to null and reduces the index of the array
-    data[index -1 ] = NULL;
+    //data[index -1 ] = NULL;
     index--;
 }
 
-int Queue::Size()
+template<class T>
+int TQueue<T>::Size()
 {
-    //Returns the index
+    //Returns the
     return index;
 }
+template class TQueue<int>;

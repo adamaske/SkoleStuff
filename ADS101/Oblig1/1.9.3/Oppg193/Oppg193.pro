@@ -4,10 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        charnode.cpp \
         main.cpp \
-        queue.cpp
+        queue.cpp \
+        tqueue.cpp
 
 HEADERS += \
-    charnode.h \
-    queue.h
+    queue.h \
+    tqueue.h
