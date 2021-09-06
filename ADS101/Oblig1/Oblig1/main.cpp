@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+
     //Opgg 1.9.1
     CharStack* s = new CharStack();
     CharNode* c = new CharNode('a', nullptr);
@@ -21,7 +22,7 @@ int main()
 
     s->Push(c);
 
-    while(s->Top()!= nullptr){
+    while(s->Size() != 0){
         s->Top()->Print();
         s->Pop();
         std::cout << "Stack size after pop: " << s->Size() << std::endl;
@@ -36,9 +37,9 @@ int main()
     tc = new CharNode('e', tc);
     tc = new CharNode('f', tc);
 
-    s->Push(tc);
+    ts->Push(tc);
 
-    while(s->Size() != 0){
+    while(ts->Size() != 0){
        ts->Top()->Print();
        ts->Pop();
        std::cout << "Stack size after pop: " << s->Size() << std::endl;
@@ -87,16 +88,15 @@ int main()
     }
 
     TStack2<int>* ts2 = new TStack2<int>();
+    ts2->Push(1);
+    ts2->Push(3);
+    ts2->Push(1);
+    ts2->Push(2);
 
-        ts2->Push(1);
-        ts2->Push(3);
-        ts2->Push(1);
-        ts2->Push(2);
-
-        while(ts2->Size() != 0){
-            std::cout << ts2->Top() << std::endl;
-            ts2->Pop();
-        }
+    while(ts2->Size() != 0){
+        std::cout << ts2->Top() << std::endl;
+        ts2->Pop();
+    }
     //Oppgg 2.3.1
 
     return 0;
