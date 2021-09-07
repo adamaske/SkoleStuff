@@ -120,12 +120,9 @@ int main()
         s2->Pop();
     }
     //Template stack
-    std::cout << "Started the template stack" << std::endl;
     TStack2<int>* ts2 = new TStack2<int>();
-    std::cout << "Created the template stack" << std::endl;
-    ts2->Push(int(1));
-    std::cout << "Pushed 1" << std::endl;
-    ts2->Push(int(3));
+    ts2->Push(1);
+    ts2->Push(3);
     ts2->Push(1);
     ts2->Push(2);
     std::cout << "Pushed ints to the themplate stack" << std::endl;
@@ -135,7 +132,7 @@ int main()
     }
     //Oppgg 2.3.1
     SelectionSort(1000);
-    SelectionSort(5000);
+    SelectionSort(100000);
     SelectionSort(7000);
     return 0;
 }
