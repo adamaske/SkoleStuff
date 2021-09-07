@@ -2,7 +2,7 @@
 template <class T>
 TStack2<T>::TStack2()
 {
-
+    index = 0;
 }
 template <class T>
 void TStack2<T>::Pop()
@@ -14,7 +14,7 @@ void TStack2<T>::Push(T node)
 {
     //Check if the 0 element has a char
     if(index == 0){
-        data[0] = 0;
+        data[0] = node;
         index++;
     }
      //Move every element one step up in the array

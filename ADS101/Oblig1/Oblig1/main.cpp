@@ -6,11 +6,44 @@
 #include "tqueue.h"
 #include "stack2.h"
 #include "tstack2.h"
-using namespace std;
+#include "math.h"
+#include <chrono>
+#include <algorithm>
+#include <array>
+
+void SelectionSort(int n){
+    int array[n];
+    for (int i = 0; i < n; i++){
+        array[i] = rand();
+    }
+    //Declare time variable
+    std::chrono::nanoseconds time{0};
+
+    auto start = std::chrono::high_resolution_clock::now();
+    //1. Selection sort
+    for(auto i = 0; i < n-1; i++){
+        for(auto j = i +1; j < n; j++){
+            if(array[j] > array[i]){
+                std::swap(array[j], array[i]);
+            }
+        }
+    }
+
+    //Get the end
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> totalTime = end-start;
+    std::chrono::nanoseconds totalTimeNano = std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime);
+
+    totalTime += totalTimeNano;
+    std::cout << "With " << n << " elements, it took " << totalTime.count() << " seconds to sort them." << std::endl;
+    /*for(int i = 0; i < n; i++){
+        std::cout << array[i] << ", ";
+    }*/
+    //2. Std::sort
+}
 
 int main()
 {
-
     //Opgg 1.9.1
     CharStack* s = new CharStack();
     CharNode* c = new CharNode('a', nullptr);
@@ -86,18 +119,25 @@ int main()
         std::cout << s2->Top() << std::endl;
         s2->Pop();
     }
-
+    //Template stack
+    std::cout << "Started the template stack" << std::endl;
     TStack2<int>* ts2 = new TStack2<int>();
-    ts2->Push(1);
-    ts2->Push(3);
+    std::cout << "Created the template stack" << std::endl;
+    ts2->Push(int(1));
+    std::cout << "Pushed 1" << std::endl;
+    ts2->Push(int(3));
     ts2->Push(1);
     ts2->Push(2);
-
+    std::cout << "Pushed ints to the themplate stack" << std::endl;
     while(ts2->Size() != 0){
         std::cout << ts2->Top() << std::endl;
         ts2->Pop();
     }
     //Oppgg 2.3.1
-
+    SelectionSort(1000);
+    SelectionSort(5000);
+    SelectionSort(7000);
     return 0;
 }
+
+
