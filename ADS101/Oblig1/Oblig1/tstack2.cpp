@@ -18,7 +18,7 @@ void TStack2<T>::Push(T node)
         index++;
     }
      //Move every element one step up in the array
-    char a;
+    T a;
     for(int i = index; i > 0; i--){
         a = data[i-1];
         data[i] = a;

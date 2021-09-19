@@ -14,7 +14,7 @@ void Stack2::Push(char node)
 {
     //Check if the 0 element has a char
     if(index == 0){
-        data[0] = 0;
+        data[0] = node;
         index++;
     }
      //Move every element one step up in the array

@@ -16,8 +16,6 @@ void SelectionSort(int n){
     for (int i = 0; i < n; i++){
         array[i] = rand();
     }
-    //Declare time variable
-    std::chrono::nanoseconds time{0};
 
     auto start = std::chrono::high_resolution_clock::now();
     //1. Selection sort
@@ -45,6 +43,7 @@ void SelectionSort(int n){
 int main()
 {
     //Opgg 1.9.1
+    std::cout << "Oppgave 1.9.1" << std::endl;
     CharStack* s = new CharStack();
     CharNode* c = new CharNode('a', nullptr);
     c = new CharNode('b', c);
@@ -54,7 +53,7 @@ int main()
     c = new CharNode('f', c);
 
     s->Push(c);
-
+    //Prints every on top and pop until the stack is empty
     while(s->Size() != 0){
         s->Top()->Print();
         s->Pop();
@@ -62,6 +61,7 @@ int main()
     }
 
     //Opgg 1.9.2
+    std::cout << "Oppgave 1.9.2" << std::endl;
     TStack<CharNode>* ts = new TStack<CharNode>();
     CharNode* tc = new CharNode('a', nullptr);
     tc = new CharNode('b', tc);
@@ -77,8 +77,9 @@ int main()
        ts->Pop();
        std::cout << "Stack size after pop: " << s->Size() << std::endl;
      }
-
+    delete ts;
     //Opgg 1.9.3
+    std::cout << "Oppgave 1.9.3" << std::endl;
     Queue* q = new Queue();
     q->Push('a');
     q->Push('b');
@@ -86,13 +87,12 @@ int main()
     q->Push('d');
     q->Push('e');
 
-    std::cout << "The front of the queue is: " << q->Front() << std::endl << "The current back of the array is: " << q->Back() << std::endl;
+    std::cout << "The front of the queue is: " << q->Front() << std::endl << "The current back of the queue is: " << q->Back() << std::endl;
     //Print each front of the array and pop it
     while(q->Size() != 0){
         std::cout << q->Front() << std::endl;
         q->Pop();
     }
-
 
     TQueue<int>* tq = new TQueue<int>();
     tq->Push(1);
@@ -107,6 +107,7 @@ int main()
      }
 
     //Oppgg 1.9.4
+     std::cout << "Oppgave 1.9.4" << std::endl;
     Stack2* s2 = new Stack2();
     s2->Push('a');
     s2->Push('b');
@@ -125,15 +126,17 @@ int main()
     ts2->Push(3);
     ts2->Push(1);
     ts2->Push(2);
-    std::cout << "Pushed ints to the themplate stack" << std::endl;
+
     while(ts2->Size() != 0){
         std::cout << ts2->Top() << std::endl;
         ts2->Pop();
     }
     //Oppgg 2.3.1
+    std::cout << "Oppgave 2.3.1" << std::endl;
     SelectionSort(1000);
-    SelectionSort(100000);
+    SelectionSort(1500);
     SelectionSort(7000);
+    SelectionSort(28000);
     return 0;
 }
 
