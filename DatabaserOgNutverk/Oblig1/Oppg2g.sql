@@ -1,0 +1,4 @@
+USe oblig1;
+
+INSERT INTO Faktura VALUES
+(16, 3, 15000);
