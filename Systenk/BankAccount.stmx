@@ -7,10 +7,10 @@
 		<vendor>isee systems, inc.</vendor>
 		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
 	</header>
-	<sim_specs isee:simulation_delay="0.25" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+	<sim_specs isee:simulation_delay="0.2" method="Euler" time_units="Months" isee:instantaneous_flows="false">
 		<start>1</start>
-		<stop>20</stop>
-		<dt reciprocal="true">30</dt>
+		<stop>25</stop>
+		<dt reciprocal="true">5</dt>
 	</sim_specs>
 	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
 	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
@@ -32,7 +32,7 @@
 				<non_negative/>
 			</flow>
 			<flow name="Spent Money">
-				<eqn>Expenses</eqn>
+				<eqn>Expenses + LondonTrip</eqn>
 				<non_negative/>
 			</flow>
 			<aux name="Salary">
@@ -44,6 +44,9 @@
 			<aux name="Expenses">
 				<eqn>7500</eqn>
 			</aux>
+			<aux name="LondonTrip">
+				<eqn>IF (TIME = 6) THEN 12000 ELSE 0</eqn>
+			</aux>
 			<isee:dependencies>
 				<var name="MoneyFlow">
 					<in>Salary</in>
@@ -51,6 +54,7 @@
 				</var>
 				<var name="Spent_Money">
 					<in>Expenses</in>
+					<in>LondonTrip</in>
 				</var>
 				<var name="Intrest">
 					<in>Money_In_Account</in>
@@ -192,6 +196,11 @@
 						</plot>
 					</graph>
 				</stacked_container>
+				<aux x="348.667" y="34.8333" name="LondonTrip"/>
+				<connector uid="7" angle="337.606">
+					<from>LondonTrip</from>
+					<to>Spent_Money</to>
+				</connector>
 			</view>
 		</views>
 	</model>
