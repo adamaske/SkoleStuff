@@ -10,19 +10,21 @@
 #include <chrono>
 #include <algorithm>
 #include <array>
+#include <iterator>
 
-void SelectionSort(int n){
-    int array[n];
-    for (int i = 0; i < n; i++){
-        array[i] = rand();
+template<typename T, size_t N>
+void SelectionSort(T (&arr)[N]){
+
+    for (int i = 0; i < N; i++){
+        arr[i] = rand();
     }
 
     auto start = std::chrono::high_resolution_clock::now();
     //1. Selection sort
-    for(auto i = 0; i < n-1; i++){
-        for(auto j = i +1; j < n; j++){
-            if(array[j] > array[i]){
-                std::swap(array[j], array[i]);
+    for(auto i = 0; i < N-1; i++){
+        for(auto j = i +1; j < N; j++){
+            if(arr[j] > arr[i]){
+                std::swap(arr[j], arr[i]);
             }
         }
     }
@@ -33,11 +35,21 @@ void SelectionSort(int n){
     std::chrono::nanoseconds totalTimeNano = std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime);
 
     totalTime += totalTimeNano;
-    std::cout << "With " << n << " elements, it took " << totalTime.count() << " seconds to sort them." << std::endl;
-    /*for(int i = 0; i < n; i++){
-        std::cout << array[i] << ", ";
-    }*/
+    std::cout << "With " << N << " elements, it took " << totalTime.count() << " seconds to sort them doing the selection sort alagorithm." << std::endl;
+
     //2. Std::sort
+    start = std::chrono::high_resolution_clock::now();
+
+    std::sort(std::begin(arr), std::end(arr));
+
+    end = std::chrono::high_resolution_clock::now();
+    totalTime = end-start;
+    totalTimeNano = std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime);
+    totalTime += totalTimeNano;
+    std::cout << "With " << N << " elements, it took " << (double)totalTime.count() << " seconds to sort them using std::sort." << std::endl;
+        /*for(int i = 0; i < n; i++){
+            std::cout << array[i] << ", ";
+        }*/
 }
 
 int main()
@@ -133,10 +145,16 @@ int main()
     }
     //Oppgg 2.3.1
     std::cout << "Oppgave 2.3.1" << std::endl;
-    SelectionSort(1000);
-    SelectionSort(1500);
-    SelectionSort(7000);
-    SelectionSort(28000);
+    int a[10];
+    int b[100];
+    int ca[1000];
+    int d[15000];
+    int e[20000];
+    SelectionSort(a);
+    SelectionSort(b);
+    SelectionSort(ca);
+    SelectionSort(d);
+    SelectionSort(e);
     return 0;
 }
 
