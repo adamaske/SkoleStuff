@@ -13,7 +13,7 @@
 #include <array>
 #include <iterator>
 #include <vector>
-
+#include <string>
 std::vector<long double> selectionTimes;
 std::vector<long double> stdSortTimes;
 template<typename T, size_t N>
@@ -154,6 +154,7 @@ int main()
         ts2->Pop();
     }
     //Oppgg 2.3.1
+    /*
     std::ofstream selectionSortFile("SelectionSortResults.txt");
     std::ofstream stdSortFile("StdSortResults.txt");
 
@@ -188,10 +189,21 @@ int main()
         StdSort(h, stdSortFile);
     }
 
-
-
     selectionSortFile.close();
     stdSortFile.close();
+    */
+    std::ifstream input_selection("SelectionSortResults.txt");
+    int linesRead = 0;
+    std::string input;
+    while(!input_selection.eof()){
+        std::getline(input_selection, input);
+        if(input_selection){
+            linesRead++;
+            if(linesRead % 8 == 0){
+                std::cout << input << ", ";
+            }
+        }
+    }
     return 0;
 }
 
