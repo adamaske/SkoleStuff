@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "charnode.h"
 #include "charstack.h"
 #include "tstack.h"
@@ -11,9 +12,12 @@
 #include <algorithm>
 #include <array>
 #include <iterator>
+#include <vector>
 
+std::vector<long double> selectionTimes;
+std::vector<long double> stdSortTimes;
 template<typename T, size_t N>
-void SelectionSort(T (&arr)[N]){
+void SelectionSort(T (&arr)[N], std::ofstream &file){
 
     for (int i = 0; i < N; i++){
         arr[i] = rand();
@@ -35,23 +39,29 @@ void SelectionSort(T (&arr)[N]){
     std::chrono::nanoseconds totalTimeNano = std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime);
 
     totalTime += totalTimeNano;
-    std::cout << "With " << N << " elements, it took " << totalTime.count() << " seconds to sort them doing the selection sort alagorithm." << std::endl;
+    int time = std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count();
+    std::cout << "With " << N << " elements, it took " << totalTime.count() << " nanoseconds to sort them doing the selection sort alagorithm." << std::endl;
 
+    file << totalTime.count() << std::endl;
+    selectionTimes.push_back(totalTime.count());
+}
+template<typename T, size_t N>
+void StdSort(T (&arr)[N], std::ofstream &file){
     //2. Std::sort
-    start = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
 
     std::sort(std::begin(arr), std::end(arr));
 
-    end = std::chrono::high_resolution_clock::now();
-    totalTime = end-start;
-    totalTimeNano = std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime);
-    totalTime += totalTimeNano;
-    std::cout << "With " << N << " elements, it took " << (double)totalTime.count() << " seconds to sort them using std::sort." << std::endl;
-        /*for(int i = 0; i < n; i++){
-            std::cout << array[i] << ", ";
-        }*/
-}
+    auto end = std::chrono::high_resolution_clock::now();
 
+    std::chrono::duration<double> totalTime = end-start;
+    std::chrono::nanoseconds totalTimeNano = std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime);
+    totalTime += totalTimeNano;
+    int time = std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count();
+    std::cout << "With " << N << " elements, it took " << totalTime.count() << " nanoseconds to sort them using std::sort." << std::endl;
+    file << totalTime.count() << std::endl;
+    stdSortTimes.push_back(totalTime.count());
+}
 int main()
 {
     //Opgg 1.9.1
@@ -144,17 +154,44 @@ int main()
         ts2->Pop();
     }
     //Oppgg 2.3.1
+    std::ofstream selectionSortFile("SelectionSortResults.txt");
+    std::ofstream stdSortFile("StdSortResults.txt");
+
     std::cout << "Oppgave 2.3.1" << std::endl;
     int a[10];
     int b[100];
     int ca[1000];
-    int d[15000];
+    int d[10000];
     int e[20000];
-    SelectionSort(a);
-    SelectionSort(b);
-    SelectionSort(ca);
-    SelectionSort(d);
-    SelectionSort(e);
+    int f[30000];
+    int g[40000];
+    int h[50000];
+
+    for(int i = 0; i < 10; i++){
+        SelectionSort(a, selectionSortFile);
+        SelectionSort(b, selectionSortFile);
+        SelectionSort(ca, selectionSortFile);
+        SelectionSort(d, selectionSortFile);
+        SelectionSort(e, selectionSortFile);
+        SelectionSort(f, selectionSortFile);
+        SelectionSort(g, selectionSortFile);
+        SelectionSort(h, selectionSortFile);
+    }
+    for(int i = 0; i < 10; i++){
+        StdSort(a, stdSortFile);
+        StdSort(b, stdSortFile);
+        StdSort(ca, stdSortFile);
+        StdSort(d, stdSortFile);
+        StdSort(e, stdSortFile);
+        StdSort(f, stdSortFile);
+        StdSort(g, stdSortFile);
+        StdSort(h, stdSortFile);
+    }
+
+
+
+    selectionSortFile.close();
+    stdSortFile.close();
     return 0;
 }
 
