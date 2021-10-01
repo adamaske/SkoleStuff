@@ -1,0 +1,3 @@
+﻿  QuadTree.cpp
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\QuadTree.cpp(104): warning C4715: 'QuadTree::Insert': not all control paths return a value
+  Oblig2.vcxproj -> C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Debug\Oblig2.exe
