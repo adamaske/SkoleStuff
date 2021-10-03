@@ -1,3 +1,11 @@
-﻿  QuadTree.cpp
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\QuadTree.cpp(104): warning C4715: 'QuadTree::Insert': not all control paths return a value
+﻿  Oblig2.cpp
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Stack.h(18,1): warning C4812: obsolete declaration style: please use 'Stack<T>::Stack' instead
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Stack.h(18,1): warning C4812: obsolete declaration style: please use 'Stack<BinaryNode *>::Stack' instead
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Stack.h(19): message : while compiling class template member function 'Stack<BinaryNode *>::Stack(void)'
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Oblig2.cpp(95): message : see reference to function template instantiation 'Stack<BinaryNode *>::Stack(void)' being compiled
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Oblig2.cpp(95): message : see reference to class template instantiation 'Stack<BinaryNode *>' being compiled
+  QuadTree.cpp
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\QuadTree.cpp(67,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\QuadTree.cpp(191,18): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   Oblig2.vcxproj -> C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig2\Debug\Oblig2.exe

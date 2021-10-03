@@ -2,7 +2,7 @@
 #include "BinaryNode.h"
 #include "Stack.h"
 #include "QuadTree.h"
-#include "Person.h"
+#include <math.h>
 void Inorder(BinaryNode* root);
 void Postorder(BinaryNode* root);
 int AmountOfNodes(BinaryNode* root);
@@ -10,7 +10,7 @@ int AmountOfLevels(BinaryNode* root);
 bool BalancedCheck(BinaryNode* root);
 int Height(BinaryNode* root);
 QuadTree* MakeQuadTree();
-void FindAllLeafes(QuadTree* root);
+
 int main() {
     //Testing
 	BinaryNode* left = new BinaryNode(1);
@@ -45,28 +45,17 @@ int main() {
 
     //Write a quadtree where the blades lay in different levels
     QuadTree* tree = MakeQuadTree();
-    tree->Subdivide(2);
+    Vector2D a;
+    for (int i = 0; i < 16; i++)
+    {
+        a.x = rand() % 10;
+        a.y = rand() % 10;
+        tree->Insert(a);
+    }
     tree->Print();
-    Person* p1 = new Person("Adam", 4, 3);
-    p1 = new Person("Adam", 4, 3);
-    tree->Insert(p1);
-    p1 = new Person("Sivert", 5, 1);
-    tree->Insert(p1);
-    p1 = new Person("Eivind", -3, 4);
-    tree->Insert(p1);
-    p1 = new Person("Bindestrek", -7, 8);
-    tree->Insert(p1);
-    p1 = new Person("Svein", 1, -8);
-    tree->Insert(p1);
-    p1 = new Person("Aleks", 7, -6);
-    tree->Insert(p1);
-    p1 = new Person("Marthe", 9, -3);
-    tree->Insert(p1);
-    p1 = new Person("Christoffer", 4, 0);
-    tree->Insert(p1);
-    tree->FindAllLeafes();
+    
     //Write a function that returns all the corners to all quads which are blades 
-
+    tree->FindAllLeafes();
     //Write a test program for these
     return 0;
 }
@@ -222,19 +211,12 @@ int Height(BinaryNode* root) {
 
 QuadTree* MakeQuadTree() {
     //Create points
-    Vector2D ne{ 10, 10 };
-    Vector2D nw{ -10, 10 };
-    Vector2D se{ 10, -10 };
-    Vector2D sw{ -10, -10 };
+    Vector2D ne{ 100, 100 };
+    Vector2D nw{ 0, 100 };
+    Vector2D se{ 100, 0 };
+    Vector2D sw{ 0, -0 };
     QuadTree* root = new QuadTree(ne, nw, se, sw);
     return root;
 }
 
-void FindAllLeafes(QuadTree* root)
-{
-    if (root->IsLeaf()) {
-        return;
-    }
 
-    
-}

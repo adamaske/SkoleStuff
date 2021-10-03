@@ -147,7 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryNode.h" />
-    <ClInclude Include="Person.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>

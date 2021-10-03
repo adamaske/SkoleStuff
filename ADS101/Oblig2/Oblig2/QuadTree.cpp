@@ -1,5 +1,6 @@
 #include "QuadTree.h"
 #include <iostream>
+
 QuadTree::QuadTree()
 {
 }
@@ -13,52 +14,59 @@ QuadTree::QuadTree(Vector2D& vne, Vector2D& vnw, Vector2D& vse, Vector2D& vsw,
 
 void QuadTree::Subdivide(int amount)
 {
-	std::cout << "NE: " << "(" << v_ne.x << ", " << v_ne.y << ")" << std::endl;
-	std::cout << "NW: " << "(" << v_nw.x << ", " << v_nw.y << ")" << std::endl;
-	std::cout << "SE: " << "(" << v_se.x << ", " << v_se.y << ")" << std::endl;
-	std::cout << "SW: " << "(" << v_sw.x << ", " << v_sw.y << ")" << std::endl;
 	if (amount > 0) {
-		Vector2D v1 = (v_nw + v_se) / 2; //0,10
-		Vector2D v2 = (v_se + v_sw) / 2; //0.-10
-		Vector2D v3 = (v_ne - v_nw) / 2; //10,10
-		Vector2D v4 = (v_nw - v_se) / 2; //-10,0
-		Vector2D v5 = (v_se - v_sw) / 2; //10,0
-		Vector2D v6 = (v_sw - v_ne) / 2; //-10,-10
-		Vector2D m = (v_ne + v_sw) / 2; // 0,0
-		/*
-		std::cout << "(" << v1.x << ", " << v1.y << ")" << std::endl;
-		std::cout << "(" << v2.x << ", " << v2.y << ")" << std::endl;
-		std::cout << "(" << v3.x << ", " << v3.y << ")" << std::endl;
-		std::cout << "(" << v4.x << ", " << v4.y << ")" << std::endl;
-		std::cout << "(" << v5.x << ", " << v5.y << ")" << std::endl;
-		std::cout << "(" << v6.x << ", " << v6.y << ")" << std::endl;
-		
-		std::cout << "(" << m.x << ", " << m.y << ")" << std::endl;
-		*/
-		//new North East Corner (10,10), (0,10), (10,0), (0,0)
-		q_ne = new QuadTree(v3, v1, v5, m);
+		std::cout << "Subdivided" << std::endl;
+		Vector2D a = (v_sw + v_se) / 2;
+		Vector2D b = (v_se + v_ne) / 2;
+		Vector2D c = (v_ne + v_nw) / 2;
+		Vector2D d = (v_nw + v_sw) / 2;
+		Vector2D m = (v_ne + v_sw) / 2;
+
+		//new North East Corner (10,10), (0,10), (10,0), (0,0)	
+		q_ne = new QuadTree(v_ne,  c, b, m);
 		q_ne->Subdivide(amount - 1);
 		//new North West Corner (0,10), (-10,10), (0,0), (-10,0)
-		q_nw = new QuadTree(v1, v_nw, m, v4);
+		q_nw = new QuadTree(c, v_nw, m, d);
 		q_nw->Subdivide(amount - 1);
-		//new South East Corner (0,10), (0,0), (10,-10), (0,-10)
-		q_se = new QuadTree(v1, m, v_se, v2); 
+		//new South East Corner (10,0), (0,0), (10,-10), (0,-10)
+		q_se = new QuadTree(b, m, v_se, b); 
 		q_se->Subdivide(amount - 1);
 		//new South West Corner (0,0), (-10, 0), (0,-10), (-10,-10)
-		q_sw = new QuadTree(m, v4, v2, v6);
+		q_sw = new QuadTree(m, d, a, v_sw);
 		q_sw->Subdivide(amount - 1);
-		
+	}
+}
+
+void QuadTree::Subdivide(int amount, QuadTree* root)
+{
+	if (amount > 0) {
+
+		Vector2D a = (root->v_sw + root->v_se) / 2;
+		Vector2D b = (root->v_se + root->v_ne) / 2;
+		Vector2D c = (root->v_ne + root->v_nw) / 2;
+		Vector2D d = (root->v_nw + root->v_sw) / 2;
+		Vector2D m = (root->v_ne + root->v_sw) / 2;
+
+		//new North East Corner (10,10), (0,10), (10,0), (0,0)	
+		root->q_ne = new QuadTree(root->v_ne, c, b, m);
+		root->q_ne->Subdivide(amount - 1);
+		//new North West Corner (0,10), (-10,10), (0,0), (-10,0)
+		root->q_nw = new QuadTree(c, root->v_nw, m, d);
+		root->q_nw->Subdivide(amount - 1);
+		//new South East Corner (10,0), (0,0), (10,-10), (0,-10)
+		root->q_se = new QuadTree(b, m, root->v_se, b);
+		root->q_se->Subdivide(amount - 1);
+		//new South West Corner (0,0), (-10, 0), (0,-10), (-10,-10)
+		root->q_sw = new QuadTree(m, d, a, root->v_sw);
+		root->q_sw->Subdivide(amount - 1);
 	}
 }
 
 void QuadTree::Print()
 {
-	Vector2D m = (v_ne + v_sw) / 2;
-	std::cout << "senter = (" << m.x << ", " << m.y << ")" << std::endl;
-	/*
 	for (auto i = 0; i < data.size(); i++) {
-		std::cout << data[i] << std::endl;
-	}*/
+		std::cout << "(" << data[i].x << ", " << data[i].y << ")" << std::endl;
+	}
 }
 
 bool QuadTree::IsLeaf()
@@ -72,35 +80,59 @@ bool QuadTree::IsLeaf()
 	}
 }
 
-QuadTree* QuadTree::Insert(Person* input)
+QuadTree* QuadTree::Insert(Vector2D input)
 {
-	if (IsLeaf()) {
+	if (IsLeaf() && !AtCapacity()) {
 		data.push_back(input);
-		return this;
+		std::cout << "Added point to this quad: " << std::endl;
+		std::cout << "NE:(" << v_ne.x << ", " << v_ne.y << "), " << "NW:(" << v_nw.x << ", " << v_nw.y << "), "
+			<< "SE:(" << v_se.x << ", " << v_se.y << "), " << "SW:(" << v_sw.x << ", " << v_sw.y << ")" << std::endl;
+		return nullptr;
+	}
+	
+	if (AtCapacity()) {
+		std::cout << "At capacity" << std::endl;
+		Subdivide(1);
+
 	}
 	else {
-		//Get middle to determine where it should go
-		Vector2D middle = (v_ne + v_sw) / 2;
-		//if the y is smaller than the middle it should land in one of the south trees
-		if (input->y < middle.y) {
-			//If the x is smaller than the middle x, it should land in the left tree. X goes from left to right with size
-			if (input->x < middle.x) {
-				q_sw->Insert(input);
+		data.push_back(input);
+		return nullptr;
+	}
+	//Get middle to determine where it should go
+	Vector2D middle = (v_ne + v_sw) / 2;
+	//if the y is smaller than the middle it should land in one of the south trees
+	if (input.y < middle.y) {
+		//If the x is smaller than the middle x, it should land in the left tree. X goes from left to right with size
+		if (input.x < middle.x) {
+			if (q_sw->AtCapacity()) {
+				q_sw->Subdivide(1);
 			}
-			else {
-				q_se->Insert(input);
-			}
+			q_sw->Insert(input);
 		}
 		else {
-			//Opposite of the south
-			if (input->x < middle.x) {
-				q_nw->Insert(input);
+			if (q_se->AtCapacity()) {
+				q_se->Subdivide(1);
 			}
-			else {
-				q_ne->Insert(input);
-			}
+			q_se->Insert(input);
 		}
 	}
+	else {
+		//Opposite of the south
+		if (input.x < middle.x) {
+			if (q_nw->AtCapacity()) {
+				q_nw->Subdivide(1);
+			}
+			q_nw->Insert(input);
+		}
+		else {
+			if (q_ne->AtCapacity()) {
+				q_ne->Subdivide(1);
+			}
+			q_ne->Insert(input);
+		}
+	}
+	return nullptr;
 }
 
 QuadTree* QuadTree::Find(Vector2D point)
@@ -136,8 +168,8 @@ QuadTree* QuadTree::Find(Vector2D point)
 QuadTree* QuadTree::FindAllLeafes()
 {
 	if (IsLeaf()) {
-		std::cout << "(" << v_ne.x << ", " << v_ne.y << "), " << "(" << v_nw.x << ", " << v_nw.y << "), "
-			<< "(" << v_se.x << ", " << v_se.y << "), " << "(" << v_sw.x << ", " << v_sw.y << ")" << std::endl;
+		std::cout << "NE:(" << v_ne.x << ", " << v_ne.y << "), " << "NW:(" << v_nw.x << ", " << v_nw.y << "), "
+			<< "SE:(" << v_se.x << ", " << v_se.y << "), " << "SW:(" << v_sw.x << ", " << v_sw.y << ")" << std::endl;
 		return this;
 	}
 	if (q_ne) {
@@ -153,4 +185,14 @@ QuadTree* QuadTree::FindAllLeafes()
 		q_sw->FindAllLeafes();
 	}
 	return nullptr;
+}
+
+bool QuadTree::AtCapacity() {
+	if (data.size() < capacity) {
+		std::cout << data.size() << std::endl;
+		return false;
+	}
+	else {
+		return true;
+	}
 }
