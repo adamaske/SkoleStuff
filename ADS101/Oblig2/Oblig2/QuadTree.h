@@ -31,15 +31,16 @@ public:
 	QuadTree(Vector2D &vne, Vector2D& vnw, Vector2D& vse, Vector2D& vsw, 
 			QuadTree* qne = nullptr, QuadTree* qnw = nullptr, QuadTree* qse = nullptr , QuadTree* qsw = nullptr);
 	void Subdivide(int amount);
-	void Subdivide(int amount, QuadTree* root);
 	void Print();
 	bool IsLeaf();
 	QuadTree* Insert(Vector2D input);
 	QuadTree* Find(Vector2D point);
 	QuadTree* FindAllLeafes();
-	int capacity = 4;
+	int capacity = 5;
+	int count = 0;
 	bool AtCapacity();
 	std::vector<Vector2D> data;
+	void Rebuild();
 private:
 	Vector2D v_ne;
 	Vector2D v_nw;

@@ -45,18 +45,30 @@ int main() {
 
     //Write a quadtree where the blades lay in different levels
     QuadTree* tree = MakeQuadTree();
+    tree->Subdivide(1);
+    tree->q_ne->Subdivide(1);
     Vector2D a;
-    for (int i = 0; i < 16; i++)
+    for (int i = 0; i < 18; i++)
     {
-        a.x = rand() % 10;
-        a.y = rand() % 10;
+        a.x = rand() % 100;
+        a.y = rand() % 100;
         tree->Insert(a);
     }
-    tree->Print();
+    ///tree->Print();
     
     //Write a function that returns all the corners to all quads which are blades 
     tree->FindAllLeafes();
     //Write a test program for these
+    // 
+    //Opggaver i timen 4.10, sett inn 7, 11, 4, 2, 3 i binært søketre, avl-tre og red-black tre
+    /*BinaryNode* root1 = new BinaryNode(7);
+    root1->Insert(7);
+    root1->Insert(11);
+    root1->Insert(4);
+    root1->Insert(2);
+    root1->Insert(3);
+
+    Inorder(root1);*/
     return 0;
 }
 

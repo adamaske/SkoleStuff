@@ -141,7 +141,6 @@
   <ItemGroup>
     <ClCompile Include="BinaryNode.cpp" />
     <ClCompile Include="Oblig2.cpp" />
-    <ClCompile Include="Person.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>

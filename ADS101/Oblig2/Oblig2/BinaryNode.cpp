@@ -50,9 +50,10 @@ void BinaryNode::Insert(int _data)
 		}
 		else {
 			right = new BinaryNode(_data);
+
 		}
 	}
-
+	DoBalance(this, _data);
 }
 
 void BinaryNode::Intrav()
@@ -65,3 +66,84 @@ void BinaryNode::Intrav()
 		right->Intrav();
 	}
 }
+
+void BinaryNode::DoBalance(BinaryNode* root, int _data)
+{
+	//If Right Height is larger than left it returns negative
+	int balanace = Height(root->GetLeft()) - Height(root->GetRight());
+	//Left is taller than right
+	//Data is smaller than left
+	if ( balanace > 1 && _data < root->GetLeft()->data) {
+		//Unbalanced
+		RightRotation(root);
+	}
+	//Right is taller than left
+	//Data is larger than right
+	if (balanace < -1 && _data > root->GetRight()->data) {
+		//Unbalanced
+		LeftRotation(root);
+	}
+	//Left is taller than right
+	//Data is larger than left
+	if (balanace > 1 && _data > root->GetLeft()->data) {
+		//Unbalanced
+		root->left = LeftRotation(root->GetLeft());
+		RightRotation(root);
+	}
+	//Right is taller than left
+	//Data is smaller than right
+	if (balanace < -1 && _data < root->GetRight()->data) {
+		//Unbalanced
+		root->right = RightRotation(root->GetRight());
+		LeftRotation(root);
+	}
+}
+
+int BinaryNode::Height(BinaryNode* root)
+{
+	if (!root) {
+		return 0;
+	}
+	int a;
+	int b;
+	if (root->GetLeft()) {
+		a = 1 + Height(root->GetLeft());
+	}
+	if (root->GetRight()) {
+		b = 1 + Height(root->GetRight());
+	}
+	if (a >= b) {
+		return a;
+	}
+	else {
+		return b;
+	}
+
+	return 0;
+}
+
+BinaryNode* BinaryNode::RightRotation(BinaryNode* root)
+{
+
+	BinaryNode* temp1 = root->GetLeft();
+	BinaryNode* temp2 = temp1->GetRight();
+
+	temp1->right = root;
+	root->left = temp2;
+
+
+	return temp1;
+}
+
+BinaryNode* BinaryNode::LeftRotation(BinaryNode* root)
+{
+	BinaryNode* temp1 = root->GetRight();
+	BinaryNode* temp2 = temp1->GetLeft();
+
+	root->left = temp1;
+	temp1->right = temp2;
+
+	return temp1;
+}
+
+

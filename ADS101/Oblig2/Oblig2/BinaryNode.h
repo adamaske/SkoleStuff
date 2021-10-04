@@ -11,9 +11,12 @@ public:
 	void Intrav();
 	BinaryNode* GetLeft() { return left; };
 	BinaryNode* GetRight() { return right; };
-
 	int data;
 	BinaryNode* left;
 	BinaryNode* right;
+	void DoBalance(BinaryNode* root, int _data);
+	int Height(BinaryNode* root);
+	BinaryNode* RightRotation(BinaryNode* root);
+	BinaryNode* LeftRotation(BinaryNode* root);
 };
 
