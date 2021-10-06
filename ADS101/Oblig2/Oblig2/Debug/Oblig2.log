@@ -2,6 +2,6 @@
 C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Stack.h(18,1): warning C4812: obsolete declaration style: please use 'Stack<T>::Stack' instead
 C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Stack.h(18,1): warning C4812: obsolete declaration style: please use 'Stack<BinaryNode *>::Stack' instead
 C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Stack.h(19): message : while compiling class template member function 'Stack<BinaryNode *>::Stack(void)'
-C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Oblig2.cpp(107): message : see reference to function template instantiation 'Stack<BinaryNode *>::Stack(void)' being compiled
-C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Oblig2.cpp(107): message : see reference to class template instantiation 'Stack<BinaryNode *>' being compiled
+C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Oblig2.cpp(115): message : see reference to function template instantiation 'Stack<BinaryNode *>::Stack(void)' being compiled
+C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Oblig2\Oblig2.cpp(115): message : see reference to class template instantiation 'Stack<BinaryNode *>' being compiled
   Oblig2.vcxproj -> C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\Oblig2\Debug\Oblig2.exe

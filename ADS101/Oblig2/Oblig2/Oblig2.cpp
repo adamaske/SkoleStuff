@@ -80,22 +80,30 @@ void Inorder(BinaryNode* root) {
         //Goes down the left, until there is no more to the left, then goes down right until there is no more
         if (current->GetLeft() != nullptr) {
             previous = current->GetLeft();
-            //Get the bottom right
+            //Get the bottom right and stores it in previous
             while (previous->GetRight() != nullptr && previous->GetRight() != current) {
                 previous = previous->GetRight();
             }
+            //Here it has gotten the bottom right it can, without a left
+            //Store this in previous 
             if (previous->GetRight() == nullptr) {
+                //Store the current as previous->Right
                 previous->right = current;
+                //Then go down the left as long as it goes
                 current = current->GetLeft();
             }
             else {
-                previous->right = nullptr;
+                //If the previous has no right, then print it
                 std::cout << current->GetData() << " ";
+                previous->right = nullptr;
+                //Get the new current as this ones right
                 current = current->GetRight();
+                //Then returns to check if it has a left, then it prints it
             }
         }
         else {
             //Get the right instead of the left
+            
             std::cout << current->GetData() << " ";
             current = current->GetRight();
         }
