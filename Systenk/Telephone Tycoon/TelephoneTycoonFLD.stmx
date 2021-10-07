@@ -67,12 +67,12 @@
 			</flow>
 			<stock name="Penger">
 				<inflow>Selger_telefoner</inflow>
-				<outflow>Produserte_telefoner</outflow>
+				<outflow>Produsererr_telefoner</outflow>
 				<outflow>Betaler_ansatte_lønn</outflow>
-				<outflow>Utvikler_ny_telefon_modeller</outflow>
+				<outflow>Designer_ny_telefon</outflow>
 				<non_negative/>
 			</stock>
-			<flow name="Produserte telefoner">
+			<flow name="Produsererr telefoner">
 				<non_negative/>
 			</flow>
 			<flow name="Betaler ansatte lønn">
@@ -81,7 +81,7 @@
 			<flow name="Selger telefoner">
 				<non_negative/>
 			</flow>
-			<flow name="Utvikler ny telefon modeller">
+			<flow name="Designer ny telefon">
 				<non_negative/>
 			</flow>
 			<isee:dependencies/>
@@ -126,7 +126,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" page_width="1101" page_height="771" isee:scroll_x="32.7778" isee:scroll_y="213.889" zoom="180" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" page_width="1101" page_height="771" isee:scroll_x="7.5" isee:scroll_y="175" zoom="160" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -163,7 +163,7 @@
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
 				<stock label_side="top" x="201" y="261" name="Telefoner på lager"/>
-				<flow x="125.813" y="259.375" name="Produserer telefoner">
+				<flow x="116.813" y="250.375" width="18" height="18" name="Produserer telefoner">
 					<pts>
 						<pt x="73.125" y="259.375"/>
 						<pt x="178.5" y="259.375"/>
@@ -191,7 +191,7 @@
 				<stock x="342.5" y="420" name="Ikke solgte butikker"/>
 				<stock x="515" y="266.25" name="Solgte telefoner"/>
 				<stock x="502.768" y="416.071" width="45" height="35" name="Waste telefoner"/>
-				<flow x="512.946" y="334.911" width="18" height="18" name="Eiere kaster telefoner">
+				<flow x="521.946" y="343.911" name="Eiere kaster telefoner">
 					<pts>
 						<pt x="521.946" y="283.75"/>
 						<pt x="521.946" y="416.071"/>
@@ -204,7 +204,7 @@
 					</pts>
 				</flow>
 				<stock x="193.333" y="566.667" name="Penger"/>
-				<flow x="258.861" y="557.667" width="18" height="18" name="Produserte telefoner">
+				<flow x="267.861" y="566.667" name="Produsererr telefoner">
 					<pts>
 						<pt x="215.833" y="566.667"/>
 						<pt x="343.889" y="566.667"/>
@@ -217,13 +217,13 @@
 						<pt x="323.333" y="645"/>
 					</pts>
 				</flow>
-				<flow x="99.4722" y="551.556" width="18" height="18" name="Selger telefoner">
+				<flow x="108.472" y="560.556" name="Selger telefoner">
 					<pts>
 						<pt x="46.1111" y="560.556"/>
 						<pt x="170.833" y="560.556"/>
 					</pts>
 				</flow>
-				<flow x="259.403" y="491.556" width="18" height="18" name="Utvikler ny telefon modeller">
+				<flow x="268.402" y="500.556" name="Designer ny telefon">
 					<pts>
 						<pt x="213.583" y="549.167"/>
 						<pt x="213.583" y="500.556"/>

@@ -72,9 +72,6 @@
 			<aux name="Ny telefon produsent">
 				<isee:delay_aux/>
 			</aux>
-			<aux name="Shipping delay">
-				<isee:delay_aux/>
-			</aux>
 			<aux name="Design av nye telefoner">
 				<isee:delay_aux/>
 			</aux>
@@ -85,20 +82,19 @@
 				<var name="Penger">
 					<in>Solgte_telefoner</in>
 					<in>Produserer_telefoner</in>
-					<in>Design_av_nye_telefoner</in>
-					<in>Lån</in>
 					<in>Ansatte</in>
+					<in>Lån</in>
 				</var>
 				<var name="Telefoner_i_butikk">
 					<in>Shipper_telefoner</in>
 					<in>Solgte_telefoner</in>
 				</var>
 				<var name="Produserer_telefoner">
-					<in>Penger</in>
 					<in>Produksjon_kostnad_pr_telefon</in>
 					<in>Ansatte</in>
 					<in>Produksjon_kapasitet</in>
 					<in>Telefon_på_lager</in>
+					<in>Design_av_nye_telefoner</in>
 				</var>
 				<var name="Solgte_telefoner">
 					<in>Kunder_kjøper_telefoner</in>
@@ -118,8 +114,8 @@
 					<in>Telefon_på_lager</in>
 				</var>
 				<var name="Kunder_kjøper_telefoner">
-					<in>Telefoner_i_butikk</in>
 					<in>Market_share</in>
+					<in>Telefoner_i_butikk</in>
 				</var>
 				<var name="Waste">
 					<in>Solgte_telefoner</in>
@@ -133,6 +129,9 @@
 				</var>
 				<var name="Salgs_pris_pr_telefon">
 					<in>Waste_Tax</in>
+				</var>
+				<var name="Design_av_nye_telefoner">
+					<in>Penger</in>
 				</var>
 				<var name="Lån">
 					<in>Penger</in>
@@ -179,7 +178,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1101" page_height="771" isee:scroll_x="16.875" zoom="160" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1101" page_height="771" isee:scroll_x="22.5" zoom="160" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -229,7 +228,7 @@
 				</connector>
 				<connector uid="3" polarity="+" isee:polarity_placement="outside" angle="39.7121">
 					<from>Penger</from>
-					<to>Produserer_telefoner</to>
+					<to>Design_av_nye_telefoner</to>
 				</connector>
 				<aux x="184.341" y="117.125" width="68.25" height="12" name="Telefon på lager"/>
 				<connector uid="4" polarity="-" isee:polarity_placement="outside" angle="236.12">
@@ -270,11 +269,11 @@
 					<from>Produksjon_kostnad_pr_telefon</from>
 					<to>Produserer_telefoner</to>
 				</connector>
-				<connector uid="12" polarity="-" isee:polarity_placement="outside" angle="207.595">
+				<connector uid="12" polarity="-" isee:polarity_placement="outside" angle="225.696">
 					<from>Ansatte</from>
 					<to>Penger</to>
 				</connector>
-				<connector uid="13" isee:thickness="1" polarity="+" isee:polarity_placement="outside" angle="110.121">
+				<connector uid="13" font_size="20pt" isee:thickness="1" polarity="+" isee:polarity_placement="inside" angle="108.395">
 					<from>Ansatte</from>
 					<to>Produserer_telefoner</to>
 				</connector>
@@ -315,33 +314,32 @@
 					<from>Waste_Tax</from>
 					<to>Ansatte</to>
 				</connector>
-				<aux x="150.035" y="244.59" width="91.25" height="12" name="Ny telefon produsent"/>
-				<connector uid="22" polarity="-" isee:polarity_placement="outside" angle="282.164">
+				<aux x="176.285" y="247.09" width="91.25" height="12" name="Ny telefon produsent"/>
+				<connector uid="22" font_size="22pt" polarity="-" isee:polarity_placement="outside" angle="208.838">
 					<from>Ny_telefon_produsent</from>
 					<to>Market_share</to>
 				</connector>
-				<connector uid="23" polarity="+" isee:polarity_placement="outside" angle="3.46776">
+				<connector uid="23" polarity="+" isee:polarity_placement="outside" angle="7.60417">
 					<from>Ny_produksjon_linje</from>
 					<to>Produksjon_kapasitet</to>
 				</connector>
-				<aux x="45.4722" y="81.5" width="63.25" height="12" name="Shipping delay"/>
-				<aux x="237.472" y="202.111" width="104.25" height="12" name="Design av nye telefoner"/>
-				<connector uid="24" polarity="-" isee:polarity_placement="outside" delay_mark="true" angle="265.217">
-					<from>Design_av_nye_telefoner</from>
-					<to>Penger</to>
-				</connector>
-				<connector uid="25" polarity="-" isee:polarity_placement="outside" angle="332.723">
+				<aux x="370.535" y="205.59" width="104.25" height="12" name="Design av nye telefoner"/>
+				<connector uid="24" polarity="-" isee:polarity_placement="outside" angle="332.723">
 					<from>Telefon_på_lager</from>
 					<to>Produserer_telefoner</to>
 				</connector>
 				<aux x="457.955" y="388.687" width="17.25" height="12" name="Lån"/>
-				<connector uid="26" polarity="+" isee:polarity_placement="outside" angle="95.1738">
+				<connector uid="25" polarity="+" isee:polarity_placement="outside" angle="95.1738">
 					<from>Lån</from>
 					<to>Penger</to>
 				</connector>
-				<connector uid="27" polarity="-" isee:polarity_placement="outside" delay_mark="true" angle="265.912">
+				<connector uid="26" polarity="-" isee:polarity_placement="outside" delay_mark="true" angle="265.912">
 					<from>Penger</from>
 					<to>Lån</to>
+				</connector>
+				<connector uid="27" font_size="20pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="128.061">
+					<from>Design_av_nye_telefoner</from>
+					<to>Produserer_telefoner</to>
 				</connector>
 			</view>
 		</views>

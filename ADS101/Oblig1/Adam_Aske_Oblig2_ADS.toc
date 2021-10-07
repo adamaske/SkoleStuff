@@ -1,8 +1,0 @@
-\babel@toc {norsk}{}
-\contentsline {section}{\numberline {1}Introduksjon}{2}{}%
-\contentsline {section}{\numberline {2}Inorder Traversal}{2}{}%
-\contentsline {section}{\numberline {3}Postorde Traversal}{3}{}%
-\contentsline {section}{\numberline {4}Amount of Nodes}{3}{}%
-\contentsline {section}{\numberline {5}Amount of Levels}{4}{}%
-\contentsline {section}{\numberline {6}Balance Check}{4}{}%
-\contentsline {section}{\numberline {7}Resultater av binary tree funksjonene.}{5}{}%
