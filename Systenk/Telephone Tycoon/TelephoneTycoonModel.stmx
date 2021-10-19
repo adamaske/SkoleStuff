@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee" uses_conveyor=""/>
+		<name>TelephoneTycoonModel</name>
+		<uuid>731e71f2-76de-48cc-9118-cdbb317b8f26</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.0265306" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>0</start>
+		<stop>48</stop>
+		<dt reciprocal="true">12</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<stock name="Telefoner i butikk">
+				<eqn>0</eqn>
+				<inflow>Shipper_Telefoner</inflow>
+				<outflow>Telefoner_blir_ikke_solgt</outflow>
+				<outflow>Kunder_kjøper_telefoner</outflow>
+				<non_negative/>
+				<units/>
+			</stock>
+			<stock name="Waste">
+				<eqn>0</eqn>
+				<inflow>Butikken_kaster_telefoner</inflow>
+				<inflow>Eiere_kaster_telefoner</inflow>
+				<non_negative/>
+				<units/>
+			</stock>
+			<flow name="Produserer telefoner">
+				<eqn>Produksjon_Kapasitet</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Shipper Telefoner">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Telefoner blir ikke solgt">
+				<eqn>Telefoner_i_butikk*0.1</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Kunder kjøper telefoner">
+				<eqn>Telefoner_i_butikk*0.9</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Butikken kaster telefoner">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Eiere kaster telefoner">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Produksjon Kapasitet">
+				<eqn>Produksjons_Linjer*Produksjon_kapasitet_per_linje</eqn>
+				<units>Telefoner pr måned</units>
+			</aux>
+			<stock name="Penger">
+				<eqn>1000000</eqn>
+				<inflow>Inntekt</inflow>
+				<outflow>Utgifter</outflow>
+			</stock>
+			<aux name="Produksjon kost per telefon">
+				<eqn>400</eqn>
+			</aux>
+			<aux name="Salg pris per telefon">
+				<eqn>600</eqn>
+			</aux>
+			<flow name="Inntekt">
+				<eqn>Kunder_kjøper_telefoner*Salg_pris_per_telefon+Tar_lån</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Utgifter">
+				<eqn>Produksjon_Kostnad+Waste_skatt+Måndetlig_gjeld_betaling++Design_av_nye_telefoner+Betale_lønn_til_ansatte</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Telefoner på lager">
+				<eqn>300</eqn>
+				<inflow>Produserer_telefoner</inflow>
+				<outflow>Shipper_Telefoner</outflow>
+				<conveyor>
+					<len>0.5</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<stock name="Ikke solgte telefoner">
+				<eqn>0</eqn>
+				<inflow>Telefoner_blir_ikke_solgt</inflow>
+				<outflow>Butikken_kaster_telefoner</outflow>
+				<conveyor>
+					<len>1</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<stock name="Telefoner hos kunder">
+				<eqn>0</eqn>
+				<inflow>Kunder_kjøper_telefoner</inflow>
+				<outflow>Eiere_kaster_telefoner</outflow>
+				<conveyor>
+					<len>24</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<aux name="Waste skatt">
+				<eqn>Salg_pris_per_telefon*0.2*Kunder_kjøper_telefoner</eqn>
+			</aux>
+			<aux name="Tar lån">
+				<eqn>PULSE(Lån_mengde, 0,  0)</eqn>
+			</aux>
+			<stock name="Gjeld">
+				<eqn>0</eqn>
+				<inflow>Tokk_lån</inflow>
+				<outflow>Betaler_tilbake</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Tokk lån">
+				<eqn>Tar_lån</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Betaler tilbake">
+				<eqn>Gjeld_betaling_uten_rente</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Måndetlig gjeld betaling">
+				<eqn>Gjeld_betaling_uten_rente*1.03</eqn>
+			</aux>
+			<aux name="Gjeld betaling uten rente">
+				<eqn>Lån_mengde/24</eqn>
+			</aux>
+			<aux name="Lån mengde">
+				<eqn>1000000</eqn>
+			</aux>
+			<aux name="Design av nye telefoner">
+				<eqn>0</eqn>
+			</aux>
+			<aux name="Produksjon Kostnad">
+				<eqn>Produksjon_kost_per_telefon*Produksjon_Kapasitet</eqn>
+			</aux>
+			<aux name="Produksjon kapasitet per linje">
+				<eqn>2500</eqn>
+			</aux>
+			<stock name="Produksjons Linjer">
+				<eqn>1</eqn>
+				<inflow>Bygger_ny_produksjons_linje</inflow>
+				<non_negative/>
+			</stock>
+			<flow name="Bygger ny produksjons linje">
+				<eqn>Betaler_for_bygging_av_ny_produksjonslinje</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Betaler for bygging av ny produksjonslinje">
+				<eqn>PULSE(1,  12,  0)</eqn>
+			</aux>
+			<stock name="Ansatte">
+				<eqn>10</eqn>
+				<inflow>Hyrer_nye_ansatte</inflow>
+				<outflow>Sparker_ansatte</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Hyrer nye ansatte">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Sparker ansatte">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Betale lønn til ansatte">
+				<eqn>Lønn_per_ansatt*Ansatte</eqn>
+			</aux>
+			<aux name="Lønn per ansatt">
+				<eqn>5000</eqn>
+			</aux>
+			<stock name="Telefoner produsert">
+				<eqn>0</eqn>
+				<inflow>Telefon_er_ferdig_produsert</inflow>
+				<non_negative/>
+				<units/>
+			</stock>
+			<flow name="Telefon er ferdig produsert">
+				<eqn>Produserer_telefoner</eqn>
+				<non_negative/>
+			</flow>
+			<isee:dependencies>
+				<var name="Produserer_telefoner">
+					<in>Produksjon_Kapasitet</in>
+				</var>
+				<var name="Telefoner_blir_ikke_solgt">
+					<in>Telefoner_i_butikk</in>
+				</var>
+				<var name="Kunder_kjøper_telefoner">
+					<in>Telefoner_i_butikk</in>
+				</var>
+				<var name="Produksjon_Kapasitet">
+					<in>Produksjon_kapasitet_per_linje</in>
+					<in>Produksjons_Linjer</in>
+				</var>
+				<var name="Inntekt">
+					<in>Salg_pris_per_telefon</in>
+					<in>Tar_lån</in>
+					<in>Kunder_kjøper_telefoner</in>
+				</var>
+				<var name="Utgifter">
+					<in>Waste_skatt</in>
+					<in>Måndetlig_gjeld_betaling</in>
+					<in>Design_av_nye_telefoner</in>
+					<in>Produksjon_Kostnad</in>
+					<in>Betale_lønn_til_ansatte</in>
+				</var>
+				<var name="Waste_skatt">
+					<in>Salg_pris_per_telefon</in>
+					<in>Kunder_kjøper_telefoner</in>
+				</var>
+				<var name="Tar_lån">
+					<in>Lån_mengde</in>
+				</var>
+				<var name="Tokk_lån">
+					<in>Tar_lån</in>
+				</var>
+				<var name="Betaler_tilbake">
+					<in>Gjeld_betaling_uten_rente</in>
+				</var>
+				<var name="Måndetlig_gjeld_betaling">
+					<in>Gjeld_betaling_uten_rente</in>
+				</var>
+				<var name="Gjeld_betaling_uten_rente">
+					<in>Lån_mengde</in>
+				</var>
+				<var name="Produksjon_Kostnad">
+					<in>Produksjon_kost_per_telefon</in>
+					<in>Produksjon_Kapasitet</in>
+				</var>
+				<var name="Bygger_ny_produksjons_linje">
+					<in>Betaler_for_bygging_av_ny_produksjonslinje</in>
+				</var>
+				<var name="Betale_lønn_til_ansatte">
+					<in>Lønn_per_ansatt</in>
+					<in>Ansatte</in>
+				</var>
+				<var name="Telefon_er_ferdig_produsert">
+					<in>Produserer_telefoner</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="large" page_width="1101" page_height="771" isee:page_cols="2" isee:page_rows="2" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="67" height="55"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="24"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<stock x="894.571" y="43.4286" name="Telefoner i butikk"/>
+				<stock x="981.93" y="310.5" width="45" height="35" name="Waste"/>
+				<flow x="574.821" y="33.4286" name="Produserer telefoner">
+					<pts>
+						<pt x="455.571" y="33.4286"/>
+						<pt x="694.071" y="33.4286"/>
+					</pts>
+				</flow>
+				<flow x="799.571" y="38.4286" name="Shipper Telefoner">
+					<pts>
+						<pt x="739.071" y="38.4286"/>
+						<pt x="872.071" y="38.4286"/>
+					</pts>
+				</flow>
+				<flow x="896" y="141.214" name="Telefoner blir ikke solgt">
+					<pts>
+						<pt x="896" y="60.9286"/>
+						<pt x="896" y="233.5"/>
+					</pts>
+				</flow>
+				<flow x="987.857" y="49.9286" name="Kunder kjøper telefoner">
+					<pts>
+						<pt x="917.071" y="49.9286"/>
+						<pt x="1070.64" y="49.9286"/>
+					</pts>
+				</flow>
+				<flow x="933.179" y="330" name="Butikken kaster telefoner">
+					<pts>
+						<pt x="896.429" y="268.5"/>
+						<pt x="896.429" y="330"/>
+						<pt x="981.929" y="330"/>
+					</pts>
+				</flow>
+				<flow x="1071.04" y="330" name="Eiere kaster telefoner">
+					<pts>
+						<pt x="1103.14" y="71.5"/>
+						<pt x="1103.14" y="330"/>
+						<pt x="1026.93" y="330"/>
+					</pts>
+				</flow>
+				<aux x="349.072" y="76.7143" name="Produksjon Kapasitet"/>
+				<connector uid="1" angle="10.8543">
+					<from>Produksjon_Kapasitet</from>
+					<to>Produserer_telefoner</to>
+				</connector>
+				<stock x="366" y="318.429" name="Penger"/>
+				<aux x="264.714" y="195.786" name="Produksjon kost per telefon"/>
+				<aux x="287.179" y="428.571" name="Salg pris per telefon"/>
+				<flow x="262.75" y="318.429" name="Inntekt">
+					<pts>
+						<pt x="182" y="318.429"/>
+						<pt x="343.5" y="318.429"/>
+					</pts>
+				</flow>
+				<flow x="442.75" y="318.429" name="Utgifter">
+					<pts>
+						<pt x="388.5" y="318.429"/>
+						<pt x="521" y="318.429"/>
+					</pts>
+				</flow>
+				<connector uid="2" angle="0">
+					<from>Produksjon_kost_per_telefon</from>
+					<to>Produksjon_Kostnad</to>
+				</connector>
+				<connector uid="3" angle="308.66">
+					<from>Produksjon_Kapasitet</from>
+					<to>Produksjon_Kostnad</to>
+				</connector>
+				<connector uid="4" angle="122.137">
+					<from>Salg_pris_per_telefon</from>
+					<to>Inntekt</to>
+				</connector>
+				<stock x="716.571" y="33.4286" name="Telefoner på lager"/>
+				<connector uid="5" angle="36.3045">
+					<from>Telefoner_i_butikk</from>
+					<to>Kunder_kjøper_telefoner</to>
+				</connector>
+				<connector uid="6" angle="204.444">
+					<from>Telefoner_i_butikk</from>
+					<to>Telefoner_blir_ikke_solgt</to>
+				</connector>
+				<stock x="897.429" y="251" name="Ikke solgte telefoner"/>
+				<stock x="1093.14" y="54" name="Telefoner hos kunder"/>
+				<aux x="463.75" y="432.357" name="Waste skatt"/>
+				<connector uid="7" angle="322.883">
+					<from>Salg_pris_per_telefon</from>
+					<to>Waste_skatt</to>
+				</connector>
+				<connector uid="8" angle="100.444">
+					<from>Waste_skatt</from>
+					<to>Utgifter</to>
+				</connector>
+				<aux x="162.143" y="460.572" name="Tar lån"/>
+				<connector uid="9" angle="54.7096">
+					<from>Tar_lån</from>
+					<to>Inntekt</to>
+				</connector>
+				<stock x="371.429" y="555.714" name="Gjeld"/>
+				<flow x="288.75" y="555.714" name="Tokk lån">
+					<pts>
+						<pt x="228.571" y="555.714"/>
+						<pt x="348.929" y="555.714"/>
+					</pts>
+				</flow>
+				<flow x="459.25" y="557.857" name="Betaler tilbake">
+					<pts>
+						<pt x="393.929" y="557.857"/>
+						<pt x="548.571" y="557.857"/>
+					</pts>
+				</flow>
+				<connector uid="10" angle="0.975884">
+					<from>Tar_lån</from>
+					<to>Tokk_lån</to>
+				</connector>
+				<aux x="618.429" y="474.571" name="Måndetlig gjeld betaling"/>
+				<connector uid="11" angle="138.37">
+					<from>Måndetlig_gjeld_betaling</from>
+					<to>Utgifter</to>
+				</connector>
+				<aux x="468.429" y="636.857" name="Gjeld betaling uten rente"/>
+				<connector uid="12" angle="347.374">
+					<from>Gjeld_betaling_uten_rente</from>
+					<to>Måndetlig_gjeld_betaling</to>
+				</connector>
+				<connector uid="13" angle="138.318">
+					<from>Gjeld_betaling_uten_rente</from>
+					<to>Betaler_tilbake</to>
+				</connector>
+				<aux x="120.571" y="595.286" name="Lån mengde"/>
+				<connector uid="14" angle="95.1282">
+					<from>Lån_mengde</from>
+					<to>Tar_lån</to>
+				</connector>
+				<connector uid="15" angle="311.698">
+					<from>Lån_mengde</from>
+					<to>Gjeld_betaling_uten_rente</to>
+				</connector>
+				<aux x="520" y="195.786" name="Design av nye telefoner"/>
+				<connector uid="16" angle="237.794">
+					<from>Design_av_nye_telefoner</from>
+					<to>Utgifter</to>
+				</connector>
+				<aux x="405.929" y="195.786" name="Produksjon Kostnad"/>
+				<connector uid="17" angle="286.711">
+					<from>Produksjon_Kostnad</from>
+					<to>Utgifter</to>
+				</connector>
+				<aux x="220.714" y="112.286" name="Produksjon kapasitet per linje"/>
+				<connector uid="18" angle="15.4895">
+					<from>Produksjon_kapasitet_per_linje</from>
+					<to>Produksjon_Kapasitet</to>
+				</connector>
+				<stock x="192" y="35.2143" width="45" height="35" name="Produksjons Linjer"/>
+				<connector uid="19" angle="15.3501">
+					<from>Produksjons_Linjer</from>
+					<to>Produksjon_Kapasitet</to>
+				</connector>
+				<flow x="112" y="46.7143" width="18" height="18" name="Bygger ny produksjons linje">
+					<pts>
+						<pt x="50" y="55.7143"/>
+						<pt x="192" y="55.7143"/>
+					</pts>
+				</flow>
+				<aux x="62.8571" y="106.143" name="Betaler for bygging av ny produksjonslinje"/>
+				<connector uid="20" angle="40.9358">
+					<from>Betaler_for_bygging_av_ny_produksjonslinje</from>
+					<to>Bygger_ny_produksjons_linje</to>
+				</connector>
+				<stock x="887" y="519" name="Ansatte"/>
+				<flow x="810.25" y="520" name="Hyrer nye ansatte">
+					<pts>
+						<pt x="756" y="520"/>
+						<pt x="864.5" y="520"/>
+					</pts>
+				</flow>
+				<flow x="969.25" y="518" name="Sparker ansatte">
+					<pts>
+						<pt x="909.5" y="518"/>
+						<pt x="1053" y="518"/>
+					</pts>
+				</flow>
+				<aux x="663.429" y="420" name="Betale lønn til ansatte"/>
+				<aux x="716.571" y="351" name="Lønn per ansatt"/>
+				<connector uid="21" angle="232.397">
+					<from>Lønn_per_ansatt</from>
+					<to>Betale_lønn_til_ansatte</to>
+				</connector>
+				<connector uid="22" angle="128.047">
+					<from>Ansatte</from>
+					<to>Betale_lønn_til_ansatte</to>
+				</connector>
+				<connector uid="23" angle="139.603">
+					<from>Betale_lønn_til_ansatte</from>
+					<to>Utgifter</to>
+				</connector>
+				<stock x="713.571" y="114.714" name="Telefoner produsert"/>
+				<flow x="626.036" y="117" name="Telefon er ferdig produsert">
+					<pts>
+						<pt x="561" y="117"/>
+						<pt x="691.071" y="117"/>
+					</pts>
+				</flow>
+				<connector uid="24" angle="301.501">
+					<from>Produserer_telefoner</from>
+					<to>Telefon_er_ferdig_produsert</to>
+				</connector>
+				<alias font_style="italic" label_side="bottom" uid="25" x="345" y="375" width="18" height="18">
+					<of>Kunder_kjøper_telefoner</of>
+				</alias>
+				<connector uid="26" angle="144.299">
+					<from>
+						<alias uid="25"/>
+					</from>
+					<to>Inntekt</to>
+				</connector>
+				<connector uid="27" angle="336.221">
+					<from>
+						<alias uid="25"/>
+					</from>
+					<to>Waste_skatt</to>
+				</connector>
+				<stacked_container uid="28" x="60.8333" y="141.667" width="484.19" height="325">
+					<graph x="60.8333" y="141.667" width="484.19" height="325" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Penger" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Penger"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Gjeld"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Inntekt"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Utgifter"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="29" x="560.571" y="145.762" width="487.073" height="316.809">
+					<graph legend_position="bottom" x="560.571" y="145.762" width="487.073" height="316.809" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Telefoner" isee:fill_intensity="0.1" left_axis_multi_scale="true" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Ikke_solgte_telefoner"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Telefoner_hos_kunder"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Telefoner_på_lager"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Telefoner_produsert"/>
+						</plot>
+						<plot color="#FF7F00" pen_width="1" index="4" show_y_axis="true">
+							<entity name="Telefoner_i_butikk"/>
+						</plot>
+						<plot color="#7F00FF" pen_style="dot_dashed" pen_width="1" index="5" show_y_axis="true">
+							<entity name="Waste"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="30" x="62.75" y="479.357" width="480.357" height="362.143">
+					<graph x="62.75" y="479.357" width="480.357" height="362.143" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Produksjon" isee:fill_intensity="0.1" left_axis_multi_scale="true" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Produksjons_Linjer"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Produksjon_Kostnad"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Produksjon_kost_per_telefon"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Produksjon_Kapasitet"/>
+						</plot>
+					</graph>
+				</stacked_container>
+			</view>
+		</views>
+	</model>
+</xmile>
+
