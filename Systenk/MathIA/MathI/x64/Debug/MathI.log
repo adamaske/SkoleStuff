@@ -1,0 +1,7 @@
+﻿  Form1.cpp
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\Form1.cpp(12,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\Form1.cpp(14,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\Form1.cpp(23,8): warning C4101: 'fx': unreferenced local variable
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\Form1.cpp(38,8): warning C4101: 'fx': unreferenced local variable
+  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  MathI.vcxproj -> C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\x64\Debug\MathIA.exe

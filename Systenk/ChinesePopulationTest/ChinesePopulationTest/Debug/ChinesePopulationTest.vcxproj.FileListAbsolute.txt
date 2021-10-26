@@ -1,0 +1,3 @@
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\ChinesePopulationTest\ChinesePopulationTest\Debug\ChinesePopulationTest.vcxproj.AssemblyReference.cache
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\ChinesePopulationTest\ChinesePopulationTest\Debug\ChinesePopulationTest.Form1.resources
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\ChinesePopulationTest\ChinesePopulationTest\Debug\ChinesePopulationTest.vcxproj.GenerateResource.cache

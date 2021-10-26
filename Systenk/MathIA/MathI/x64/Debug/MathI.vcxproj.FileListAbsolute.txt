@@ -1,0 +1,4 @@
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\x64\Debug\MathI.vcxproj.AssemblyReference.cache
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\x64\Debug\MathI.Form1.resources
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\x64\Debug\MathI.vcxproj.GenerateResource.cache
+C:\Users\adama\Documents\GitHub\SkoleStuff\Systenk\MathIA\MathI\x64\Debug\MathI.vcxproj.SuggestedBindingRedirects.cache

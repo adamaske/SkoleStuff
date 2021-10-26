@@ -27,14 +27,12 @@
 				<outflow>Telefoner_blir_ikke_solgt</outflow>
 				<outflow>Kunder_kjøper_telefoner</outflow>
 				<non_negative/>
-				<units/>
 			</stock>
 			<stock name="Waste">
 				<eqn>0</eqn>
 				<inflow>Butikken_kaster_telefoner</inflow>
 				<inflow>Eiere_kaster_telefoner</inflow>
 				<non_negative/>
-				<units/>
 			</stock>
 			<flow name="Produserer telefoner">
 				<eqn>Produksjon_Kapasitet</eqn>
@@ -90,7 +88,6 @@
 				<conveyor>
 					<len>0.5</len>
 				</conveyor>
-				<units/>
 			</stock>
 			<stock name="Ikke solgte telefoner">
 				<eqn>0</eqn>
@@ -99,7 +96,6 @@
 				<conveyor>
 					<len>1</len>
 				</conveyor>
-				<units/>
 			</stock>
 			<stock name="Telefoner hos kunder">
 				<eqn>0</eqn>
@@ -108,7 +104,6 @@
 				<conveyor>
 					<len>24</len>
 				</conveyor>
-				<units/>
 			</stock>
 			<aux name="Waste skatt">
 				<eqn>Salg_pris_per_telefon*0.2*Kunder_kjøper_telefoner</eqn>
@@ -184,7 +179,6 @@
 				<eqn>0</eqn>
 				<inflow>Telefon_er_ferdig_produsert</inflow>
 				<non_negative/>
-				<units/>
 			</stock>
 			<flow name="Telefon er ferdig produsert">
 				<eqn>Produserer_telefoner</eqn>
@@ -291,7 +285,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="large" page_width="1101" page_height="771" isee:page_cols="2" isee:page_rows="2" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="large" page_width="1101" page_height="771" isee:page_cols="2" isee:page_rows="2" zoom="120" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -464,8 +458,8 @@
 					<from>Lån_mengde</from>
 					<to>Gjeld_betaling_uten_rente</to>
 				</connector>
-				<aux x="520" y="195.786" name="Design av nye telefoner"/>
-				<connector uid="16" angle="237.794">
+				<aux x="533" y="221.5" name="Design av nye telefoner"/>
+				<connector uid="16" angle="227.044">
 					<from>Design_av_nye_telefoner</from>
 					<to>Utgifter</to>
 				</connector>
@@ -533,18 +527,15 @@
 					<from>Produserer_telefoner</from>
 					<to>Telefon_er_ferdig_produsert</to>
 				</connector>
-				<alias font_style="italic" label_side="bottom" uid="25" x="345" y="375" width="18" height="18">
-					<of>Kunder_kjøper_telefoner</of>
-				</alias>
-				<connector uid="26" angle="144.299">
+				<connector uid="25" angle="144.299">
 					<from>
-						<alias uid="25"/>
+						<alias uid="26"/>
 					</from>
 					<to>Inntekt</to>
 				</connector>
 				<connector uid="27" angle="336.221">
 					<from>
-						<alias uid="25"/>
+						<alias uid="26"/>
 					</from>
 					<to>Waste_skatt</to>
 				</connector>
@@ -564,7 +555,7 @@
 						</plot>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="29" x="560.571" y="145.762" width="487.073" height="316.809">
+				<stacked_container uid="29" x="560.571" y="145.762" width="487.073" height="316.809" minimized="true">
 					<graph legend_position="bottom" x="560.571" y="145.762" width="487.073" height="316.809" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Telefoner" isee:fill_intensity="0.1" left_axis_multi_scale="true" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
 						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Ikke_solgte_telefoner"/>
@@ -602,6 +593,9 @@
 						</plot>
 					</graph>
 				</stacked_container>
+				<alias font_style="italic" label_side="bottom" uid="26" x="345" y="375" width="18" height="18">
+					<of>Kunder_kjøper_telefoner</of>
+				</alias>
 			</view>
 		</views>
 	</model>
