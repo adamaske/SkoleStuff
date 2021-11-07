@@ -1,20 +1,21 @@
 ﻿  Oblig3.cpp
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(159,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(209,21): warning C4101: 'ht': unreferenced local variable
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(152,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(52): message : see reference to function template instantiation 'void InsertionSort<int,10>(T (&)[10])' being compiled
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(56): message : see reference to function template instantiation 'void InsertionSort<int,10>(T (&)[10])' being compiled
           with
           [
               T=int
           ]
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(211,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(204,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(56): message : see reference to function template instantiation 'void MergeSort<int,10>(T (&)[10])' being compiled
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\Oblig3\Oblig3\Oblig3\Oblig3.cpp(60): message : see reference to function template instantiation 'void MergeSort<int,10>(T (&)[10])' being compiled
           with
           [
               T=int

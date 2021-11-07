@@ -1,20 +1,23 @@
 #include <iostream>
 #include <array>
 #include <chrono>
-struct test
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+struct Test
 {
     int key;
     std::string s;
-    bool operator == (const test& t2) const { return key == t2.key; }
+    bool operator == (const Test& t2) const { return key == t2.key; }
 };
 
 template<>
-class std::hash<test>
+class std::hash<Test>
 {
-    size_t operator() (const test& t) const {
+    size_t operator() (const Test& t) const {
         return t.key % 7;
     }
-    bool operator() (const test& t1, const test& t2) {
+    bool operator() (const Test& t1, const Test& t2) {
         return t1.key == t2.key;
     }
 };
@@ -23,6 +26,7 @@ void InsertionSort(T(&arr)[N]);
 
 template<typename T, size_t N>
 void MergeSort(T(&arr)[N]);
+void InsertIntoUnorderSet(std::unordered_set<Test> &set, int key, std::string s);
 int main()
 {
     //Skriv en funksjon som regner ut gjennomsnittlig sorteringstid
@@ -61,37 +65,36 @@ int main()
     {
         std::cout << a[i] << ", ";
     }
+    std::cout << std::endl;
     //Gitt en array med tallene 17,14,5,7,12,1,16,29,13,4,8,18,22,2
     //Anta nå at tallene skal sorteres med mergesort. Sett opp en tabell som
     //viser hvordan hele sortering foregår, helt til at du har en ferdig sortert
     //array. Forklar med tekst i tilleg
+    int array1[] = { 17, 14, 5, 7, 12, 1, 16, 29, 13, 4, 8, 18, 22, 2 };
+    MergeSort(array1);
+    for (int i = 0; i < sizeof(array1) / sizeof(*array1); i++)
+    {
+        std::cout << array1[i] << ", ";
+    }
+    std::cout << std::endl;
 
 
     //Følgende kode er gitt
-    /*
-        struct Test{
-            int key;
-            std::string s;
-            bool operator == (const Test& t2) const {return key == t2.key;}
-        }
-        template<>
-        class hash<Test>{
-        public:
-            size_t operator() (const Test& t) const {
-            return t.key % 7;
-            }
-            bool operator() (const Test& t1, const Test& t2{
-            return t1.key == t2.key;
-            }
-        int main(int argc, char *argv[])
-        {
-            hash<Test> hashTabell;
-            unordered_set<Test> uordnet_sett;
-        }
-       }
-        */
-        // Skriv kode for å sette inn poster med nøkler 12, 13, 20, 21, 1, 2, 3, 4, 5, 6
-        //i uordnet_sett i opplistet rekkefølge
+    // Skriv kode for å sette inn poster med nøkler 12, 13, 20, 21, 1, 2, 3, 4, 5, 6
+    //i uordnet_sett i opplistet rekkefølge
+    std::hash<Test> hashTabell;
+    std::unordered_set<Test> uordnet_sett;
+    InsertIntoUnorderSet(uordnet_sett, 12, "tolv");
+    InsertIntoUnorderSet(uordnet_sett, 13, "tretten");
+    InsertIntoUnorderSet(uordnet_sett, 20, "tjue");
+    InsertIntoUnorderSet(uordnet_sett, 21, "tjueen");
+    InsertIntoUnorderSet(uordnet_sett, 1, "en");
+    InsertIntoUnorderSet(uordnet_sett, 2, "to");
+    InsertIntoUnorderSet(uordnet_sett, 3, "tre");
+    InsertIntoUnorderSet(uordnet_sett, 4, "fire");
+    InsertIntoUnorderSet(uordnet_sett, 5, "fem");
+    InsertIntoUnorderSet(uordnet_sett, 6, "seks");
+
 
     //I denne oppgaven skal du bruke kode som er gitt til slutt i oppgaven, uten endringer
     //a) Implenter funksjonene Node::setting_kant(), Graf::settinn_node() og Graf::finn_node().
@@ -212,4 +215,11 @@ void MergeSort(T(&arr)[N]) {
     std::cout << "With " << N << " elements, it took " << totalTime.count() << " seconds to sort them doing the selection sort alagorithm." << std::endl;
 }
 
+void InsertIntoUnorderSet(std::unordered_set<Test> &set, int key, std::string s)
+{
+    Test t;
+    t.key = key;
+    t.s = s;
 
+    set.insert(t);
+}
