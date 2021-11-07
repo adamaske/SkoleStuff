@@ -4,6 +4,35 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <list>
+#include <queue>
+
+struct Kant;
+struct Node {
+    char m_navn;
+    bool m_besokt;
+    std::list<Kant>
+        m_kanter;
+    Node(char navn) : m_navn(navn), m_besokt(false) { }
+    void  settinn_kant(const Kant& kant);
+};
+
+struct Kant {
+    float m_vekt;
+    Node* m_tilnode;
+    Kant(float vekt, Node* tilnode) : m_vekt(vekt), m_tilnode(tilnode) { };
+    bool  operator  >  (const  Kant& k)const { return m_vekt > k.m_vekt; };
+};
+
+struct Graf {
+    std::list<Node*> noder;
+    Graf() {  };
+    Node* finn_node(char navn);
+    void  settinn_node(char navn);
+    void settinn_kant(char fra_navn, char til_navn, float vekt);
+    float mst();
+};
+
 struct Test
 {
     int key;
@@ -96,44 +125,24 @@ int main()
     InsertIntoUnorderSet(uordnet_sett, 6, "seks");
 
 
-    //I denne oppgaven skal du bruke kode som er gitt til slutt i oppgaven, uten endringer
-    //a) Implenter funksjonene Node::setting_kant(), Graf::settinn_node() og Graf::finn_node().
+    //a) Implenter funksjonene Node::settinn_kant(), Graf::settinn_node() og Graf::finn_node().
     //I sistnevnte funksjon skal du benytte den interne struktren til å søke etter en node med gitt navn
     //Funksjonen skal returneere en peker til noden dersom den fins, og nullptr ellers.
-    //b)1.Impleterer funksjonen Graf::settinn_kant()
+    
+    Graf* g = new Graf();
+    g->settinn_node('a');
+    g->settinn_node('b');
+    g->settinn_node('c');
+    g->settinn_node('d');
+    Kant* k = new Kant(1, g->finn_node('b'));
+    g->finn_node('a')->settinn_kant(*k);
+
+
+    //b)
+    // 1.Impleterer funksjonen Graf::settinn_kant()
     //2.Lag en testgraf i main() med noder {A, B, C, D og E} og kanter:
     //{AB(1.0), AC(2.0), BC(2.0), CD(3.0), DE(1.0), AE(5,0) CE(4,0)
-    /*
-    include  <iostream>
-    #include <list>
-    #include <queue>
-  
-    struct Kant;
-    struct Node{
-        char m_navn;
-        bool m_besokt;
-        std::list<Kant>            
-        m_kanter;
-        Node(char navn): m_navn(navn), m_besokt(false){ }
-        void  settinn_kant(const Kant &kant);
-    };
-
-    struct Kant{
-        float m_vekt;
-        Node* m_tilnode;
-        Kant(float vekt, Node* tilnode) : m_vekt(vekt), m_tilnode(tilnode){ };
-        bool  operator  >  (const  Kant& k)const {return m_vekt > k.m_vekt; };
-    };
-
-    struct Graf{
-    std::list<Node*> noder;
-    Graf() {  };
-    Node* finn_node(char navn);
-    void  settinn_node(char navn);
-    void settinn_kant(char fra_navn, char til_navn,float vekt);
-    float mst();
-    };
-    */
+    
     return 0;
 }
 
@@ -223,3 +232,26 @@ void InsertIntoUnorderSet(std::unordered_set<Test> &set, int key, std::string s)
 
     set.insert(t);
 }
+
+void Node::settinn_kant(const Kant& kant)
+{
+    m_kanter.push_back(kant);
+}
+
+void Graf::settinn_node(char navn)
+{
+    Node* n = new Node(navn);
+    noder.push_back(n);
+}
+
+Node* Graf::finn_node(char navn)
+{
+    
+    return nullptr;
+}
+
+void Graf::settinn_kant(char fra_navn, char til_navn, float vekt)
+{
+
+}
+
