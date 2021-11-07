@@ -235,23 +235,54 @@ void InsertIntoUnorderSet(std::unordered_set<Test> &set, int key, std::string s)
 
 void Node::settinn_kant(const Kant& kant)
 {
+    for (auto& k : m_kanter) {
+        if (k.m_tilnode = kant.m_tilnode) {
+            //har allerede kant til denne noden
+            return;
+        }
+    }
     m_kanter.push_back(kant);
 }
 
 void Graf::settinn_node(char navn)
 {
     Node* n = new Node(navn);
+    for (auto& node : noder) {
+        if (node->m_navn == navn) {
+            //Har allerede noden
+            return;
+        }
+    }
     noder.push_back(n);
 }
 
 Node* Graf::finn_node(char navn)
 {
-    
+    for (auto& node : noder) {
+        if (node->m_navn == navn) {
+            return node;
+        }
+    }
     return nullptr;
 }
 
 void Graf::settinn_kant(char fra_navn, char til_navn, float vekt)
 {
+    Node* n = finn_node(fra_navn);
+    
+    if (!n) {
+        settinn_node(fra_navn);
+    }
+    n = finn_node(fra_navn);
 
+    Node* n2 = finn_node(til_navn);
+
+    if (!n2) {
+        settinn_node(til_navn);
+    }
+    n2 = finn_node(til_navn);
+
+    Kant* k = new Kant(vekt, n2);
+    n->settinn_kant(*k);
 }
 
