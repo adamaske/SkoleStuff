@@ -17,7 +17,14 @@ struct Node {
     void  settinn_kant(const Kant& kant);
 };
 
+struct Path {
+public:
+    std::vector<Kant*> edges;
+    double cost;
+    bool operator > (const Path& OtherPath) const { return cost > OtherPath.cost; }
+};
 struct Kant {
+
     float m_vekt;
     Node* m_tilnode;
     Kant(float vekt, Node* tilnode) : m_vekt(vekt), m_tilnode(tilnode) { };
@@ -43,6 +50,7 @@ struct Test
 template<>
 class std::hash<Test>
 {
+public:
     size_t operator() (const Test& t) const {
         return t.key % 7;
     }
@@ -56,6 +64,7 @@ void InsertionSort(T(&arr)[N]);
 template<typename T, size_t N>
 void MergeSort(T(&arr)[N]);
 void InsertIntoUnorderSet(std::unordered_set<Test> &set, int key, std::string s);
+void Dijkstra(Graf* g, Node* start, Node* end);
 int main()
 {
     //Skriv en funksjon som regner ut gjennomsnittlig sorteringstid
@@ -134,15 +143,21 @@ int main()
     g->settinn_node('b');
     g->settinn_node('c');
     g->settinn_node('d');
-    Kant* k = new Kant(1, g->finn_node('b'));
-    g->finn_node('a')->settinn_kant(*k);
+    g->settinn_node('e');
+    g->settinn_kant('a', 'b', 1);
+    g->settinn_kant('a', 'c', 2);
+    g->settinn_kant('b', 'c', 2);
+    g->settinn_kant('c', 'd', 3);
+    g->settinn_kant('d', 'e', 1);
+    g->settinn_kant('a', 'e', 5);
+    g->settinn_kant('c', 'e', 4);
 
-
+    Dijkstra(g, g->finn_node('a'), g->finn_node('d'));
     //b)
     // 1.Impleterer funksjonen Graf::settinn_kant()
     //2.Lag en testgraf i main() med noder {A, B, C, D og E} og kanter:
     //{AB(1.0), AC(2.0), BC(2.0), CD(3.0), DE(1.0), AE(5,0) CE(4,0)
-    
+    //Bruk djikstras algorytme på dette
     return 0;
 }
 
@@ -285,4 +300,29 @@ void Graf::settinn_kant(char fra_navn, char til_navn, float vekt)
     Kant* k = new Kant(vekt, n2);
     n->settinn_kant(*k);
 }
+void Dijkstra(Graf* g, Node* start, Node* end) {
+    std::priority_queue<Kant> pq;
 
+    std::priority_queue<Path, std::vector<Path>, std::greater<Path>> apq;
+
+    Path startPath;
+    Kant startKant(0.0, start);
+    startPath.edges.push_back(&startKant);
+    startPath.cost = 0;
+    apq.push(startPath);
+
+    while (!apq.empty() && !end->m_besokt) {
+        auto path = apq.top();
+        apq.pop();
+        if (!end->m_besokt) {
+            for (auto& kant : end->m_kanter) {
+                Path p;
+                p.edges.push_back(&kant);
+                apq.push(p);
+            }
+            end->m_besokt = true;
+        }
+    }
+
+    
+}
