@@ -1,30 +1,54 @@
+create database if not exists Oblig1;
 USE Oblig1;
 
 CREATE TABLE IF NOT EXISTS Film(
-	FNr INT,
-    Title VARCHAR(20) NOT NULL,
-    År Int,
+	FNr INT(11),
+    Title VARCHAR(100) NOT NULL,
+    År SMALLINT(6),
     Land VARCHAR(50) NOT NULL,
-    Sjanger VARCHAR(20) NOT NULL, 
-    Alder INT,
-    Tid INT,
-    Pris FLOAT,
+    Sjanger VARCHAR(50) NOT NULL, 
+    Alder SMALLINT(6),
+    Tid SMALLINT(6),
+    Pris DECIMAL(8,2),
     CONSTRAINT PKFilm PRIMARY KEY(FNr) 
 )Engine = InnoDB;
 
-INSERT INTO Film Values
-(1, 'Casablanca', 1942, 'USA','Drama', 15, 102, 149.00),
-(2, 'Fort Apechea', 1948, 'USA','Drama', 15, 102, 149.00),
-(3, 'Apocolypse Now', 1979, 'USA', 'Action', 18, 155, 123.00),
-(4, 'Streets of Fire', 1984, 'USA', 'Action', 15, 93, NULL),
-(5, 'High Noon', 1952, 'USA', 'Western', 15, 85, 123.00),
-(6, 'Cinema Paradiso', 1988,'Italy', 'Comedy', 11, 123, NULL),
-(7, 'Asterix hos britene', 1988, 'France', 'Animation', 7, 78, 149.00),
-(8, 'veiviseren', 1987, 'Norway', 'Action', 15, 96, 87.00),
-(9, 'Salmer Fra Kjøkkenet', 2002, 'Norway', 'Comedy', 7, 80, 149.00),
-(10, 'Anastasia', 1997, 'USA', 'Animation', 7, 94, 123.00),
-(11, 'LA Grande bouffe', 1973, 'France', 'Drama', 15, 129, 87.00),
-(12, 'Blues Brothers 2000', 1998, 'USA', 'Comedy', 11, 124, 135.00),
-(13, 'Beatles: Help', 1965, 'Great Britain', 'Music', 11, 144, NULL);
+CREATE TABLE IF NOT EXISTS Kunde(
+	Kundenummer INT(20) PRIMARY KEY,
+    Fornavn VARCHAR(20),
+    Etternavn VARCHAR(20),
+    Adresse VARCHAR(50),
+    Postnummer INT
+)Engine = InnoDB;
 
+CREATE TABLE IF NOT EXISTS Faktura(
+FakturaNr INT(11) NOT NULL PRIMARY KEY,
+KundeNr INT(20),
+Dato DATE,
+FilmNr INT(11),
+FOREIGN KEY(KundeNr) references Kunde(Kundenummer),
+FOREIGN KEY(FilmNr) REFERENCES Film(FNr)
+)ENgine = INNODB;
 
+INSERT INTO FAKTURA VALUES
+(1, 3, CURDATE(), 5), 
+(2, 3, CURDATE(), 11),
+(3, 3, CURDATE(), 7);
+
+ALTER TABLE Film 
+ADD COLUMN AntallSolgt INT(5) AFTER Pris;
+
+DELIMITER $$
+
+CREATE TRIGGER LeggTilSalg
+    AFTER INSERT
+    ON FAKTURA FOR EACH ROW
+BEGIN
+    UPDATE Film
+		set antallsolgt = antallsolgt +1
+        where Fnr = new.filmnr;
+        
+	
+END$$    
+
+DELIMITER ;
