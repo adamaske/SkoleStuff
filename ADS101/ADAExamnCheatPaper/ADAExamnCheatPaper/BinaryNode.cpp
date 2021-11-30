@@ -145,3 +145,31 @@ BinaryNode* BinaryNode::LeftRotation(BinaryNode* root)
 
 	return temp1;
 }
+
+void BinaryNode::Stigende()
+{
+	if (left)
+		left->Stigende();
+	std::cout << data << std::endl;
+	if (right)
+		right->Stigende();
+}
+
+void BinaryNode::Avtakende()
+{
+	if (right)
+		right->Avtakende();
+	std::cout << data << std::endl;
+	if (left)
+		left->Avtakende();
+}
+
+double BinaryNode::Sum()
+{
+	double totalsum = data;
+	if (left)
+		totalsum += left->Sum();
+	if (right)
+		totalsum += right->Sum();
+	return totalsum;
+}

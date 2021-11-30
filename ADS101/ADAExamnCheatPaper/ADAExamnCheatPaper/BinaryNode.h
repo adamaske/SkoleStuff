@@ -18,6 +18,8 @@ public:
 	int Height(BinaryNode* root);
 	BinaryNode* RightRotation(BinaryNode* root);
 	BinaryNode* LeftRotation(BinaryNode* root);
-
+	void Stigende();
+	void Avtakende();
+	double Sum();
 };
 
