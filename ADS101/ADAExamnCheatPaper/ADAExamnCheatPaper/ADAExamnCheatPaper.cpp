@@ -182,7 +182,7 @@ int main()
     //Oppgaver 6.5.1-4
 
     //Sorting O(n) notasjon, Hvordan måle effektivitet?
-
+    std::cout << "Started sorting" << std::endl;
     //Bobble sort, Utvalgsortering, Binarytree sorting, Insertion sort
     BubbleSort(a);
     UtvalgsSort(a);
@@ -194,7 +194,7 @@ int main()
     //Quicksort
     QuickSort(a, 0, sizeofa - 1);
     //Hashing
-
+    std::cout << "Ended sorting" << std::endl;
     //std::unordered_set
 
     //Graphs
@@ -219,13 +219,12 @@ int main()
     g->InsertEdge('G', 'D', 2);
     g->InsertEdge('D', 'G', 4);
     g->InsertEdge('D', 'C', 2);
-    g->Djikstra('A', 'D');
+    
+    //Mst
     std::cout << "Graphs minimum spanning tree: " << g->MinimumSpanningTree() << std::endl;
     //Djikstras algrorithm
-
+    g->Djikstra('A', 'D');
     //A* algorithm
-
-    //Minimum spenntre
 
     //Huffman
 

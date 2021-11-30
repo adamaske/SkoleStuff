@@ -18,5 +18,6 @@ public:
 	void InsertEdge(char fromNode, char toNode, float weight);
 	float MinimumSpanningTree();
 	void Djikstra(char fromNode, char toNode);
+	void AStar(char fromNode, char toNode);
 };
 
