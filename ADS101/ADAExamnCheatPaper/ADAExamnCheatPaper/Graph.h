@@ -3,10 +3,17 @@
 #include "Node.h"
 #include <vector>
 struct Path {
-	std::vector<Edge*> edges;
+	std::list<Edge*> edges;
 	double totalCost = 0;
 	bool operator > (const Path& p) const { return totalCost > p.totalCost; };
-	bool operator < (const Path& p) const { return totalCost < p.totalCost; };
+	
+};
+struct Cell {
+	Node* node;
+	double f;
+	double g;
+	double h;
+
 };
 class Graph
 {

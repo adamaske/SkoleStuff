@@ -2,6 +2,7 @@
 #include <chrono>
 #include <algorithm>
 #include <array>
+#include <unordered_set>
 #include <queue>
 #include "TStack.h"
 #include "TQueue.h"
@@ -10,7 +11,9 @@
 #include "QuadTree.h"
 #include "Graph.h"
 #include "Node.h"
-
+#include "RBNode.h"
+#include "RedBlackTree.h"
+#include "Hash.h"
 void Tasks191to194();
 template<typename T, size_t N>
 void SelectionSort(T(&arr)[N]);
@@ -46,6 +49,7 @@ template<typename T, size_t N>
 int Partition(T(&arr)[N], int low, int high);
 template<typename T, size_t N>
 int BuildMaxHeap(T(&arr)[N]);
+void SortByPriorityQueue();
 
 
 int main()
@@ -193,9 +197,28 @@ int main()
     HeapSort(a);
     //Quicksort
     QuickSort(a, 0, sizeofa - 1);
-    //Hashing
     std::cout << "Ended sorting" << std::endl;
-    //std::unordered_set
+    //Hashing
+    std::hash<Test> hashtabell;
+    std::unordered_set<Test> us;
+    Test t;
+    t.key = 12; 
+    t.s = "tolv"; 
+    us.insert(t);
+    t.key = 13; 
+    t.s = "tretten"; 
+    us.insert(t);
+    t.key = 20; 
+    t.s = "tjuesju"; 
+    us.insert(t);
+    t.key = 21; 
+    t.s = "tjueen"; 
+    us.insert(t);
+    for (int i = 1; i < 7; i++) {
+        t.key = i; 
+        t.s = "blabla"; 
+        us.insert(t);
+    }
 
     //Graphs
     Graph* g = new Graph();
@@ -529,6 +552,20 @@ int Height(BinaryNode* root) {
     }
 
 
+}
+
+void SortByPriorityQueue()
+{
+    int a[]{ 14,33,12,4,7,19,29,11,17 };
+    std::priority_queue<int> pq;
+    for (int i = 0; i < 10; i++) {
+        pq.push(a[i]);
+    }
+    while (!pq.empty()) {
+        std::cout << pq.top() << ", ";
+        pq.pop();
+    }
+    std::cout << std::endl;
 }
 
 template<typename T, size_t N>

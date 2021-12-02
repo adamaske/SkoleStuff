@@ -65,7 +65,7 @@ float Graph::MinimumSpanningTree()
 void Graph::Djikstra(char fromNode, char toNode)
 {
     std::priority_queue<Path, std::vector<Path>, std::greater<Path>> apq;
-
+    std::priority_queue<Path> dpq;
     for (auto node : nodes) {
         node->visited = false;
     }
@@ -85,45 +85,52 @@ void Graph::Djikstra(char fromNode, char toNode)
         //Gets the shortest path from apq, top should be the shortest path
         auto path = apq.top();
         apq.pop();
-
-        //Print current path
-        std::cout << "Popped from queue: ";
-        for (auto edge : path.edges) {
-            std::cout << edge->toNode->name << ", ";
-        }
-        std::cout << " = " << path.totalCost << std::endl;
-
+        //This is A
+        Node* node;
         if (!endNode->visited) {
-            Node* node = path.edges.back()->toNode; //This is 
-            if (!node->visited) {
-                for (auto e : node->edges) {
-      
-                    Path p = path;
-                    p.edges.push_back(&e);
-                    p.totalCost += e.weight;
-                    apq.push(p);
-                    std::cout << "The old path contains: ";
-                    for (auto x : path.edges) {
-                        std::cout << x->toNode->name << ", ";
+            for (auto edge : path.edges) {
+                node = edge->toNode;
+                //This becomes A
+                if (!node->visited) {
+                    //A.visited = true;
+                    node->visited = true;
+                    std::cout << "Set " << node->name << " to visisted" << std::endl;
+                    //For each edge in A
+                    for (auto e : node->edges) {
+                        
+                        Path p = path;
+                        //Pushes C to A-> A, C
+                        //Pushes B to A-> A, B
+                        p.edges.push_back(&e);
+                        //Adds 17
+                        //Adds 2
+                        std::cout << "Added " << e.weight << "to " << p.totalCost;
+                        p.totalCost += e.weight;
+                        std::cout << "which is now " << p.totalCost << std::endl;
+                        //A C is pushed, A B is pushed
+                        apq.push(p);
+                        std::cout << "Pushed path: ";
+                        for (auto edge : p.edges) {
+                            Node* n = edge->toNode;
+                            std::cout << n->name << ", ";
+                        }
+                        std::cout << " = " << p.totalCost << std::endl;
+                        Path q = apq.top();
+                        std::cout << "This is the top of apq now: ";
+                        for (auto edge : q.edges) {
+                            Node* n = edge->toNode;
+                            std::cout << n->name << ", ";
+                        }
+                        std::cout << " = " << q.totalCost << std::endl;
                     }
-                    std::cout << " = " << p.totalCost << std::endl;
-                    std::cout << "Added " << e.toNode->name << " to the path" << std::endl;
-                    std::cout << "The new pushed path contains: ";
-                    for (auto x : p.edges) {
-                        std::cout << x->toNode->name << ", ";
-                    }
-                    std::cout << " = " << p.totalCost << std::endl;
+                }
+                else {
+                    std::cout << "Skipped " << node->name << " becuause it has already been visited" << std::endl;
                 }
             }
-
-            
-            node->visited = true;
         }
     }
-    /*
-        
     
-    */
     while (!apq.empty()) {
         std::cout << "Path: ";
         Path p = apq.top();
@@ -134,6 +141,7 @@ void Graph::Djikstra(char fromNode, char toNode)
         std::cout << " = " << p.totalCost << std::endl;
         apq.pop();
     }
+    
 }
 
 void Graph::AStar(char fromNode, char toNode)

@@ -143,8 +143,11 @@
     <ClCompile Include="BinaryNode.cpp" />
     <ClCompile Include="CharNode.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Hash.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="QuadTree.cpp" />
+    <ClCompile Include="RBNode.cpp" />
+    <ClCompile Include="RedBlackTree.cpp" />
     <ClCompile Include="TQueue.cpp" />
     <ClCompile Include="TStack.cpp" />
   </ItemGroup>
@@ -152,8 +155,11 @@
     <ClInclude Include="BinaryNode.h" />
     <ClInclude Include="CharNode.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Hash.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="RBNode.h" />
+    <ClInclude Include="RedBlackTree.h" />
     <ClInclude Include="TQueue.h" />
     <ClInclude Include="TStack.h" />
   </ItemGroup>

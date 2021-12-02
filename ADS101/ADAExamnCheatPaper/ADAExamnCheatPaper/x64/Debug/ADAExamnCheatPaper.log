@@ -1,9 +1,2 @@
-﻿  ADAExamnCheatPaper.cpp
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\ADAExamnCheatPaper.cpp(86,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-  Graph.cpp
-  Generating Code...
+﻿  RBNode.cpp
   ADAExamnCheatPaper.vcxproj -> C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\x64\Debug\ADAExamnCheatPaper.exe
