@@ -1,0 +1,44 @@
+use obglig3;
+
+db.createUser({user:'adama', pwd: "1234", roles:["readWrite", "dbAdmin"]})
+
+db.createCollection('film');
+
+show collections;
+
+db.film.find();
+db.film.find().pretty();
+
+db.getUsers();
+
+db.dropDatabase();
+
+
+db.film.insert([
+{FilmNR: 1, Tittel : 'Casablanca', År : '1942', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3},
+{FilmNR: 1, Tittel : 'Casablanca', År : '1984', Land : "USA", Sjanger :"Drama", Alder :"10", Tid : 94, Pris : 89, Antall : 3}
+]);
+ 
+ db.film.insert({Nøkkel:167.98});
+ WriteResult({nInserted":1});
+ db.film.remove({});
+
+db.film.Update({Tittel: 'High Moon'], {FilmNR, Tilttel: 'High Noon)
+db.film.update({Tittel: 'High Moon'}, $set({Tittel : 'High Moon'}
+satan i fitta mi sfoaihdbfæaådig
+ drep meg på kuken min

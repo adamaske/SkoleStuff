@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>CLD_1</name>
+		<uuid>ed5f12b3-c30e-41bd-9fad-1ae15f87f267</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.1" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>13</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="cld" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<aux name="Isreal befolkning">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Jordan befolkning">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Vann i Jordan River">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Hasbami river">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Dan river">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Yarmuk river">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Banias river">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Tilgjenelig\nVann i Israel">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Tilgjenelig\nVann i Jordan">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Vann i Dead Sea">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Israel tarr opp\ngrunnvann">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Grunnvann i Isreal">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Grunnvann i Jordan">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Jordan tar opp grunnvann">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Tilgjengelig vann\ni Palestina">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Palestina\nbruker vann">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Isreal\nbruker vann">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Jordan\nbruker vann">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Isreal resirkulerer\n30% av vannet">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Får vann fra skip\nfra Isreal">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Vann kommer\npå Afra-Max skip">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Vann kommer\nfra Suez-Max skip">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Tar vann fra\nJordan River">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Palestine vann\nbudsjett">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="WED Gaza Central\nDesalination Program">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="PID MDTF">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="KW AED">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Palestina kjøper\nvann fra Isreal">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Isreal\nbefolkningsvekst">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Palestina befolkningsvekst">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Jordan befolkningsvekst">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Palestina befolkning">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Dør/Flykter\nfra Israel">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Dør/Flykter\nfra Jordan">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Dør/Flykter 2">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Regner i Israel">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Regner i Jordan">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Israel lyst til\nkrigføring">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Palestina lyst\ntil krigføring">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Israel angriper\nPalestinsk omerådet">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Palestina angriper\nIsrael">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Vannmangel i\nPalestina">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Kulturell konsensus\nfor utslettelse av Palestinere">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Isreal anekterer\nPalestinske omeråder">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Vannmangel i Israel">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Israel gir mindre\nvann til Palestinere">
+				<isee:delay_aux/>
+			</aux>
+			<isee:dependencies>
+				<var name="Isreal_befolkning">
+					<in>Isreal_befolkningsvekst</in>
+					<in>&quot;Dør/Flykter_fra_Israel&quot;</in>
+				</var>
+				<var name="Jordan_befolkning">
+					<in>Jordan_befolkningsvekst</in>
+					<in>&quot;Dør/Flykter_fra_Jordan&quot;</in>
+				</var>
+				<var name="Vann_i_Jordan_River">
+					<in>Hasbami_river</in>
+					<in>Dan_river</in>
+					<in>Yarmuk_river</in>
+					<in>Banias_river</in>
+					<in>Vann_i_Dead_Sea</in>
+					<in>Tar_vann_fra_Jordan_River</in>
+				</var>
+				<var name="Tilgjenelig_Vann_i_Israel">
+					<in>Israel_tarr_opp_grunnvann</in>
+					<in>Isreal_bruker_vann</in>
+					<in>&quot;Isreal_resirkulerer_30%_av_vannet&quot;</in>
+					<in>&quot;Vann_kommer_på_Afra-Max_skip&quot;</in>
+					<in>Tar_vann_fra_Jordan_River</in>
+					<in>Palestina_kjøper_vann_fra_Isreal</in>
+				</var>
+				<var name="Tilgjenelig_Vann_i_Jordan">
+					<in>Jordan_befolkning</in>
+					<in>Jordan_tar_opp_grunnvann</in>
+					<in>Jordan_bruker_vann</in>
+					<in>Får_vann_fra_skip_fra_Isreal</in>
+					<in>Tar_vann_fra_Jordan_River</in>
+				</var>
+				<var name="Vann_i_Dead_Sea">
+					<in>Vann_i_Jordan_River</in>
+				</var>
+				<var name="Israel_tarr_opp_grunnvann">
+					<in>Grunnvann_i_Isreal</in>
+				</var>
+				<var name="Grunnvann_i_Isreal">
+					<in>Israel_tarr_opp_grunnvann</in>
+					<in>Regner_i_Israel</in>
+				</var>
+				<var name="Grunnvann_i_Jordan">
+					<in>Jordan_tar_opp_grunnvann</in>
+					<in>Regner_i_Jordan</in>
+				</var>
+				<var name="Jordan_tar_opp_grunnvann">
+					<in>Grunnvann_i_Jordan</in>
+				</var>
+				<var name="Tilgjengelig_vann_i_Palestina">
+					<in>Palestina_bruker_vann</in>
+					<in>&quot;Vann_kommer_fra_Suez-Max_skip&quot;</in>
+					<in>Palestina_kjøper_vann_fra_Isreal</in>
+				</var>
+				<var name="Palestina_bruker_vann">
+					<in>Tilgjengelig_vann_i_Palestina</in>
+					<in>Palestina_befolkning</in>
+				</var>
+				<var name="Isreal_bruker_vann">
+					<in>Isreal_befolkning</in>
+					<in>Tilgjenelig_Vann_i_Israel</in>
+				</var>
+				<var name="Jordan_bruker_vann">
+					<in>Tilgjenelig_Vann_i_Jordan</in>
+				</var>
+				<var name='"Isreal_resirkulerer_30%_av_vannet"'>
+					<in>Isreal_bruker_vann</in>
+				</var>
+				<var name="Får_vann_fra_skip_fra_Isreal">
+					<in>&quot;Vann_kommer_på_Afra-Max_skip&quot;</in>
+				</var>
+				<var name="Palestine_vann_budsjett">
+					<in>WED_Gaza_Central_Desalination_Program</in>
+					<in>PID_MDTF</in>
+					<in>KW_AED</in>
+					<in>Palestina_kjøper_vann_fra_Isreal</in>
+				</var>
+				<var name="Palestina_kjøper_vann_fra_Isreal">
+					<in>Palestine_vann_budsjett</in>
+				</var>
+				<var name="Isreal_befolkningsvekst">
+					<in>Tilgjenelig_Vann_i_Israel</in>
+				</var>
+				<var name="Palestina_befolkningsvekst">
+					<in>Tilgjengelig_vann_i_Palestina</in>
+				</var>
+				<var name="Jordan_befolkningsvekst">
+					<in>Tilgjenelig_Vann_i_Jordan</in>
+				</var>
+				<var name="Palestina_befolkning">
+					<in>Palestina_befolkningsvekst</in>
+					<in>&quot;Dør/Flykter_2&quot;</in>
+				</var>
+				<var name='"Dør/Flykter_fra_Israel"'>
+					<in>Isreal_befolkning</in>
+				</var>
+				<var name='"Dør/Flykter_fra_Jordan"'>
+					<in>Jordan_befolkning</in>
+				</var>
+				<var name='"Dør/Flykter_2"'>
+					<in>Palestina_befolkning</in>
+				</var>
+				<var name="Israel_lyst_til_krigføring">
+					<in>Palestina_angriper_Israel</in>
+					<in>Kulturell_konsensus_for_utslettelse_av_Palestinere</in>
+				</var>
+				<var name="Palestina_lyst_til_krigføring">
+					<in>Israel_angriper_Palestinsk_omerådet</in>
+					<in>Vannmangel_i_Palestina</in>
+					<in>Isreal_anekterer_Palestinske_omeråder</in>
+				</var>
+				<var name="Israel_angriper_Palestinsk_omerådet">
+					<in>Israel_lyst_til_krigføring</in>
+				</var>
+				<var name="Palestina_angriper_Israel">
+					<in>Palestina_lyst_til_krigføring</in>
+				</var>
+				<var name="Vannmangel_i_Palestina">
+					<in>Tilgjengelig_vann_i_Palestina</in>
+					<in>Israel_gir_mindre_vann_til_Palestinere</in>
+				</var>
+				<var name="Kulturell_konsensus_for_utslettelse_av_Palestinere">
+					<in>Palestina_angriper_Israel</in>
+				</var>
+				<var name="Isreal_anekterer_Palestinske_omeråder">
+					<in>Israel_lyst_til_krigføring</in>
+				</var>
+				<var name="Vannmangel_i_Israel">
+					<in>Tilgjenelig_Vann_i_Israel</in>
+				</var>
+				<var name="Israel_gir_mindre_vann_til_Palestinere">
+					<in>Vannmangel_i_Israel</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1101" page_height="771" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="220.833" zoom="120" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="67" height="55"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="name_only"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<aux x="219.875" y="14.4028" width="71.25" height="12" name="Isreal befolkning"/>
+				<aux x="94.875" y="220.938" width="76.25" height="12" name="Jordan befolkning"/>
+				<aux font_size="14pt" x="562.446" y="428.929" width="126.5" height="16" name="Vann i Jordan River"/>
+				<aux x="563.196" y="342.054" width="61.25" height="12" name="Hasbami river"/>
+				<aux x="670.821" y="342.054" width="41.25" height="12" name="Dan river"/>
+				<aux x="780.875" y="438.697" width="56.25" height="12" name="Yarmuk river"/>
+				<aux x="771.929" y="395.929" width="52.25" height="12" name="Banias river"/>
+				<connector uid="1" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="307.405">
+					<from>Hasbami_river</from>
+					<to>Vann_i_Jordan_River</to>
+				</connector>
+				<connector uid="2" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="271.364">
+					<from>Dan_river</from>
+					<to>Vann_i_Jordan_River</to>
+				</connector>
+				<connector uid="3" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="177.573">
+					<from>Yarmuk_river</from>
+					<to>Vann_i_Jordan_River</to>
+				</connector>
+				<connector uid="4" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="197.853">
+					<from>Banias_river</from>
+					<to>Vann_i_Jordan_River</to>
+				</connector>
+				<aux font_size="14pt" x="342.319" y="101.625" width="80.5" height="34" name="Tilgjenelig\nVann i Israel"/>
+				<aux font_size="14pt" x="300.625" y="276.375" width="89.5" height="34" name="Tilgjenelig\nVann i Jordan"/>
+				<aux x="563.196" y="543.804" width="71.25" height="12" name="Vann i Dead Sea"/>
+				<connector uid="5" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="320.856">
+					<from>Vann_i_Jordan_River</from>
+					<to>Vann_i_Dead_Sea</to>
+				</connector>
+				<connector uid="6" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="357.563">
+					<from>Isreal_befolkning</from>
+					<to>Isreal_bruker_vann</to>
+				</connector>
+				<connector uid="7" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="13.1771">
+					<from>Jordan_befolkning</from>
+					<to>Tilgjenelig_Vann_i_Jordan</to>
+				</connector>
+				<aux x="167.5" y="112.625" width="60.25" height="26" name="Israel tarr opp\ngrunnvann"/>
+				<aux x="35.625" y="82.4028" width="79.25" height="12" name="Grunnvann i Isreal"/>
+				<connector uid="8" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="353.97">
+					<from>Israel_tarr_opp_grunnvann</from>
+					<to>Tilgjenelig_Vann_i_Israel</to>
+				</connector>
+				<aux x="125" y="402.625" width="84.25" height="12" name="Grunnvann i Jordan"/>
+				<aux x="185" y="323.875" width="109.25" height="12" name="Jordan tar opp grunnvann"/>
+				<connector uid="9" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="279.377">
+					<from>Grunnvann_i_Isreal</from>
+					<to>Israel_tarr_opp_grunnvann</to>
+				</connector>
+				<connector uid="10" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="24.7108">
+					<from>Grunnvann_i_Jordan</from>
+					<to>Jordan_tar_opp_grunnvann</to>
+				</connector>
+				<connector uid="11" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="19.0423">
+					<from>Jordan_tar_opp_grunnvann</from>
+					<to>Tilgjenelig_Vann_i_Jordan</to>
+				</connector>
+				<aux font_size="14pt" x="584.429" y="209.938" width="109.5" height="34" name="Tilgjengelig vann\ni Palestina"/>
+				<aux x="614.446" y="284.01" width="52.25" height="26" name="Palestina\nbruker vann"/>
+				<connector uid="12" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="149.251">
+					<from>Palestina_bruker_vann</from>
+					<to>Tilgjengelig_vann_i_Palestina</to>
+				</connector>
+				<aux x="390.946" y="14.2778" width="52.25" height="26" name="Isreal\nbruker vann"/>
+				<connector uid="13" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="208.613">
+					<from>Isreal_bruker_vann</from>
+					<to>Tilgjenelig_Vann_i_Israel</to>
+				</connector>
+				<aux x="326" y="376.625" width="52.25" height="26" name="Jordan\nbruker vann"/>
+				<connector uid="14" polarity="-" isee:polarity_placement="outside" angle="65.0372">
+					<from>Jordan_bruker_vann</from>
+					<to>Tilgjenelig_Vann_i_Jordan</to>
+				</connector>
+				<connector uid="15" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="321.94">
+					<from>Tilgjengelig_vann_i_Palestina</from>
+					<to>Palestina_bruker_vann</to>
+				</connector>
+				<connector uid="16" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="43.7227">
+					<from>Tilgjenelig_Vann_i_Israel</from>
+					<to>Isreal_bruker_vann</to>
+				</connector>
+				<connector uid="17" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="129.262">
+					<from>Vann_i_Dead_Sea</from>
+					<to>Vann_i_Jordan_River</to>
+				</connector>
+				<connector uid="18" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="238.647">
+					<from>Tilgjenelig_Vann_i_Jordan</from>
+					<to>Jordan_bruker_vann</to>
+				</connector>
+				<aux x="582.071" y="14.2778" width="74.25" height="26" name="Isreal resirkulerer\n30% av vannet"/>
+				<connector uid="19" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="0">
+					<from>Isreal_bruker_vann</from>
+					<to>&quot;Isreal_resirkulerer_30%_av_vannet&quot;</to>
+				</connector>
+				<connector uid="20" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="220.882">
+					<from>&quot;Isreal_resirkulerer_30%_av_vannet&quot;</from>
+					<to>Tilgjenelig_Vann_i_Israel</to>
+				</connector>
+				<aux x="294.25" y="207.125" width="75.25" height="26" name="Får vann fra skip\nfra Isreal"/>
+				<connector uid="21" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="302.471">
+					<from>Får_vann_fra_skip_fra_Isreal</from>
+					<to>Tilgjenelig_Vann_i_Jordan</to>
+				</connector>
+				<aux x="209.25" y="152.673" width="73.25" height="26" name="Vann kommer\npå Afra-Max skip"/>
+				<aux x="703.625" y="164.438" width="77.25" height="26" name="Vann kommer\nfra Suez-Max skip"/>
+				<connector uid="22" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="356.156">
+					<from>&quot;Vann_kommer_på_Afra-Max_skip&quot;</from>
+					<to>Tilgjenelig_Vann_i_Israel</to>
+				</connector>
+				<connector uid="23" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="344.369">
+					<from>&quot;Vann_kommer_på_Afra-Max_skip&quot;</from>
+					<to>Får_vann_fra_skip_fra_Isreal</to>
+				</connector>
+				<connector uid="24" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="174.067">
+					<from>&quot;Vann_kommer_fra_Suez-Max_skip&quot;</from>
+					<to>Tilgjengelig_vann_i_Palestina</to>
+				</connector>
+				<aux x="479.5" y="301.125" width="56.25" height="26" name="Tar vann fra\nJordan River"/>
+				<connector uid="25" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="154.163">
+					<from>Tar_vann_fra_Jordan_River</from>
+					<to>Tilgjenelig_Vann_i_Israel</to>
+				</connector>
+				<connector uid="26" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="268.781">
+					<from>Tar_vann_fra_Jordan_River</from>
+					<to>Vann_i_Jordan_River</to>
+				</connector>
+				<connector uid="27" polarity="+" isee:polarity_placement="outside" angle="189.273">
+					<from>Tar_vann_fra_Jordan_River</from>
+					<to>Tilgjenelig_Vann_i_Jordan</to>
+				</connector>
+				<aux x="677.196" y="107.673" width="64.25" height="26" name="Palestine vann\nbudsjett"/>
+				<aux x="757.321" y="40.2778" width="91.25" height="26" name="WED Gaza Central\nDesalination Program"/>
+				<connector uid="28" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="233.288">
+					<from>WED_Gaza_Central_Desalination_Program</from>
+					<to>Palestine_vann_budsjett</to>
+				</connector>
+				<aux x="826.696" y="133.673" width="46.25" height="12" name="PID MDTF"/>
+				<connector uid="29" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="172.299">
+					<from>PID_MDTF</from>
+					<to>Palestine_vann_budsjett</to>
+				</connector>
+				<aux x="704.718" y="40.2778" width="39.25" height="12" name="KW AED"/>
+				<connector uid="30" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="258.584">
+					<from>KW_AED</from>
+					<to>Palestine_vann_budsjett</to>
+				</connector>
+				<aux x="504.446" y="126.673" width="68.25" height="26" name="Palestina kjøper\nvann fra Isreal"/>
+				<connector uid="31" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="159.146">
+					<from>Palestine_vann_budsjett</from>
+					<to>Palestina_kjøper_vann_fra_Isreal</to>
+				</connector>
+				<connector uid="32" polarity="-" isee:polarity_placement="outside" angle="326.051">
+					<from>Palestina_kjøper_vann_fra_Isreal</from>
+					<to>Palestine_vann_budsjett</to>
+				</connector>
+				<connector uid="33" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="198.814">
+					<from>Palestina_kjøper_vann_fra_Isreal</from>
+					<to>Tilgjenelig_Vann_i_Israel</to>
+				</connector>
+				<connector uid="34" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="264.245">
+					<from>Palestina_kjøper_vann_fra_Isreal</from>
+					<to>Tilgjengelig_vann_i_Palestina</to>
+				</connector>
+				<aux x="135" y="58.6528" width="74.25" height="26" name="Isreal\nbefolkningsvekst"/>
+				<aux x="835.321" y="223.375" width="115.25" height="12" name="Palestina befolkningsvekst"/>
+				<aux x="38.25" y="280.042" width="105.25" height="12" name="Jordan befolkningsvekst"/>
+				<connector uid="35" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="167.418">
+					<from>Tilgjenelig_Vann_i_Israel</from>
+					<to>Isreal_befolkningsvekst</to>
+				</connector>
+				<connector uid="36" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="58.0763">
+					<from>Isreal_befolkningsvekst</from>
+					<to>Isreal_befolkning</to>
+				</connector>
+				<connector uid="37" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="189.791">
+					<from>Tilgjenelig_Vann_i_Jordan</from>
+					<to>Jordan_befolkningsvekst</to>
+				</connector>
+				<connector uid="38" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="102.995">
+					<from>Jordan_befolkningsvekst</from>
+					<to>Jordan_befolkning</to>
+				</connector>
+				<aux x="836.571" y="266.875" width="86.25" height="12" name="Palestina befolkning"/>
+				<connector uid="39" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="14.4706">
+					<from>Tilgjengelig_vann_i_Palestina</from>
+					<to>Palestina_befolkningsvekst</to>
+				</connector>
+				<connector uid="40" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="253.059">
+					<from>Palestina_befolkningsvekst</from>
+					<to>Palestina_befolkning</to>
+				</connector>
+				<connector uid="41" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="206.156">
+					<from>Palestina_befolkning</from>
+					<to>Palestina_bruker_vann</to>
+				</connector>
+				<aux x="260" y="63.4028" width="50.25" height="26" name="Dør/Flykter\nfra Israel"/>
+				<connector uid="42" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="334.09">
+					<from>Isreal_befolkning</from>
+					<to>&quot;Dør/Flykter_fra_Israel&quot;</to>
+				</connector>
+				<connector uid="43" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="165.377">
+					<from>&quot;Dør/Flykter_fra_Israel&quot;</from>
+					<to>Isreal_befolkning</to>
+				</connector>
+				<aux x="40.625" y="148.798" width="50.25" height="26" name="Dør/Flykter\nfra Jordan"/>
+				<connector uid="44" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="355.933">
+					<from>&quot;Dør/Flykter_fra_Jordan&quot;</from>
+					<to>Jordan_befolkning</to>
+				</connector>
+				<connector uid="45" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="164.039">
+					<from>Jordan_befolkning</from>
+					<to>&quot;Dør/Flykter_fra_Jordan&quot;</to>
+				</connector>
+				<aux x="944.321" y="328.375" width="58.25" height="12" name="Dør/Flykter 2"/>
+				<connector uid="46" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="8.77929">
+					<from>Palestina_befolkning</from>
+					<to>&quot;Dør/Flykter_2&quot;</to>
+				</connector>
+				<connector uid="47" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="189.111">
+					<from>&quot;Dør/Flykter_2&quot;</from>
+					<to>Palestina_befolkning</to>
+				</connector>
+				<connector uid="48" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="143.61">
+					<from>Israel_tarr_opp_grunnvann</from>
+					<to>Grunnvann_i_Isreal</to>
+				</connector>
+				<aux x="23.375" y="26.4028" width="63.25" height="12" name="Regner i Israel"/>
+				<connector uid="49" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="296.942">
+					<from>Regner_i_Israel</from>
+					<to>Grunnvann_i_Isreal</to>
+				</connector>
+				<connector uid="50" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="190.567">
+					<from>Jordan_tar_opp_grunnvann</from>
+					<to>Grunnvann_i_Jordan</to>
+				</connector>
+				<aux x="56.75" y="359.054" width="68.25" height="12" name="Regner i Jordan"/>
+				<connector uid="51" polarity="+" isee:polarity_placement="outside" angle="299.461">
+					<from>Regner_i_Jordan</from>
+					<to>Grunnvann_i_Jordan</to>
+				</connector>
+				<aux font_size="14pt" x="58.6114" y="572.525" width="76.5" height="34" name="Israel lyst til\nkrigføring"/>
+				<aux x="356.67" y="573.554" width="59.25" height="26" name="Palestina lyst\ntil krigføring"/>
+				<aux x="215.241" y="514.971" width="87.25" height="26" name="Israel angriper\nPalestinsk omerådet"/>
+				<connector uid="52" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="52.9083">
+					<from>Israel_lyst_til_krigføring</from>
+					<to>Israel_angriper_Palestinsk_omerådet</to>
+				</connector>
+				<connector uid="53" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="358.792">
+					<from>Israel_angriper_Palestinsk_omerådet</from>
+					<to>Palestina_lyst_til_krigføring</to>
+				</connector>
+				<aux x="199.313" y="638.489" width="76.25" height="26" name="Palestina angriper\nIsrael"/>
+				<connector uid="54" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="229.814">
+					<from>Palestina_lyst_til_krigføring</from>
+					<to>Palestina_angriper_Israel</to>
+				</connector>
+				<connector uid="55" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="175.879">
+					<from>Palestina_angriper_Israel</from>
+					<to>Israel_lyst_til_krigføring</to>
+				</connector>
+				<aux x="499.956" y="624.417" width="57.25" height="26" name="Vannmangel i\nPalestina"/>
+				<connector uid="56" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="218.565">
+					<from>Vannmangel_i_Palestina</from>
+					<to>Palestina_lyst_til_krigføring</to>
+				</connector>
+				<aux x="66.7914" y="698.631" width="123.25" height="26" name="Kulturell konsensus\nfor utslettelse av Palestinere"/>
+				<connector uid="57" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="146.525">
+					<from>Kulturell_konsensus_for_utslettelse_av_Palestinere</from>
+					<to>Israel_lyst_til_krigføring</to>
+				</connector>
+				<aux x="215.861" y="467.9" width="92.25" height="26" name="Isreal anekterer\nPalestinske omeråder"/>
+				<connector uid="58" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="77.9354">
+					<from>Israel_lyst_til_krigføring</from>
+					<to>Isreal_anekterer_Palestinske_omeråder</to>
+				</connector>
+				<connector uid="59" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="356.581">
+					<from>Isreal_anekterer_Palestinske_omeråder</from>
+					<to>Palestina_lyst_til_krigføring</to>
+				</connector>
+				<connector uid="60" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="239.542">
+					<from>Palestina_angriper_Israel</from>
+					<to>Kulturell_konsensus_for_utslettelse_av_Palestinere</to>
+				</connector>
+				<connector uid="61" angle="342.854">
+					<from>Tilgjengelig_vann_i_Palestina</from>
+					<to>Vannmangel_i_Palestina</to>
+				</connector>
+				<aux x="396.25" y="450.697" width="83.25" height="12" name="Vannmangel i Israel"/>
+				<aux x="410.291" y="497.417" width="82.25" height="26" name="Israel gir mindre\nvann til Palestinere"/>
+				<connector uid="62" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="303.302">
+					<from>Tilgjenelig_Vann_i_Israel</from>
+					<to>Vannmangel_i_Israel</to>
+				</connector>
+				<connector uid="63" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="263.162">
+					<from>Vannmangel_i_Israel</from>
+					<to>Israel_gir_mindre_vann_til_Palestinere</to>
+				</connector>
+				<connector uid="64" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="331.059">
+					<from>Israel_gir_mindre_vann_til_Palestinere</from>
+					<to>Vannmangel_i_Palestina</to>
+				</connector>
+				<text_box uid="65" x="257.5" y="36.8302" width="20.5" height="18.8952">B1</text_box>
+				<text_box uid="66" x="381.5" y="55.8302" width="20.5" height="18.8952">B2</text_box>
+				<text_box uid="67" x="617.5" y="127.83" width="20.5" height="18.8952">B3</text_box>
+				<text_box uid="68" x="626.5" y="250.83" width="20.5" height="18.8952">B4</text_box>
+				<text_box uid="69" x="928.5" y="296.83" width="20.5" height="18.8952">B5</text_box>
+				<text_box uid="70" x="604.5" y="481.83" width="20.5" height="18.8952">B6</text_box>
+				<text_box uid="71" x="228.5" y="570.83" width="20.5" height="18.8952">R1</text_box>
+				<text_box uid="72" x="339.5" y="325.83" width="20.5" height="18.8952">B7</text_box>
+				<text_box uid="73" x="187.5" y="355.83" width="20.5" height="18.8952">B8</text_box>
+				<text_box uid="74" x="86.5" y="178.83" width="20.5" height="18.8952">B9</text_box>
+				<text_box uid="75" x="110.5" y="106.83" width="20.5" height="18.8952">B10</text_box>
+			</view>
+		</views>
+	</model>
+</xmile>
+

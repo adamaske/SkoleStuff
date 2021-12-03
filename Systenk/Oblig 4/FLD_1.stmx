@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>FLD_1</name>
+		<uuid>68558c91-97a2-4832-b01c-eae0135db625</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.1" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>13</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="map" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<stock name="Water in\nJordan River">
+				<inflow>Water_comes_from_Hasbani</inflow>
+				<inflow>Water_comes_from_Yarmuk</inflow>
+				<inflow>Water_comes_from_Dan</inflow>
+				<inflow>Water_comes_from_Banias</inflow>
+				<outflow>Jordan_tapping_water</outflow>
+				<outflow>Isreal_tapping_water</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Jordan tapping\nwater">
+				<non_negative/>
+			</flow>
+			<stock name="Water in Jordan">
+				<inflow>Jordan_tapping_water</inflow>
+				<inflow>&quot;Jordan_gets_25%_from_Suez-Max&apos;s_water&quot;</inflow>
+				<inflow>Jordan_tapping_groundwater</inflow>
+				<outflow>Jordan_uses_water</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Jordan uses water">
+				<non_negative/>
+			</flow>
+			<flow name="Isreal tapping water">
+				<non_negative/>
+			</flow>
+			<stock name="Water in Isreal">
+				<inflow>Isreal_tapping_water</inflow>
+				<inflow>&quot;Water_comes_from_Suez-Max_ships&quot;</inflow>
+				<inflow>&quot;Isreal_recycles_30%_of_their_water&quot;</inflow>
+				<inflow>Isreal_tapping_groundwater</inflow>
+				<outflow>Isreal_gives_water_to_Palestine</outflow>
+				<outflow>&quot;Jordan_gets_25%_from_Suez-Max&apos;s_water&quot;</outflow>
+				<outflow>Isreal_uses_water</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Isreal gives water\nto Palestine">
+				<non_negative/>
+			</flow>
+			<stock name="Water in Palestine">
+				<inflow>Isreal_gives_water_to_Palestine</inflow>
+				<inflow>&quot;Water_comes_from_Afra-Max_ships&quot;</inflow>
+				<outflow>Palestina_uses_water</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Water comes from\nAfra-Max ships">
+				<non_negative/>
+			</flow>
+			<flow name="Palestina uses\nwater">
+				<non_negative/>
+			</flow>
+			<flow name="Water comes from\nSuez-Max ships">
+				<non_negative/>
+			</flow>
+			<flow name="Jordan gets\n25% from Suez-Max's\nwater">
+				<non_negative/>
+			</flow>
+			<flow name="Isreal uses water">
+				<non_negative/>
+			</flow>
+			<stock name="Used water">
+				<inflow>Isreal_uses_water</inflow>
+				<outflow>&quot;Isreal_recycles_30%_of_their_water&quot;</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Isreal tapping\ngroundwater">
+				<non_negative/>
+			</flow>
+			<flow name="Jordan tapping\ngroundwater">
+				<non_negative/>
+			</flow>
+			<flow name="Water comes\nfrom Hasbani">
+				<non_negative/>
+			</flow>
+			<flow name="Water comes from\nDan">
+				<non_negative/>
+			</flow>
+			<flow name="Water comes from\nBanias">
+				<non_negative/>
+			</flow>
+			<flow name="Water comes from\nYarmuk">
+				<non_negative/>
+			</flow>
+			<flow name="Isreal recycles\n30% of their water">
+				<non_negative/>
+			</flow>
+			<isee:dependencies/>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="large" page_width="1101" page_height="771" isee:scroll_y="1.25" zoom="160" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="67" height="55"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="24"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<stock x="312" y="106" name="Water in\nJordan River"/>
+				<flow label_side="bottom" x="312" y="208" name="Jordan tapping\nwater">
+					<pts>
+						<pt x="312" y="123.5"/>
+						<pt x="312" y="304.5"/>
+					</pts>
+				</flow>
+				<stock label_side="center" x="307" y="322" name="Water in Jordan"/>
+				<flow x="307" y="385.25" name="Jordan uses water">
+					<pts>
+						<pt x="307" y="339.5"/>
+						<pt x="307" y="452"/>
+					</pts>
+				</flow>
+				<flow x="470.25" y="109" name="Isreal tapping water">
+					<pts>
+						<pt x="334.5" y="109"/>
+						<pt x="606" y="109"/>
+						<pt x="606" y="248.5"/>
+					</pts>
+				</flow>
+				<stock label_side="center" x="606" y="266" name="Water in Isreal"/>
+				<flow x="712.5" y="267" name="Isreal gives water\nto Palestine">
+					<pts>
+						<pt x="628.5" y="267"/>
+						<pt x="808.5" y="267"/>
+					</pts>
+				</flow>
+				<stock x="831" y="267" name="Water in Palestine"/>
+				<flow x="898.25" y="271" name="Water comes from\nAfra-Max ships">
+					<pts>
+						<pt x="943" y="271"/>
+						<pt x="853.5" y="271"/>
+					</pts>
+				</flow>
+				<flow x="827" y="359.25" name="Palestina uses\nwater">
+					<pts>
+						<pt x="827" y="284.5"/>
+						<pt x="827" y="455"/>
+					</pts>
+				</flow>
+				<flow x="498.75" y="266" name="Water comes from\nSuez-Max ships">
+					<pts>
+						<pt x="414" y="266"/>
+						<pt x="583.5" y="266"/>
+					</pts>
+				</flow>
+				<flow x="469.75" y="331" name="Jordan gets\n25% from Suez-Max's\nwater">
+					<pts>
+						<pt x="598" y="283.5"/>
+						<pt x="598" y="331"/>
+						<pt x="329.5" y="331"/>
+					</pts>
+				</flow>
+				<flow x="616" y="363.5" name="Isreal uses water">
+					<pts>
+						<pt x="616" y="283.5"/>
+						<pt x="616" y="455.5"/>
+					</pts>
+				</flow>
+				<stock label_side="center" x="616" y="473" name="Used water"/>
+				<flow x="722.125" y="65.625" name="Isreal tapping\ngroundwater">
+					<pts>
+						<pt x="835" y="65.625"/>
+						<pt x="621.25" y="65.625"/>
+						<pt x="621.25" y="248.5"/>
+					</pts>
+				</flow>
+				<flow x="209.75" y="322" name="Jordan tapping\ngroundwater">
+					<pts>
+						<pt x="135" y="322"/>
+						<pt x="284.5" y="322"/>
+					</pts>
+				</flow>
+				<flow x="179.5" y="22" name="Water comes\nfrom Hasbani">
+					<pts>
+						<pt x="35" y="22"/>
+						<pt x="312" y="22"/>
+						<pt x="312" y="88.5"/>
+					</pts>
+				</flow>
+				<flow x="177.25" y="109" name="Water comes from\nDan">
+					<pts>
+						<pt x="49" y="74"/>
+						<pt x="77" y="74"/>
+						<pt x="77" y="109"/>
+						<pt x="289.5" y="109"/>
+					</pts>
+				</flow>
+				<flow x="169" y="164" name="Water comes from\nBanias">
+					<pts>
+						<pt x="28" y="164"/>
+						<pt x="298" y="164"/>
+						<pt x="298" y="123.5"/>
+					</pts>
+				</flow>
+				<flow x="165" y="232" name="Water comes from\nYarmuk">
+					<pts>
+						<pt x="21" y="232"/>
+						<pt x="297" y="232"/>
+						<pt x="297" y="123.5"/>
+					</pts>
+				</flow>
+				<flow x="695.625" y="419" name="Isreal recycles\n30% of their water">
+					<pts>
+						<pt x="638.5" y="483"/>
+						<pt x="765" y="483"/>
+						<pt x="765" y="419"/>
+						<pt x="626.25" y="419"/>
+						<pt x="626.25" y="283.5"/>
+					</pts>
+				</flow>
+			</view>
+		</views>
+	</model>
+</xmile>
+
