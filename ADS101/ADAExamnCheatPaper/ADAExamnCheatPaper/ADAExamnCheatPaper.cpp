@@ -50,7 +50,7 @@ int Partition(T(&arr)[N], int low, int high);
 template<typename T, size_t N>
 int BuildMaxHeap(T(&arr)[N]);
 void SortByPriorityQueue();
-
+void RedBlackTreeInsertion();
 
 int main()
 {
@@ -129,7 +129,11 @@ int main()
     //Avl-tree
     
     //Red-black tree
-
+    RedBlackTree* rbTree = new RedBlackTree();
+    rbTree->Insert(4);
+    rbTree->Insert(5);
+    rbTree->Insert(8);
+    rbTree->InorderTraversal();
     //Stl::set
 
     //B-trees
@@ -219,7 +223,13 @@ int main()
         t.s = "blabla"; 
         us.insert(t);
     }
-
+    Hash* hash = new Hash();
+    std::cout << std::endl << "Tester hash for int" << std::endl;
+    hash->TestHash();
+    std::cout << "Test unordered set" << std::endl;
+    hash->TestUnorderdSet();
+    std::cout << "Test unordered multiset" << std::endl;
+    hash->TestUnorderdMultiset();
     //Graphs
     Graph* g = new Graph();
     g->InsertNode('A');
@@ -558,7 +568,7 @@ void SortByPriorityQueue()
 {
     int a[]{ 14,33,12,4,7,19,29,11,17 };
     std::priority_queue<int> pq;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 9; i++) {
         pq.push(a[i]);
     }
     while (!pq.empty()) {
@@ -566,6 +576,33 @@ void SortByPriorityQueue()
         pq.pop();
     }
     std::cout << std::endl;
+}
+
+void RedBlackTreeInsertion()
+{
+    //Sett inn ny node som RED
+
+    //Ved å farge noden RED, blir det enklere å fikse senere
+
+    //Recolor og roter
+
+    //4 secnarioer
+
+    //If node = root, farg sort
+
+    //Hvis node har en rød onkel, bytt farge på parent, grandparent og uncle
+
+    //Triangel case
+    //Hvis node og node->parent er omvendt barn av hverandre
+    //Hvis onkel er BLACK, roter node->parent
+    //Hvis node er en venstrebarn, roter til høyre, 
+    //Hvis node er høyrebarn, roter til venstre
+
+    //Line case
+    //Hvis både node og node->parent er venstre eller høyre barn, er det line case
+    //Roter grandparent, omvendt vei av node
+    //Node->parent tar grandparent plassen, grandparent blir parent omvendt av node, bytt farge på parent og grandparent
+
 }
 
 template<typename T, size_t N>

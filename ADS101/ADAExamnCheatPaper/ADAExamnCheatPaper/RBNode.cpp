@@ -25,8 +25,14 @@ RBNode* RBNode::GetGrandParent(RBNode* node)
 RBNode* RBNode::GetSibling(RBNode* node)
 {
     RBNode* p = GetParent(node);
+    
     if (p) {
-        return p->left != node ? p->left : p->right;
+        if (node == p->left) {
+            return p->right;
+        }
+        else {
+            return p->left;
+        }
     }
     return nullptr;
 }

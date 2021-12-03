@@ -18,5 +18,8 @@ namespace std {
 	};
 }
 class Hash {
-
+public:
+	void TestHash();
+	void TestUnorderdSet();
+	void TestUnorderdMultiset();
 };
