@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <list>
 struct Test {
 	int key;
 	std::string s;
@@ -19,6 +20,17 @@ namespace std {
 }
 class Hash {
 public:
+
+	Hash(int x);
+	Hash();
+	void InsertItem(int key);
+	void DeleteItem(int key);
+	int hashFunction(int x);
+	void DisplayHash();
+
+	int Bucket;
+	std::list<int> *table;
+
 	void TestHash();
 	void TestUnorderdSet();
 	void TestUnorderdMultiset();

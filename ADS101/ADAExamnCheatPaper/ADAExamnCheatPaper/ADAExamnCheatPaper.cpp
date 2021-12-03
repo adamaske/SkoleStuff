@@ -63,7 +63,7 @@ int main()
     c = new CharNode('d', c);
     c = new CharNode('e', c);
     c = new CharNode('f', c);
-    delete c;
+   
     //Stack
     TStack<int>* tstack = new TStack<int>();
 
@@ -72,6 +72,20 @@ int main()
     TQueue<int>* tqueue = new TQueue<int>();
 
     delete tqueue;
+    //Smart pointers
+    std::shared_ptr<CharNode> shp(c);
+    std::cout << "shp er unik: " << shp.unique() << std::endl;
+    std::unique_ptr<CharNode> up1(c);
+    std::cout << "shp er unik: " << shp.unique() << std::endl;
+
+    std::unique_ptr<CharNode> up(c->GetNext());
+    auto tmp = shp.get();
+    std::cout << "shared pointer data: " << tmp->GetAmount() << std::endl;
+    std::cout << "Shared pointer data: " << shp->GetAmount() << std::endl;
+    tmp = up.get();
+    std::cout << "Unique pointer data: " << tmp->GetAmount() << std::endl;
+    std::cout << "Unique pointer data: " << up->GetAmount() << std::endl;
+    delete c;
     //Oppgaver 1.9.1-4
     Tasks191to194();
     //Selection sort
@@ -110,6 +124,10 @@ int main()
     std::cout << std::endl;
     //Create a non recursive postorder traversal of a binary tree
     Postorder(binaryTree);
+    std::cout << "Non recrusive Preorder Traversal of binary tree: " << std::endl;
+    binaryTree->NonRecursivePreorderTraversal();
+    std::cout << "Width first traversal of binary tree: " << std::endl;
+    binaryTree->WidthFirstTraversal();
     std::cout << std::endl;
     //Write a function that returns amount of nodes in a binary tree
     std::cout << std::endl << "Number of nodes: " << AmountOfNodes(binaryTree) << std::endl;
@@ -187,6 +205,15 @@ int main()
     std::cout << " Etter pop : heap rot = heap top = " << min_rot << std::endl;
     std::cout << " Etter pop : heap size = " << min_heap.size() << std::endl;
     std::cout << " Etter pop : heap empty ? " << std::boolalpha << min_heap.empty() << std::endl;
+
+    std::cout << "Displaying Hashtable" << std::endl;
+    Hash h(7);
+    for (int i = 0; i < sizeofa; i++) {
+        h.InsertItem(a[i]);
+    }
+    h.DeleteItem(1);
+    h.DisplayHash();
+    std::cout << "Ended hashing" << std::endl;
     //Oppgaver 6.5.1-4
 
     //Sorting O(n) notasjon, Hvordan måle effektivitet?

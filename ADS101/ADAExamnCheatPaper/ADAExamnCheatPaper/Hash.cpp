@@ -3,6 +3,49 @@
 #include <unordered_set>
 #include <string>
 #include <unordered_map>
+#include <list>
+Hash::Hash(int x)
+{
+	Bucket = x;
+	table = new std::list<int>[Bucket];
+}
+Hash::Hash()
+{
+}
+void Hash::InsertItem(int key)
+{
+	int index = hashFunction(key);
+	table[index].push_back(key);
+}
+void Hash::DeleteItem(int key)
+{
+	int index = hashFunction(key);
+
+	std::list<int>::iterator it;
+	for (it = table[index].begin(); it != table[index].end(); it++) {
+		if (*it == key) {
+			break;
+		}
+	}
+
+	if (it != table[index].end()) {
+		table[index].erase(it);
+	}
+}
+int Hash::hashFunction(int x)
+{
+	return x % Bucket;
+}
+void Hash::DisplayHash()
+{
+	for (int i = 0; i < Bucket; i++) {
+		std::cout << i;
+		for (auto x : table[i]) {
+			std::cout << " --> " << x;
+		}
+		std::cout << std::endl;
+	}
+}
 void Hash::TestHash()
 {
 	std::hash<int> h;

@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#define SIZE 100
 template <class T>
 class TQueue
 {
@@ -14,7 +16,7 @@ public:
 
     int Size();
 private:
-    T data[10];
+    T data[SIZE];
     int index = 0;
 };
 
@@ -37,7 +39,7 @@ T TQueue<T>::Back()
 template<class T>
 void TQueue<T>::Push(T node)
 {
-    if (index == 10) {
+    if (index == SIZE) {
         std::cout << "Max amount of elements reached!" << std::endl;
         return;
     }
