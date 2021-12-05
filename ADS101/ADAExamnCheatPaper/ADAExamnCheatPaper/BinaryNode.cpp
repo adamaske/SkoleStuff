@@ -234,6 +234,7 @@ void BinaryNode::WidthFirstTraversal()
 	TQueue<BinaryNode*> queue;
 	queue.Push(p);
 	while (queue.Size() != 0) {
+		p = queue.Front();
 		queue.Pop();
 		std::cout << data << ", ";
 		if (p->left) {
@@ -251,16 +252,18 @@ void BinaryNode::NonRecursivePreorderTraversal()
 	BinaryNode* p = this;
 	TStack<BinaryNode*> stack;
 	
-	do {
-		while (p != nullptr) {
-			std::cout << data << ", ";
-			stack.Push(p);
-			p = p->left;
+	while (!stack.Empty()) {
+		p = stack.Top();
+		std::cout << p->data << ", ";
+		stack.Pop();
+		if (p->left) {
+			stack.Push(p->left);
 		}
-		if (!stack.Empty()) {
-			stack.Pop();
-			p = p->right;
+
+		if (p->right) {
+			stack.Push(p->right);
 		}
-	} while (!stack.Empty() || p != nullptr);
+
+	}
 	std::cout << std::endl;
 }

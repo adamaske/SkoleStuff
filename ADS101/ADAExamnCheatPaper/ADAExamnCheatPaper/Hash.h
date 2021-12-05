@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <list>
+
 struct Test {
 	int key;
 	std::string s;
@@ -30,8 +31,8 @@ public:
 	int Rehash1(int i);
 	int Rehash2(int i, int j);
 	int Doublehash(long key);
-	int Bucket;
-	std::list<int> *table;
+	int Bucket = 0;
+	std::list<int> *table{};
 
 	void TestHash();
 	void TestUnorderdSet();

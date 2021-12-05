@@ -12,8 +12,8 @@ public:
 	BinaryNode* GetLeft() { return left; };
 	BinaryNode* GetRight() { return right; };
 	int data;
-	BinaryNode* left;
-	BinaryNode* right;
+	BinaryNode* left = nullptr;
+	BinaryNode* right = nullptr;
 	BinaryNode* parent;
 	void DoBalance(BinaryNode* root, int _data);
 	int Height(BinaryNode* root);

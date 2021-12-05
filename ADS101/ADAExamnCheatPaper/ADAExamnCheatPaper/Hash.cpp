@@ -6,6 +6,7 @@
 #include <list>
 Hash::Hash(int x)
 {
+	
 	Bucket = x;
 	table = new std::list<int>[Bucket];
 }
@@ -14,11 +15,13 @@ Hash::Hash()
 }
 void Hash::InsertItem(int key)
 {
+	
 	int index = hashFunction(key);
 	table[index].push_back(key);
 }
 void Hash::DeleteItem(int key)
 {
+	
 	int index = hashFunction(key);
 
 	std::list<int>::iterator it;
@@ -27,10 +30,12 @@ void Hash::DeleteItem(int key)
 			break;
 		}
 	}
-
-	if (it != table[index].end()) {
-		table[index].erase(it);
+	if (*it) {
+		if (it != table[index].end()) {
+			table[index].erase(it);
+		}
 	}
+	
 }
 int Hash::hashFunction(int x)
 {

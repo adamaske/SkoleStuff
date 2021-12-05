@@ -14,6 +14,7 @@
 #include "RBNode.h"
 #include "RedBlackTree.h"
 #include "Hash.h"
+#include "HuffmanTree.h"
 void Tasks191to194();
 template<typename T, size_t N>
 void SelectionSort(T(&arr)[N]);
@@ -208,8 +209,8 @@ int main()
 
     std::cout << "Displaying Hashtable" << std::endl;
     Hash h(7);
-    for (int i = 0; i < sizeofa; i++) {
-        h.InsertItem(a[i]);
+    for (int i = 0; i < 10; i++) {
+        h.InsertItem(i);
     }
     h.DeleteItem(1);
     h.DisplayHash();
@@ -287,8 +288,16 @@ int main()
     //A* algorithm
 
     //Huffman
+    char arr[] = { 'A', 'B', 'C', 'D' };
+    int freq[] = { 5, 1, 6, 3 };
 
-    //Eksamen 2021 V
+    int size = 4;
+
+    std::cout << "Char | Huffman code ";
+    std::cout << "\n-----------------------\n";
+    HuffmanTree* hft = new HuffmanTree();
+    hft->HuffmanCodes(arr, freq, size);
+        //Eksamen 2021 V
     //Gitt tallene 2.71828, 1.732, 3.1416, 9.81
     //A Tegn et binært søketre av tallene, satt inn i rekkefølgen over
     //              2.71828

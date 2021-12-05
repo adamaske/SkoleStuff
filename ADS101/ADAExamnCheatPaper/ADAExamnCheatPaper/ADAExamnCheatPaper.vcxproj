@@ -144,6 +144,8 @@
     <ClCompile Include="CharNode.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="HuffmanTree.cpp" />
+    <ClCompile Include="Huffnode.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="RBNode.cpp" />
@@ -156,6 +158,8 @@
     <ClInclude Include="CharNode.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Hash.h" />
+    <ClInclude Include="HuffmanTree.h" />
+    <ClInclude Include="Huffnode.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="RBNode.h" />

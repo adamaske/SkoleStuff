@@ -1,14 +1,12 @@
 ﻿  ADAExamnCheatPaper.cpp
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\ADAExamnCheatPaper.cpp(104,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\ADAExamnCheatPaper.cpp(105,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\ADAExamnCheatPaper.cpp(233,21): warning C4101: 'hashtabell': unreferenced local variable
-  Hash.cpp
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\Hash.cpp(86,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\Hash.cpp(89,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\Hash.cpp(115,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\Hash.cpp(119,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\ADAExamnCheatPaper.cpp(234,21): warning C4101: 'hashtabell': unreferenced local variable
+  HuffmanTree.cpp
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\HuffmanTree.cpp(43,13): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\HuffmanTree.cpp(46,15): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   ADAExamnCheatPaper.vcxproj -> C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\x64\Debug\ADAExamnCheatPaper.exe
