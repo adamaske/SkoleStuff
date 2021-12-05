@@ -20,14 +20,16 @@ namespace std {
 }
 class Hash {
 public:
-
+	int rehashConstant = 17;
 	Hash(int x);
 	Hash();
 	void InsertItem(int key);
 	void DeleteItem(int key);
 	int hashFunction(int x);
 	void DisplayHash();
-
+	int Rehash1(int i);
+	int Rehash2(int i, int j);
+	int Doublehash(long key);
 	int Bucket;
 	std::list<int> *table;
 

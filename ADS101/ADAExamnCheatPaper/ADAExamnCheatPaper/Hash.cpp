@@ -46,6 +46,18 @@ void Hash::DisplayHash()
 		std::cout << std::endl;
 	}
 }
+int Hash::Rehash1(int i)
+{
+	return (i + rehashConstant) % table->size();
+}
+int Hash::Rehash2(int i, int j)
+{
+	return (i + j) % table->size();
+}
+int Hash::Doublehash(long key)
+{
+	return (1+ key % (table->size() - 1));
+}
 void Hash::TestHash()
 {
 	std::hash<int> h;
