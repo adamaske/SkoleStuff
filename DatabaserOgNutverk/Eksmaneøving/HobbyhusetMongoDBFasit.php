@@ -77,3 +77,17 @@ db.vare.aggregate([
         TotaltAntallVarer: {$sum: '$AntallVarer'}
     }
 }]);
+//Finn total pris for varelager
+//Spørringen under finner produktene av pris × antall, men summerer ikke disse tallene.
+db.vare.aggregate([
+{
+        $project: {
+             _id: 0, 
+             produkt: {$multiply: ["$pris", "$antall"]}
+         }
+}, {
+    $project: {
+        _id: 0,
+        produktSum: {$sum: "$produkt"}
+    }
+}]);
