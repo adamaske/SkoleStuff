@@ -54,6 +54,38 @@ void SortByPriorityQueue();
 
 int main()
 {
+    std::cout << 7 % 7 << ", " << 8 % 7 << ", " << 13 % 7 << ", " << 4 % 7 << ", " << 3 % 7 << ", " << 11 % 7 << ", " << 9 % 7 << ", " << std::endl;
+    return 0;
+    //Quadtrees
+    //Write a quadtree where the blades lay in different levels
+    Vector2D ne{ 2, 2 };
+    Vector2D nw{ -2, 2 };
+    Vector2D se{ 2, -2 };
+    Vector2D sw{ 2, -2 };
+    QuadTree* tree = new QuadTree(ne, nw, se, sw);
+
+    Vector2D va;
+    int minus = 0;
+    for (int i = 0; i < 20; i++)
+    {
+        minus = rand() % 2 ;
+        va.x = (rand() % 2) - minus;
+        va.y = (rand() % 2) - minus;
+        tree->Insert(va);
+    }
+
+    for (int i = 0; i < 20; i++)
+    {
+        va.x = (rand() % (0, 2) - minus);
+        va.y = (rand() % (-0, 2) - minus);
+        tree->Insert(va);
+    }
+
+    tree->DivideOutData();
+
+    tree->PrintAllPoints();
+
+    return 0;
     int a[10];
     int sizeofa = sizeof(a) / sizeof(a[0]);
     //Linked-list
@@ -136,22 +168,7 @@ int main()
 
     //2-3-4 trees
 
-    //Quadtrees
-    //Write a quadtree where the blades lay in different levels
-    Vector2D ne{ 100, 100 };
-    Vector2D nw{ 0, 100 };
-    Vector2D se{ 100, 0 };
-    Vector2D sw{ 0, -0 };
-    QuadTree* tree = new QuadTree(ne, nw, se, sw);
-    tree->Subdivide(1);
-    tree->q_ne->Subdivide(1);
-    Vector2D va;
-    for (int i = 0; i < 18; i++)
-    {
-        va.x = rand() % 100;
-        va.y = rand() % 100;
-        tree->Insert(va);
-    }
+    
     ///tree->Print();
     //Write a function that returns all the corners to all quads which are blades 
     tree->FindAllLeafes();
@@ -276,7 +293,14 @@ int main()
     //D skriv et C++ program som begynner en max-heap med de samme tallene
     BuildMaxHeap(a);
 
-
+    std::string s{ "det er enklere å løse et algoritmisk problem enn et demokratisk problem" };
+    //Danner roten som første element i stringen
+    BinaryNode* node = new BinaryNode(s[0]);
+    //Går gjennom hvert element i stringen og inserter elementet til binary treet
+    for (int i = 1; i < s.size(); i++) {
+        node->Insert(s[i]);
+    }
+    node->Print();
     return 0;
 }
 

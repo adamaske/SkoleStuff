@@ -34,7 +34,7 @@ RBNode* RedBlackTree::RotateRight(RBNode* node)
 
 RBNode* RedBlackTree::InsertHelp(RBNode* root, int data)
 {
-	
+	return nullptr;
 }
 
 void RedBlackTree::Insert(int data) {

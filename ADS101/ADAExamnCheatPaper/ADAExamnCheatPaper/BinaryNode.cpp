@@ -1,6 +1,7 @@
 #include "BinaryNode.h"
 #include <iostream>
-
+#include <vector>
+#include <queue>
 BinaryNode::BinaryNode()
 {
 	data = 0;
@@ -53,6 +54,8 @@ void BinaryNode::Insert(int _data)
 
 		}
 	}
+
+	
 	DoBalance(this, _data);
 }
 
@@ -65,6 +68,100 @@ void BinaryNode::Intrav()
 	if (right) {
 		right->Intrav();
 	}
+}
+
+void BinaryNode::Insert(char data)
+{
+	std::queue<BinaryNode*> list;
+	//Finn hvis det er noen lingende i treet
+	list.push(this);
+	BinaryNode* node;
+	//Wont run if there is no right
+	while (!list.empty()) {
+		node = list.front();
+		list.pop();
+		
+		if (node->m_data == data) {
+			node->m_frekvens++;
+		}
+
+		if (node->m_left) {
+			list.push(node->m_left);
+		}
+		if (node->m_right) {
+			list.push(node->m_right);
+		}
+	}
+
+	if (data < m_data) {
+		if (m_left) {
+			m_left->Insert(data);
+		}
+		else {
+			left = new BinaryNode(data);
+		}
+	}
+	else if (data > m_data) {
+		if (m_right) {
+			m_right->Insert(data);
+		}
+		else {
+			m_right = new BinaryNode(data);
+
+		}
+	}
+
+
+}
+
+void BinaryNode::Print() const
+{
+	if (m_left) {
+		m_left->Print();
+	}
+	std::cout << m_data << "=" << m_frekvens << ", ";
+	if (m_right) {
+		m_right->Print();
+	}
+}
+
+bool operator > (const BinaryNode& b1, const BinaryNode& b2){ return b1.m_frekvens > b2.m_frekvens; };
+
+void BinaryNode::PrintSorted()
+{
+	//Erklerer en kø for de sorterte binary nodesa
+	std::priority_queue<BinaryNode*, std::vector<BinaryNode*>, std::greater<BinaryNode*>> apq;
+	//En queue for å itterere gjennom alle nodene i treet og legge de til apq
+	std::queue<BinaryNode*> list;
+	//Pusher først seg selv inn inn i list
+	list.push(this);
+	//Erklerer en peker til en BinaryNode
+	BinaryNode* node;
+	while (!list.empty()) {
+		node = list.front();
+		list.pop();
+		//Add it to the priorty queue
+		apq.push(node);
+		//Hvis denne noden har høyre eller vesntre barn, legg de til
+		if (node->m_left) {
+			list.push(node->m_left);
+		}
+		if (node->m_right) {
+			list.push(node->m_right);
+		}
+		//Gjentas til det ikke er noen flere noder å finne
+	}
+	//Så lenge apq ikke er tom, 
+	while (!apq.empty()) {
+		//Sett node til toppen, den laveste frekvensen
+		node = apq.top();
+		//Pop den ut av køen
+		apq.pop();
+		//Printer dataen og frekvensen
+		std::cout << node->m_data << "=" << node->m_frekvens << ",  ";
+	}
+	std::cout << std::endl;
+
 }
 
 void BinaryNode::DoBalance(BinaryNode* root, int _data)

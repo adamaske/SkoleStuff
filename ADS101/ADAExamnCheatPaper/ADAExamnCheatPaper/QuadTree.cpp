@@ -42,7 +42,30 @@ void QuadTree::Subdivide(int amount)
 		q_sw->Subdivide(amount - 1);
 	}
 }
+void QuadTree::PrintAllPoints() {
 
+	std::cout << "Mine kordinater: \n";
+	std::cout << "NE:(" << v_ne.x << ", " << v_ne.y << "), " << "NW:(" << v_nw.x << ", " << v_nw.y << "), "
+		<< "SE:(" << v_se.x << ", " << v_se.y << "), " << "SW:(" << v_sw.x << ", " << v_sw.y << ")" << std::endl;
+	std::cout << "I have " << data.size() << " elements: " << std::endl;
+	for (auto i = 0; i < data.size(); i++) {
+		std::cout << "(" << data[i].x << ", " << data[i].y << ")" << std::endl;
+	}
+
+	if (q_ne) {
+		q_ne->PrintAllPoints();
+	}
+
+	if (q_nw) {
+		q_nw->PrintAllPoints();
+	}
+	if (q_se) {
+		q_se->PrintAllPoints();
+	}
+	if (q_sw) {
+		q_sw->PrintAllPoints();
+	}
+}
 void QuadTree::Print()
 {
 	for (auto i = 0; i < data.size(); i++) {
@@ -65,16 +88,18 @@ QuadTree* QuadTree::Insert(Vector2D input)
 {
 	//If i am a leaf, i can take the input
 	if (IsLeaf()) {
-		//But if i am at capacity i need to subdivide
-		if (AtCapacity()) {
-			Subdivide(1);
-		}
-		else {
-			data.push_back(input);
-			return nullptr;
-		}
+		data.push_back(input);
+		
+		////But if i am at capacity i need to subdivide
+		//if (AtCapacity()) {
+		//	Subdivide(1);
+		//}
+		//else {
+		//	data.push_back(input);
+		//	return nullptr;
+		//}
 	}
-
+	return nullptr;
 	//If i get this far, i am not a leaf
 	// 
 	//Get middle to determine where it should go
@@ -167,6 +192,20 @@ bool QuadTree::AtCapacity() {
 
 void QuadTree::Rebuild()
 {
+	//Gets point between south west and south east
+	Vector2D a = (v_sw + v_se) / 2;
+	//Gets point between south east and nort heast
+	Vector2D b = (v_se + v_ne) / 2;
+	//Gets point between noerth east and north weast
+	Vector2D c = (v_ne + v_nw) / 2;
+	//Gets between north west and sout hwest
+	Vector2D d = (v_nw + v_sw) / 2;
+	//Gets middle
+	Vector2D m = (v_ne + v_sw) / 2;
+
+
+
+
 	//Divide my data to my subquads
 	Vector2D middle = (v_ne + v_sw) / 2;
 	//Divide my points to my subquads
@@ -193,4 +232,90 @@ void QuadTree::Rebuild()
 		}
 	}
 	data.clear();
+}
+
+void QuadTree::DivideOutData()
+{
+	//max grensen for hvor mange elementer det kan være i hver quad
+	int max = 5;
+	//Finn punkter for hvor mulige nye quads må starte og ende
+	//Punkt mellom sør øst og sør west
+	Vector2D a = (v_sw + v_se) / 2;
+	//Sør øst og nord øst
+	Vector2D b = (v_se + v_ne) / 2;
+	//Nord øst og nord west
+	Vector2D c = (v_ne + v_nw) / 2;
+	//Nord vest og sør vest
+	Vector2D d = (v_nw + v_sw) / 2;
+	//Midten av quaden
+	Vector2D m = (v_ne + v_sw) / 2;
+	
+	//Ta ut verdier fra data til det er m
+	for (int i = data.size()-1; data.size() > 5; i--) {
+		
+		//if the y is smaller than the middle it should land in one of the south trees
+		if (data[i].y < m.y) {
+			//If the x is smaller than the middle x, it should land in the left tree. X goes from left to right with size
+			if (data[i].x < m.x) {
+				//Hvis det ikke er noe subtree her, dan en ny med kordinatene funnet ovenfor
+				if (q_sw) {
+					q_sw->Insert(data[i]);
+				}
+				else {
+					//Danner ny quad
+					q_sw = new QuadTree(m, d, a, v_sw);
+					//Setter inn dataen
+					q_sw->Insert(data[i]);
+				}
+			}
+			else {
+				if (q_se) {
+					q_se->Insert(data[i]);
+				}
+				else {
+					q_se = new QuadTree(b, m, v_se, d);
+					q_se->Insert(data[i]);
+				}
+				
+			}
+		}
+		else {
+			//Opposite of the south
+			if (data[i].x < m.x) {
+				if (q_nw) {
+					q_nw->Insert(data[i]);
+				}
+				else {
+					q_nw = new QuadTree(c, v_nw, m, d);
+					q_nw->Insert(data[i]);
+				}
+				
+			}
+			else {
+				if (q_ne) {
+					q_ne->Insert(data[i]);
+				}
+				else {
+					q_ne = new QuadTree(v_ne, c, b, m);
+					q_ne->Insert(data[i]);
+				}
+				
+			}
+		}
+		//Remove the element from 
+		data.resize(data.size() - 1);
+	}
+	//Kaller del ut igjen, på subtrerne
+	if (q_ne) {
+		q_ne->DivideOutData();
+	}
+	if (q_nw) {
+		q_nw->DivideOutData();
+	}
+	if (q_se) {
+		q_se->DivideOutData();
+	}
+	if (q_sw) {
+		q_sw->DivideOutData();
+	}
 }

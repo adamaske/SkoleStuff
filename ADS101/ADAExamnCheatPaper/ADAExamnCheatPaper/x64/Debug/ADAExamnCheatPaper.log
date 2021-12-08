@@ -1,2 +1,11 @@
-﻿  RBNode.cpp
-  ADAExamnCheatPaper.vcxproj -> C:\Users\adama\OneDrive\Dokumenter\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\x64\Debug\ADAExamnCheatPaper.exe
+﻿  ADAExamnCheatPaper.cpp
+C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\ADAExamnCheatPaper.cpp(122,14): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\ADAExamnCheatPaper.cpp(219,21): warning C4101: 'hashtabell': unreferenced local variable
+  QuadTree.cpp
+C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\ADAExamnCheatPaper\QuadTree.cpp(254,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  ADAExamnCheatPaper.vcxproj -> C:\Users\adama\Documents\GitHub\SkoleStuff\ADS101\ADAExamnCheatPaper\x64\Debug\ADAExamnCheatPaper.exe

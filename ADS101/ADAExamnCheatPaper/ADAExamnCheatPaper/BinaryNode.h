@@ -2,6 +2,7 @@
 class BinaryNode
 {
 public:
+	
 	BinaryNode();
 	BinaryNode(int _data, BinaryNode* _left = nullptr, BinaryNode* _right = nullptr);
 
@@ -12,6 +13,13 @@ public:
 	BinaryNode* GetLeft() { return left; };
 	BinaryNode* GetRight() { return right; };
 	int data;
+	int m_frekvens = 0;
+	char m_data;
+	void Insert(char _data);
+	void Print() const;
+	BinaryNode* m_left;
+	void PrintSorted();
+	BinaryNode* m_right;
 	BinaryNode* left;
 	BinaryNode* right;
 	void DoBalance(BinaryNode* root, int _data);

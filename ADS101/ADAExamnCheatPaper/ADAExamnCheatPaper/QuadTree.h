@@ -42,6 +42,8 @@ public:
 	bool AtCapacity();
 	std::vector<Vector2D> data;
 	void Rebuild();
+	void DivideOutData();
+	void PrintAllPoints();
 private:
 	Vector2D v_ne;
 	Vector2D v_nw;
