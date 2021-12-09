@@ -1,0 +1,186 @@
+////////////////////////////////////////////////////////////
+// Eksamen Algoritmer og datastrukturer for spill V2021
+////////////////////////////////////////////////////////////
+// Vekting: 1 (25%) - 2(25%) - 3(30%) - 4(20%)
+// 1a-1b-1c-1d - 2a-2b-2c-2d-2e - 3a-3b-3c-3d-3e - 4
+//  6  6  6  7    4  4  4  8  5    6  6  6  6  6   20
+////////////////////////////////////////////////////////////
+// Fasit 1a
+               2.71828
+               /     \
+            1.732    3.1416
+            /   \    /    \
+         1.414            9.81
+
+// Fasit 1b   
+                9.81
+               /     \
+            3.1416   1.41
+            /   \        
+         1.732  2.78
+
+// Fasit 1c   
+                1.41
+               /     \
+            2.71828  1.732
+            /   \        
+         3.1416  9.81
+
+// Fasit 1d
+void v2021_1d()
+{
+    double a[]{2.71828, 1.732, 1.414, 3.1416, 9.81};
+    std::priority_queue<double> pq;
+    for (int i=0; i<5; i++)
+    {
+        pq.push(a[i]);
+    }
+    pq.pop();
+    cout << pq.top();
+}
+
+// Fasit 2a - se oppgaveteksten H2020
+////////////////////////////////////////////////////////////
+//Fasit 2bcd
+////////////////////////////////////////////////////////////
+void BinaryNode::stigende() const
+{
+    if (m_left)
+        m_left->stigende();
+    std::cout << m_data << std::endl;
+    if (m_right)
+        m_right->stigende();
+}
+
+void BinaryNode::avtakende() const
+{
+    if (m_right)
+        m_right->avtakende();
+    std::cout << m_data << std::endl;
+    if (m_left)
+        m_left->avtakende();
+}
+
+
+double BinaryNode::sum()
+{
+    double totalsum = m_data;
+    if (m_left)
+        totalsum += m_left->sum();
+    if (m_right)
+        totalsum += m_right->sum();
+    return totalsum;
+}
+
+// Fasit 2d
+int main(int argc, char *argv[])
+{
+    BinaryNode tre1{2.71};
+    tre1.insert(1.732);
+    tre1.insert(1.414);
+    tre1.insert(3.14);
+    tre1.insert(9.81);
+
+    tre1.stigende();
+    tre1.avtakende();
+    double s{0.0};
+    tre1.summer(s);
+    cout << "tre 1 sum = " << s << endl;
+    cout << "tre 1 rekursiv sum = " << tre1.sum() << endl;
+
+    BinaryNode* ny;
+    BinaryNode tre2{2.71};
+    ny = tre2.push(1.732);
+    ny->stigende();
+    ny = tre2.push(1.414);
+    ny->stigende();
+    ny = tre2.push(3.14);
+    ny->stigende();
+    ny = tre2.push(9.81);
+    ny->stigende();
+
+    s = 0.0;
+    tre2.summer(s);
+    cout << "tre 2 sum = " << s << endl;
+    cout << "rekursiv sum " << tre2.sum() << endl;
+    tre2.stigende();
+    tre2.avtakende();
+    //cout << tre.sum();
+
+}
+
+////////////////////////////////////////////////////////////
+// Oppgave 3 abc fasit
+////////////////////////////////////////////////////////////
+int main()
+{
+    // a
+    Vector2d a{-4, -4};
+    Vector2d b{ 4, -4};
+    Vector2d c{ 4,  4};
+    Vector2d d{ -4, 4};
+
+    // a
+    Vector2d p{-2.0, -2.0};
+    GameObject gameObject1{p, "gameobject1"};
+    p.x = 1.0; p.y = 3.0;
+    GameObject gameObject2{p, "gameobject2"};
+    p.x = 3.5; p.y = 0.5;
+    GameObject gameObject3{p, "gameobject3"};
+    p.x = 3.2; p.y = 1.2;
+    GameObject gameObject4{p, "gameobject4"};
+    p.x = 3.4; p.y = 1.4;
+    GameObject gameObject5{p, "gameobject5"};
+
+    // b
+    QuadTre root{a, b, c, d};
+    root.subDivide(1);
+    root.m_no->subDivide(1);
+    root.m_no->m_so->subDivide(1);
+
+    // c
+    root.m_sv->m_gameObjects.push_back(gameObject1);
+    root.m_no->m_nv->m_gameObjects.push_back(gameObject2);
+    root.m_no->m_so->m_so->m_gameObjects.push_back(gameObject3);
+    root.m_no->m_so->m_no->m_gameObjects.push_back(gameObject4);
+    root.m_no->m_so->m_no->m_gameObjects.push_back(gameObject5);
+
+/*  Kan ogsaa bruke insert funksjonen
+    root.insert(gameObject1);
+    root.insert(gameObject2);
+    root.insert(gameObject3);
+    root.insert(gameObject4);
+    root.insert(gameObject5);
+*/
+    cout << "root printSub() " << endl;
+    root.printSub(Vector2d{3.1,1.1});
+    cout << "root printAll() " << endl;
+    root.printAll();
+    return 0;
+}
+
+// Oppgave 3cd fasit
+void QuadTre::printSub(const Vector2d &m) const
+{
+    const QuadTre* qt = this->find(m);
+    qt->print();
+}
+
+void QuadTre::printAll() const
+{
+    print();
+    if (m_sv != nullptr) m_sv->printAll();
+    if (m_so != nullptr) m_so->printAll();
+    if (m_no != nullptr) m_no->printAll();
+    if (m_nv != nullptr) m_nv->printAll();
+}
+
+////////////////////////////////////////////////////////////
+// Oppgave 4 fasit
+////////////////////////////////////////////////////////////
+
+         CB(2)
+CA(1)    CD(2)      CD(2)                                     CHG(3.5)
+CB(1)    CAB(2.41)  CAB(2.41)  CAB(2.41)                      CHI(3.5)   CHI(3.5)
+CD(1)    CAD(2.41)  CAD(2.41)  CAD(2.41)  CAD(2.41)           CHE(3.91)  CHE(3.91)  CHE(3.91)
+CH(2.5)  CH(2.5)    CH(2.5)    CH(2.5)    CH(2.5)    CH(2.5)  CHF(3.91)  CHF(3.91)  CHF(3.91)

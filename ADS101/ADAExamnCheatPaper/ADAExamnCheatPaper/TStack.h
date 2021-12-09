@@ -1,19 +1,21 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "CharNode.h"
+#define SIZE 100
 template<class T>
 class TStack
 {
-    public:
-        TStack();
-        void Pop();
-        void Push(T);
-        T Top();
-        int Size();
-        bool Empty();
-    private:
-        T data[10];
-        int index;
+public:
+    TStack();
+    void Pop();
+    void Push(T);
+    T Top();
+    int Size();
+    bool Empty();
+private:
+    T data[SIZE];
+    int index;
 };
 
 template <class T>

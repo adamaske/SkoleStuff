@@ -1,7 +1,12 @@
 #include "BinaryNode.h"
 #include <iostream>
+<<<<<<< HEAD
 #include <vector>
 #include <queue>
+=======
+#include "TQueue.h"
+#include "TStack.h"
+>>>>>>> a40aec551ab31a016b196c0b2db70ee80ec145d0
 BinaryNode::BinaryNode()
 {
 	data = 0;
@@ -43,6 +48,7 @@ void BinaryNode::Insert(int _data)
 		}
 		else {
 			left = new BinaryNode(_data);
+			left->parent = this;
 		}
 	}
 	else if (_data > data) {
@@ -51,6 +57,7 @@ void BinaryNode::Insert(int _data)
 		}
 		else {
 			right = new BinaryNode(_data);
+			right->parent = this;
 
 		}
 	}
@@ -201,8 +208,8 @@ int BinaryNode::Height(BinaryNode* root)
 	if (!root) {
 		return 0;
 	}
-	int a;
-	int b;
+	int a = 0;
+	int b = 0;
 	if (root->GetLeft()) {
 		a = 1 + Height(root->GetLeft());
 	}
@@ -261,6 +268,57 @@ void BinaryNode::Avtakende()
 		left->Avtakende();
 }
 
+BinaryNode* BinaryNode::DeleteNode(BinaryNode* node)
+{
+	if (right) {
+		if (node->right) {
+			if (node != right) {
+				node->right->parent = node->parent;
+			}
+			else {
+				node->right->parent = parent;
+			}
+			if (node != right) {
+				node->parent->left = node->right;
+				node->right = right;
+				right->parent = node;
+			}
+			node->left = left;
+			if (left) {
+				left->parent = node;
+			}
+		}
+		if (node) {
+			node->parent = parent;
+		}
+		if (parent) {
+			if (parent->left == this) {
+				parent->left = node;
+			}
+			else if (parent->right == this) {
+				parent->right = node;
+			}
+		}
+		
+	}
+	return this;
+}
+
+BinaryNode* BinaryNode::FindInorderReplacement()
+{
+	BinaryNode* replacement;
+	if (right) {
+		replacement = right;
+		while(replacement->right) {
+			replacement = replacement->right;
+		}
+	}
+	else {
+		replacement = left;
+	}
+	return replacement;
+}
+
 double BinaryNode::Sum()
 {
 	double totalsum = data;
@@ -269,4 +327,44 @@ double BinaryNode::Sum()
 	if (right)
 		totalsum += right->Sum();
 	return totalsum;
+}
+
+void BinaryNode::WidthFirstTraversal()
+{
+	BinaryNode* p = this;
+	TQueue<BinaryNode*> queue;
+	queue.Push(p);
+	while (queue.Size() != 0) {
+		p = queue.Front();
+		queue.Pop();
+		std::cout << data << ", ";
+		if (p->left) {
+			queue.Push(p->left);
+		}
+		if (p->right) {
+			queue.Push(p->right);
+		}
+	}
+	std::cout << std::endl;
+}
+
+void BinaryNode::NonRecursivePreorderTraversal()
+{
+	BinaryNode* p = this;
+	TStack<BinaryNode*> stack;
+	
+	while (!stack.Empty()) {
+		p = stack.Top();
+		std::cout << p->data << ", ";
+		stack.Pop();
+		if (p->left) {
+			stack.Push(p->left);
+		}
+
+		if (p->right) {
+			stack.Push(p->right);
+		}
+
+	}
+	std::cout << std::endl;
 }

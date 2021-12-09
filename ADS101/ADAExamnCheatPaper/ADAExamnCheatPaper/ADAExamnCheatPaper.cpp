@@ -14,6 +14,7 @@
 #include "RBNode.h"
 #include "RedBlackTree.h"
 #include "Hash.h"
+#include "HuffmanTree.h"
 void Tasks191to194();
 template<typename T, size_t N>
 void SelectionSort(T(&arr)[N]);
@@ -50,7 +51,7 @@ int Partition(T(&arr)[N], int low, int high);
 template<typename T, size_t N>
 int BuildMaxHeap(T(&arr)[N]);
 void SortByPriorityQueue();
-
+void RedBlackTreeInsertion();
 
 int main()
 {
@@ -95,7 +96,7 @@ int main()
     c = new CharNode('d', c);
     c = new CharNode('e', c);
     c = new CharNode('f', c);
-    delete c;
+   
     //Stack
     TStack<int>* tstack = new TStack<int>();
 
@@ -104,6 +105,20 @@ int main()
     TQueue<int>* tqueue = new TQueue<int>();
 
     delete tqueue;
+    //Smart pointers
+    std::shared_ptr<CharNode> shp(c);
+    std::cout << "shp er unik: " << shp.unique() << std::endl;
+    std::unique_ptr<CharNode> up1(c);
+    std::cout << "shp er unik: " << shp.unique() << std::endl;
+
+    std::unique_ptr<CharNode> up(c->GetNext());
+    auto tmp = shp.get();
+    std::cout << "shared pointer data: " << tmp->GetAmount() << std::endl;
+    std::cout << "Shared pointer data: " << shp->GetAmount() << std::endl;
+    tmp = up.get();
+    std::cout << "Unique pointer data: " << tmp->GetAmount() << std::endl;
+    std::cout << "Unique pointer data: " << up->GetAmount() << std::endl;
+    delete c;
     //Oppgaver 1.9.1-4
     Tasks191to194();
     //Selection sort
@@ -142,6 +157,10 @@ int main()
     std::cout << std::endl;
     //Create a non recursive postorder traversal of a binary tree
     Postorder(binaryTree);
+    std::cout << "Non recrusive Preorder Traversal of binary tree: " << std::endl;
+    binaryTree->NonRecursivePreorderTraversal();
+    std::cout << "Width first traversal of binary tree: " << std::endl;
+    binaryTree->WidthFirstTraversal();
     std::cout << std::endl;
     //Write a function that returns amount of nodes in a binary tree
     std::cout << std::endl << "Number of nodes: " << AmountOfNodes(binaryTree) << std::endl;
@@ -161,7 +180,11 @@ int main()
     //Avl-tree
     
     //Red-black tree
-
+    RedBlackTree* rbTree = new RedBlackTree();
+    rbTree->Insert(4);
+    rbTree->Insert(5);
+    rbTree->Insert(8);
+    rbTree->InorderTraversal();
     //Stl::set
 
     //B-trees
@@ -200,6 +223,15 @@ int main()
     std::cout << " Etter pop : heap rot = heap top = " << min_rot << std::endl;
     std::cout << " Etter pop : heap size = " << min_heap.size() << std::endl;
     std::cout << " Etter pop : heap empty ? " << std::boolalpha << min_heap.empty() << std::endl;
+
+    std::cout << "Displaying Hashtable" << std::endl;
+    Hash h(7);
+    for (int i = 0; i < 10; i++) {
+        h.InsertItem(i);
+    }
+    h.DeleteItem(1);
+    h.DisplayHash();
+    std::cout << "Ended hashing" << std::endl;
     //Oppgaver 6.5.1-4
 
     //Sorting O(n) notasjon, Hvordan måle effektivitet?
@@ -236,7 +268,13 @@ int main()
         t.s = "blabla"; 
         us.insert(t);
     }
-
+    Hash* hash = new Hash();
+    std::cout << std::endl << "Tester hash for int" << std::endl;
+    hash->TestHash();
+    std::cout << "Test unordered set" << std::endl;
+    hash->TestUnorderdSet();
+    std::cout << "Test unordered multiset" << std::endl;
+    hash->TestUnorderdMultiset();
     //Graphs
     Graph* g = new Graph();
     g->InsertNode('A');
@@ -267,8 +305,16 @@ int main()
     //A* algorithm
 
     //Huffman
+    char arr[] = { 'A', 'B', 'C', 'D' };
+    int freq[] = { 5, 1, 6, 3 };
 
-    //Eksamen 2021 V
+    int size = 4;
+
+    std::cout << "Char | Huffman code ";
+    std::cout << "\n-----------------------\n";
+    HuffmanTree* hft = new HuffmanTree();
+    hft->HuffmanCodes(arr, freq, size);
+        //Eksamen 2021 V
     //Gitt tallene 2.71828, 1.732, 3.1416, 9.81
     //A Tegn et binært søketre av tallene, satt inn i rekkefølgen over
     //              2.71828
@@ -582,7 +628,7 @@ void SortByPriorityQueue()
 {
     int a[]{ 14,33,12,4,7,19,29,11,17 };
     std::priority_queue<int> pq;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 9; i++) {
         pq.push(a[i]);
     }
     while (!pq.empty()) {
@@ -590,6 +636,33 @@ void SortByPriorityQueue()
         pq.pop();
     }
     std::cout << std::endl;
+}
+
+void RedBlackTreeInsertion()
+{
+    //Sett inn ny node som RED
+
+    //Ved å farge noden RED, blir det enklere å fikse senere
+
+    //Recolor og roter
+
+    //4 secnarioer
+
+    //If node = root, farg sort
+
+    //Hvis node har en rød onkel, bytt farge på parent, grandparent og uncle
+
+    //Triangel case
+    //Hvis node og node->parent er omvendt barn av hverandre
+    //Hvis onkel er BLACK, roter node->parent
+    //Hvis node er en venstrebarn, roter til høyre, 
+    //Hvis node er høyrebarn, roter til venstre
+
+    //Line case
+    //Hvis både node og node->parent er venstre eller høyre barn, er det line case
+    //Roter grandparent, omvendt vei av node
+    //Node->parent tar grandparent plassen, grandparent blir parent omvendt av node, bytt farge på parent og grandparent
+
 }
 
 template<typename T, size_t N>
