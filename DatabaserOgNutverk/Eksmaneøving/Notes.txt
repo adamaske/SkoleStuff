@@ -1,0 +1,123 @@
+Nettverking
+
+video linker: 
+https://www.youtube.com/watch?v=Rck3BALhI5c
+https://www.youtube.com/watch?v=PpsEaqJV_A0
+https://www.youtube.com/watch?v=Vc16CCAAz7Q
+https://www.youtube.com/watch?v=Rck3BALhI5c
+https://www.youtube.com/watch?v=UrG7RTWIJak
+https://www.youtube.com/watch?v=kHceSB1X-R0
+https://www.youtube.com/watch?v=7oBjpf4NUms
+
+Hva er en brannmur? 
+En brannmur regulerer hva som kan koble seg ut eller inn på PC'en gjennom nettverket.
+F.eks kan man sette visse programmer til å ikke kunne kommunisere utad. 
+
+//Kan du nevne et par fordeler et firma kan ha ved å legge applikasjoner på en skykløsning, 
+fremfor å gjøre dem på egne servere?
+Skalering, slipper stor invistering i forkant, slipper drifting av grunnsoftware, tilgang overalt, 
+dataene er der om harddisken din krasjer. 
+Det koster mye penger og kunnskap å sette opp maskinvare og serverprogramvare, og sørge for at det 
+skalerer riktig når trafikken øker. Derfor er det mye mer praktisk å leie kapasitet fra de store 
+leverandørene hvor man kun betaler for faktisk bruk, og man trenger ikke sette opp noe maskinvare 
+og installere programvare selv. Tilbyderen har også da mer ansvar for sikkerheten.
+
+Hva er vranglås(deadlock) i databasesammenheng?
+Når en transaksjon som låser a, er avhengig av b, men en annen transaksjon har låst b og avhegig av a.
+Transaksjonene er da i vranglås fordi vereken av de kan utføres. 
+
+Hvorfor er implementasjon av nettverk organisert i lag?
+Hvert lag har sitt ansvarsomeråde, og sine protokoller. Det øker fleksibiliteten både ved bruk,
+og kanskje særlig ved endring. Endringer i en protokoll kan gjøres i ett lag, uten å røre ade andre.
+Innføring av nye protokoller, som f.eks. IPv6 berører bare ett lag(i hovedska, av og til må en også
+gjøre justeringer på lagene rundet.). Dersom en lager et program som skal kommunisere over nettet på
+en annen måte er det applikasjonslaget i TCP/IP stacken tilbyr av tjenester, er det også mulig å 
+programmere dirkete mot en av lagene ned i stacken. Det er generelt ofte lurt å ha en viss lagdeling i programmer.
+
+På de fleste hjemmenttverk får PCer etc. automatisk en Ipv4 adresse. Når du på netter sjekker hvilken Ipv4-
+adresse du har, er det ofest en annen en det PCen din har intern i netterverket. Hva heter denne mekanismen som
+gjør at intern og ekstrern Ipv4 adresse er forskjellige, og hva er hensikten med denne mekanismen?
+Der er flere ting involvert, men hovedmekanismen som gjør dette er NAT-ing(Network Address Transfer),
+er en funksjonalitet som ofte finnes i routere.
+
+Forklar oppdelinga av IP-adresse i en nettverksdel og en host-del:
+Nettverksdelen sier hvilket nettverk PCen tilhører, det er den som routes på nettet. Host-delen brukes
+til å nummerere PCer innenfor et nettverk, slik at IP-adressen blir unik.
+
+Hva er den største fordelen ved å gå over fra Ipv4 til IPv6?
+Antall adresser.
+
+En pC har IPv4 adressen 172.16.254.1/24. Hvilke av PCene i) til v) er i samme nettverk som denne?
+i)172.16.254.5  ii)172.16.1.1  iii)172.16.254.4  iv)172.6.254.128  v) 72.16.254.1
+i og iii. De tre første feltene er like
+
+Forkort denne IPv6 adressen så mye som mulig: 2001:0000:0000:aaaa:0001:0000::
+2001:0:0:aaaa:1::
+
+En del av Ipv6 adresseomeårder er reservert for spesiell bruk. En av dem er link-local, som brukes
+internt i nettverket. Om link-local står det: <In IPv6, the block fe80/10 is reserved for IP adress
+autoconfiguration. The implementation of these link-local adresses is mandatory, as various functins
+of the IPv6 protocol depends on them>
+Er adressen fe9:3456:0:af03::ffe5:2f4 ei link-local adresse etter denne definisjonen? 
+fe80::/10: de første bitene er;; 1111 1110 10
+feb9::3456: de første bitene: 1111 1110 10
+Disse stemmer overens så det er en link-local adresse. 
+
+Forklar hva ei MAC adresse er, og hvordan denne brukes.
+MAC = Media Access Control adress. Det er ei 48 eller 64 bit adresse på ethvert nettverkskort. 
+Den skal være unik på verdensbasis. I nettverk kalles den en fysisk adresse, ettersom den er 
+fysisk koblet til nettverkskort. MAC-adressen brukes til adressering internt i et nettverk. 
+Switcher bruker MAC-adressa til adressering, i motsetning til routere som bruker IP-adressa.
+
+Forkort denne IPv6 adressen   20a1: 00b8: 0bbf: 000e:0000:0000:0000:0d00
+20a1:b8:bbf:e::d00
+
+Gitt adresse 2001:0DB8:0000:CD30::/60
+Hvilke av de to(ingen, en elelr begge) skrivemåtene nedenfor er en gyldig skrivemåte for denne adressen:
+I. 2001:0DB8::CD30:0:0:0:0/60   Gyldig. Det er bedre å bruke :: på slutten, men denne er gyldig
+II. 2001:0DB8:0:CD3/60 Ugyldig, har bare 4 grupper og ingen ::
+
+Adressetype Link-Local unicast er definert slik: FE80::/10. Hvilke av adressene nedenfor er en gyldig Link-
+Local unicast adresse
+a. FF80::/64  =         1111 1111 1000 0000.... Ugyldig, de 10 første bitene matcher ikke
+b. FE91::7/48 =         1111 1110 1001.... Gyldig
+c. FE80:FE80:0000/64 =  1111 1110 1000...  Gyldig
+De 10 første bitene skal være lik det som er angitt i FE80::/10  -> Skrevet binært: 1111 1110 1000......
+a. FF80::/64 =1111 1111  1000 0000.... Ikke denne. De 10 første bit stemmer ikke
+b. FE91::7/48 = 1111 1110 1001.... Dette er en gyldig Link-Local unicast adesse
+c. FE80:FE80:0000/64 = 1111 1110 1000... Ikke denne. Her stemmer de 10 første bitene, men det er ei 
+ugyldig IPV6 adresse fordi den ikke er 128 bit lang. 
+Svar: b.
+
+Det er satt av forskjellige adresseomeråder i IPv6, for forskjellige typer adresser.
+En av dem er <<Global Unicast>>, som har fått adresseomerådet definert ved 2000::/3.
+a)Hva betyr <<Global Unicast>>, hva brukes den til?
+Det er en global entydig IPv6 adresse, som brukes for en til en kommunikasjon. 
+Den er beskrevet i RFC 3587.
+b)Er denne IPv6 adresse av tpye <<Global Unicast>>: 3f01: 0db8: b000: 0001:0000:0000:0000:0200
+Ja, 2000::/3 betyr at de 3 første bitene må stemme overens med de tre første bitene i 2000,
+så det er en global unicast adresse:
+2000 = [0,0,1,x], [x,x,x,x], [x,x,x,x], [x,x,x,x]
+3f01 = [0,0,1,1], De tre første stemmer overens.
+
+Skriv 3f01: 0db8: b000: 0001:0000:0000:0000:0200 så kort som mulig:
+3f01:db8:b000:1:200
+
+I dette nettverket er det 8 byte som gir adressen til nettverket.
+Hvordan vil du angi det for adressen overfor?
+Med slash 64 etter adressen. 3f01:db8:b000:1:200/64
+
+Hvordan virker NAT-ing:
+Netwrok Adress Transfer. NATing gjør at selv om du er koblet til et privat nettverk-slik at ip-adressen
+din ikke routes på internett- kan du allikevel <<snakke>> med datamaskiner via internett. Når du prøver
+å nå ei ip adresse utenfor det private nettverket du er i, vil routeren din endre avsenderadresse
+på ip-pakka før den sendes videre. Den endres til routerenes ip-adresse som er public og kan routes på internett.
+I tillegg legger den på et unikt portnr, for å skille mellom de forskjellige PCer og programmer som 
+skal routes tilbake til. Routeren holder rede på hvor svaret skal sendes tilbake, for kovertering av ip-adresse
+til protnr når svaret kommer.
+
+Hvorfor er det mindre behov for NATing i IPv6 nettverk?
+Hovedårsaken til bruk av private IPv4 nettverk, er at det er mangel på adressser. Fordi det ikke er 
+mangel på IPv6 adresser, blir det dermed mindre bruk av private nettverk, og mindre behov for NATing. 
+
+
