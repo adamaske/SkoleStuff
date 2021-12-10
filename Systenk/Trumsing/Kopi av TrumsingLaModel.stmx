@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee" uses_conveyor=""/>
+		<name>Kopi av TrumsingLaModel</name>
+		<uuid>9a58b826-9959-4c44-b890-debeba28732e</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.00646766" method="Euler" time_units="År" isee:instantaneous_flows="false">
+		<start>0</start>
+		<stop>200</stop>
+		<dt reciprocal="true">12</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<stock name="Leopardbarn">
+				<eqn>0</eqn>
+				<inflow>Føder_pus</inflow>
+				<outflow>Leopard_barn_blir_voksene</outflow>
+				<outflow>Leopardbarm_dør_av_sult</outflow>
+				<conveyor>
+					<len>2</len>
+				</conveyor>
+			</stock>
+			<flow name="Føder pus">
+				<eqn>Leopard_fødselrate*Leoparder</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Leopard fødselrate">
+				<eqn>Leopard_per_km2_skog</eqn>
+				<gf>
+					<xscale min="0" max="1"/>
+					<yscale min="0" max="0.2"/>
+					<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0018,0.0035,0.0053,0.007,0.0088,0.0114,0.0132,0.0158,0.0167,0.0474,0.0667,0.0851,0.1009,0.1202,0.1368,0.2</ypts>
+				</gf>
+			</aux>
+			<flow name="Leoparder dør\nav alderdom">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Leopard barn\nblir voksene">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Leoparder">
+				<eqn>200</eqn>
+				<inflow>Leopard_barn_blir_voksene</inflow>
+				<outflow>Leoparder_dør_av_alderdom</outflow>
+				<outflow>Leoparder_dør_av_sult</outflow>
+				<conveyor>
+					<len>11</len>
+				</conveyor>
+			</stock>
+			<stock name="Døde leoparder">
+				<eqn>0</eqn>
+				<inflow>Leoparder_dør_av_alderdom</inflow>
+				<non_negative/>
+			</stock>
+			<flow name="Leoparder dør\nav sult">
+				<eqn>Leopard_dødelighet</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<aux name="Leopard dødelighet">
+				<eqn>Hjort_per_km2</eqn>
+				<gf>
+					<xscale min="0.2" max="1"/>
+					<yscale min="0.1" max="0.5"/>
+					<ypts>0.4907,0.4609,0.4293,0.3865,0.3586,0.3288,0.2916,0.2619,0.2321,0.1967,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1</ypts>
+				</gf>
+			</aux>
+			<aux name="Hjort per km2">
+				<eqn>Hjort/Levbartomeråde_km2</eqn>
+			</aux>
+			<stock name="Hjort">
+				<eqn>4000</eqn>
+				<inflow>Hjortebarn_blir_voksne</inflow>
+				<outflow>Hjort_dør_av_alderdom</outflow>
+				<outflow>Hjort_blir_spist_av_leopard</outflow>
+				<outflow>Hjort_dør_av_sult</outflow>
+				<conveyor>
+					<len>10</len>
+				</conveyor>
+			</stock>
+			<stock name="Hjortebarn">
+				<eqn>0</eqn>
+				<inflow>Føder_hjortebarn</inflow>
+				<outflow>Hjortebarn_blir_voksne</outflow>
+				<outflow>Hjortebarn_dør_av_sult</outflow>
+				<conveyor>
+					<len>2</len>
+				</conveyor>
+			</stock>
+			<flow name="Hjortebarn\nblir voksne">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Hjort dør\nav alderdom">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Hjort blir spist\nav leopard">
+				<eqn>Hjort/Hjorter_tatt_av_leopard</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="Hjort dør\nav sult">
+				<eqn>Hjort/Hjort_dødlighet</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<aux name="Hjorter tatt\nav leopard">
+				<eqn>Hjort_per_km2</eqn>
+				<gf>
+					<xscale min="1" max="20"/>
+					<yscale min="3" max="70"/>
+					<ypts>3,9.46,15.05,22.1,29.15,40.03,52.37,58.54,62.36,65.89,69.41</ypts>
+				</gf>
+			</aux>
+			<aux name="Hjort dødlighet">
+				<eqn>Matenhet_per_hjort</eqn>
+				<gf>
+					<xscale min="0" max="2"/>
+					<yscale min="0.09" max="1"/>
+					<ypts>0.8882,0.8284,0.7805,0.6927,0.6208,0.5729,0.537,0.5131,0.4931,0.4692,0.4372,0.4053,0.3734,0.3375,0.3015,0.2616,0.2257,0.1858,0.1579,0.1259,0.102,0.09,0.09,0.09,0.09,0.09</ypts>
+				</gf>
+			</aux>
+			<flow name="Føder\nhjortebarn">
+				<eqn>Hjort*Hjort_fødselrate</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Hjort fødselrate">
+				<eqn>Matenhet_per_hjort</eqn>
+				<gf>
+					<xscale min="0" max="1"/>
+					<yscale min="0" max="0.25"/>
+					<ypts>0,0.011,0.0208,0.0307,0.0395,0.0493,0.0603,0.0724,0.0855,0.0998,0.1107,0.1206,0.1338,0.1469,0.159,0.1689,0.182,0.1952,0.2083,0.227,0.2423</ypts>
+				</gf>
+			</aux>
+			<aux name="Matenhet per\nhjort">
+				<eqn>(Matenheter+1)/(Hjort+1)</eqn>
+			</aux>
+			<stock name="Døde hjort">
+				<eqn>0</eqn>
+				<inflow>Hjort_dør_av_alderdom</inflow>
+				<inflow>Hjort_dør_av_sult</inflow>
+				<inflow>Hjort_blir_spist_av_leopard</inflow>
+				<non_negative/>
+			</stock>
+			<stock name="Skogsomeråde\nkm2">
+				<eqn>2790</eqn>
+				<inflow>Trær_vokser_tilbake</inflow>
+				<outflow>Feller_trær</outflow>
+				<non_negative/>
+				<units>km2</units>
+			</stock>
+			<flow name="Feller trær">
+				<eqn>Felle_kapasitet</eqn>
+				<non_negative/>
+				<units>km2/År</units>
+			</flow>
+			<stock name="Felt skogomeråde\nkm2">
+				<eqn>0</eqn>
+				<inflow>Feller_trær</inflow>
+				<outflow>Trær_vokser_tilbake</outflow>
+				<conveyor>
+					<len>30</len>
+				</conveyor>
+				<units>km2</units>
+			</stock>
+			<flow name="Trær vokser tilbake">
+				<eqn>0</eqn>
+				<non_negative/>
+				<units>km2/År</units>
+			</flow>
+			<stock name="Arbeidere">
+				<eqn>50</eqn>
+				<inflow>Ansetter_nye_arbeidere</inflow>
+				<outflow>Sparker_arbeidere</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Penger">
+				<eqn>1000000</eqn>
+				<inflow>Inntekt</inflow>
+				<outflow>Utgifter</outflow>
+			</stock>
+			<flow name="Utgifter">
+				<eqn>Lønn_totalt</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Lønn\ntotalt">
+				<eqn>Arbeidere*Lønn_per_arbeider</eqn>
+			</aux>
+			<flow name="Ansetter nye arbeidere">
+				<eqn>Ansettelse_Rate</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Sparker arbeidere">
+				<eqn>Spark_Rate</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Inntekt">
+				<eqn>Salg_av_felte_trær</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Salg av felte trær">
+				<eqn>Feller_trær*Salgs_pris_per_km2_felte_trær</eqn>
+			</aux>
+			<aux name="Salgs pris per km2\nfelte trær">
+				<eqn>750000</eqn>
+			</aux>
+			<aux name="Felle kapasitet">
+				<eqn>Arbeidere/Arbeidere_som_trengs_per_km2_skog</eqn>
+			</aux>
+			<aux name="Arbeidere som trengs\nper km2 skog">
+				<eqn>15</eqn>
+			</aux>
+			<aux name="Lønn per\narbeider">
+				<eqn>48000</eqn>
+			</aux>
+			<aux name="Leopard per\nkm2 skog">
+				<eqn>(Skogsomeråde_km2+1)/(Leoparder+1)</eqn>
+			</aux>
+			<flow name="Hjortebarn dør\nav sult">
+				<eqn>Hjort_dødlighet</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="Leopardbarm\ndør av sult">
+				<eqn>Leopard_dødelighet</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<aux name="Levbartomeråde\nkm2">
+				<eqn>1079+Skogsomeråde_km2</eqn>
+			</aux>
+			<stock name="Matenheter">
+				<eqn>Levbartomeråde_km2/0.3</eqn>
+				<inflow>Matenheter_regenrerer</inflow>
+				<outflow>Hjort_spiser_matenhet</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Hjort spiser\nmatenhet">
+				<eqn>Matenheter_spist_per_hjort*Hjort</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Spiste matenheter">
+				<eqn>0</eqn>
+				<inflow>Hjort_spiser_matenhet</inflow>
+				<outflow>Matenheter_regenrerer</outflow>
+				<conveyor>
+					<len>4</len>
+					<sample>2</sample>
+				</conveyor>
+			</stock>
+			<aux name="Matenheter spist\nper hjort">
+				<eqn>Matenhet_per_hjort</eqn>
+				<gf>
+					<xscale min="0.2" max="2"/>
+					<yscale min="0.01" max="1"/>
+					<ypts>0.0274,0.0447,0.0534,0.0751,0.0882,0.1099,0.1272,0.1446,0.1663,0.188,0.2097,0.2314,0.2575,0.2879,0.3183,0.3487,0.3834,0.4182,0.4529,0.4876,0.5224,0.5745,0.6309,0.6787,0.7438,0.8133,0.8828,1</ypts>
+				</gf>
+			</aux>
+			<flow name="Matenheter regenrerer">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Ansettelse Rate">
+				<eqn>Penger</eqn>
+				<gf>
+					<xscale min="-1000000" max="500000"/>
+					<yscale min="0" max="10"/>
+					<ypts>0,1.32,3.2,5.83,6.93,7.54,8.25,8.77,9.25,9.69,10</ypts>
+				</gf>
+			</aux>
+			<aux name="Spark Rate">
+				<eqn>Penger</eqn>
+				<gf>
+					<xscale min="-2000000" max="-1000000"/>
+					<yscale min="0" max="10"/>
+					<ypts>10,3.77,2.06,0.79,0,0,0,0,0,0,0</ypts>
+				</gf>
+			</aux>
+			<isee:dependencies>
+				<var name="Føder_pus">
+					<in>Leopard_fødselrate</in>
+					<in>Leoparder</in>
+				</var>
+				<var name="Leopard_fødselrate">
+					<in>Leopard_per_km2_skog</in>
+				</var>
+				<var name="Leoparder_dør_av_sult">
+					<in>Leopard_dødelighet</in>
+				</var>
+				<var name="Leopard_dødelighet">
+					<in>Hjort_per_km2</in>
+				</var>
+				<var name="Hjort_per_km2">
+					<in>Hjort</in>
+					<in>Levbartomeråde_km2</in>
+				</var>
+				<var name="Hjort_blir_spist_av_leopard">
+					<in>Hjorter_tatt_av_leopard</in>
+					<in>Hjort</in>
+				</var>
+				<var name="Hjort_dør_av_sult">
+					<in>Hjort_dødlighet</in>
+					<in>Hjort</in>
+				</var>
+				<var name="Hjorter_tatt_av_leopard">
+					<in>Hjort_per_km2</in>
+				</var>
+				<var name="Hjort_dødlighet">
+					<in>Matenhet_per_hjort</in>
+				</var>
+				<var name="Føder_hjortebarn">
+					<in>Hjort</in>
+					<in>Hjort_fødselrate</in>
+				</var>
+				<var name="Hjort_fødselrate">
+					<in>Matenhet_per_hjort</in>
+				</var>
+				<var name="Matenhet_per_hjort">
+					<in>Hjort</in>
+					<in>Matenheter</in>
+				</var>
+				<var name="Feller_trær">
+					<in>Felle_kapasitet</in>
+				</var>
+				<var name="Utgifter">
+					<in>Lønn_totalt</in>
+				</var>
+				<var name="Lønn_totalt">
+					<in>Arbeidere</in>
+					<in>Lønn_per_arbeider</in>
+				</var>
+				<var name="Ansetter_nye_arbeidere">
+					<in>Ansettelse_Rate</in>
+				</var>
+				<var name="Sparker_arbeidere">
+					<in>Spark_Rate</in>
+				</var>
+				<var name="Inntekt">
+					<in>Salg_av_felte_trær</in>
+				</var>
+				<var name="Salg_av_felte_trær">
+					<in>Feller_trær</in>
+					<in>Salgs_pris_per_km2_felte_trær</in>
+				</var>
+				<var name="Felle_kapasitet">
+					<in>Arbeidere</in>
+					<in>Arbeidere_som_trengs_per_km2_skog</in>
+				</var>
+				<var name="Leopard_per_km2_skog">
+					<in>Leoparder</in>
+					<in>Skogsomeråde_km2</in>
+				</var>
+				<var name="Hjortebarn_dør_av_sult">
+					<in>Hjort_dødlighet</in>
+				</var>
+				<var name="Leopardbarm_dør_av_sult">
+					<in>Leopard_dødelighet</in>
+				</var>
+				<var name="Levbartomeråde_km2">
+					<in>Skogsomeråde_km2</in>
+				</var>
+				<var name="Matenheter">
+					<in>Levbartomeråde_km2</in>
+				</var>
+				<var name="Hjort_spiser_matenhet">
+					<in>Matenheter_spist_per_hjort</in>
+					<in>Hjort</in>
+				</var>
+				<var name="Matenheter_spist_per_hjort">
+					<in>Matenhet_per_hjort</in>
+				</var>
+				<var name="Ansettelse_Rate">
+					<in>Penger</in>
+				</var>
+				<var name="Spark_Rate">
+					<in>Penger</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="large" page_width="1123" page_height="793" isee:page_cols="3" isee:page_rows="2" zoom="140" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="67" height="55"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="24"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<stock x="172.778" y="75.5556" name="Leopardbarn"/>
+				<flow x="102.917" y="75.5556" name="Føder pus">
+					<pts>
+						<pt x="55.5556" y="75.5556"/>
+						<pt x="150.278" y="75.5556"/>
+					</pts>
+				</flow>
+				<aux x="90" y="146.09" name="Leopard fødselrate"/>
+				<flow x="370.083" y="76.6667" name="Leoparder dør\nav alderdom">
+					<pts>
+						<pt x="327.5" y="76.6667"/>
+						<pt x="424.667" y="76.6667"/>
+					</pts>
+				</flow>
+				<flow x="232.889" y="75.9028" name="Leopard barn\nblir voksene">
+					<pts>
+						<pt x="195.278" y="75.9028"/>
+						<pt x="282.5" y="75.9028"/>
+					</pts>
+				</flow>
+				<stock x="305" y="75.9028" name="Leoparder"/>
+				<stock x="447.167" y="76.6667" name="Døde leoparder"/>
+				<connector uid="1" angle="129.385">
+					<from>Leopard_fødselrate</from>
+					<to>Føder_pus</to>
+				</connector>
+				<connector uid="2" angle="123.555">
+					<from>Leoparder</from>
+					<to>Føder_pus</to>
+				</connector>
+				<flow x="301.25" y="128.076" name="Leoparder dør\nav sult">
+					<pts>
+						<pt x="301.25" y="93.4028"/>
+						<pt x="301.25" y="183.75"/>
+					</pts>
+				</flow>
+				<aux x="226.764" y="164.286" name="Leopard dødelighet"/>
+				<connector uid="3" angle="25.9254">
+					<from>Leopard_dødelighet</from>
+					<to>Leoparder_dør_av_sult</to>
+				</connector>
+				<aux x="219.236" y="258.327" name="Hjort per km2"/>
+				<connector uid="4" angle="85.4234">
+					<from>Hjort_per_km2</from>
+					<to>Leopard_dødelighet</to>
+				</connector>
+				<stock x="351.25" y="373.75" name="Hjort"/>
+				<stock x="188.125" y="373.75" name="Hjortebarn"/>
+				<flow x="263.688" y="373.75" name="Hjortebarn\nblir voksne">
+					<pts>
+						<pt x="210.625" y="373.75"/>
+						<pt x="328.75" y="373.75"/>
+					</pts>
+				</flow>
+				<flow x="429.848" y="375.313" name="Hjort dør\nav alderdom">
+					<pts>
+						<pt x="373.75" y="375.313"/>
+						<pt x="497.946" y="375.313"/>
+					</pts>
+				</flow>
+				<flow x="436.25" y="309.286" name="Hjort blir spist\nav leopard">
+					<pts>
+						<pt x="350.625" y="356.25"/>
+						<pt x="350.625" y="309.286"/>
+						<pt x="521.875" y="309.286"/>
+						<pt x="521.875" y="348.185"/>
+					</pts>
+				</flow>
+				<flow x="435.402" y="429.286" name="Hjort dør\nav sult">
+					<pts>
+						<pt x="352.5" y="391.25"/>
+						<pt x="352.5" y="429.286"/>
+						<pt x="518.304" y="429.286"/>
+						<pt x="518.304" y="383.185"/>
+					</pts>
+				</flow>
+				<aux x="326.438" y="258.327" name="Hjorter tatt\nav leopard"/>
+				<connector uid="5" angle="0">
+					<from>Hjort_per_km2</from>
+					<to>Hjorter_tatt_av_leopard</to>
+				</connector>
+				<connector uid="6" angle="335.106">
+					<from>Hjorter_tatt_av_leopard</from>
+					<to>Hjort_blir_spist_av_leopard</to>
+				</connector>
+				<aux x="308.417" y="476.685" name="Hjort dødlighet"/>
+				<connector uid="7" angle="20.4688">
+					<from>Hjort_dødlighet</from>
+					<to>Hjort_dør_av_sult</to>
+				</connector>
+				<connector uid="8" angle="123.959">
+					<from>Hjort</from>
+					<to>Hjort_per_km2</to>
+				</connector>
+				<flow x="118.75" y="366.875" name="Føder\nhjortebarn">
+					<pts>
+						<pt x="71.875" y="366.875"/>
+						<pt x="165.625" y="366.875"/>
+					</pts>
+				</flow>
+				<aux x="66" y="476.685" name="Hjort fødselrate"/>
+				<connector uid="9" angle="140.29">
+					<from>Hjort</from>
+					<to>Føder_hjortebarn</to>
+				</connector>
+				<connector uid="10" angle="113.853">
+					<from>Hjort_fødselrate</from>
+					<to>Føder_hjortebarn</to>
+				</connector>
+				<aux x="143.679" y="550.363" name="Matenhet per\nhjort"/>
+				<connector uid="11" angle="44.6875">
+					<from>Matenhet_per_hjort</from>
+					<to>Hjort_dødlighet</to>
+				</connector>
+				<stock x="520.446" y="365.685" name="Døde hjort"/>
+				<stock x="760.923" y="400.685" name="Skogsomeråde\nkm2"/>
+				<flow x="845.548" y="400.685" name="Feller trær">
+					<pts>
+						<pt x="783.423" y="400.685"/>
+						<pt x="919.673" y="400.685"/>
+					</pts>
+				</flow>
+				<stock x="942.173" y="400.685" name="Felt skogomeråde\nkm2"/>
+				<flow x="849.048" y="455.685" name="Trær vokser tilbake">
+					<pts>
+						<pt x="940.298" y="418.185"/>
+						<pt x="940.298" y="455.685"/>
+						<pt x="757.798" y="455.685"/>
+						<pt x="757.798" y="418.185"/>
+					</pts>
+				</flow>
+				<stock x="959.589" y="221.786" name="Arbeidere"/>
+				<stock x="834.842" y="33.6111" width="51.875" height="38.125" name="Penger"/>
+				<flow x="931.359" y="54.2361" name="Utgifter">
+					<pts>
+						<pt x="886.717" y="54.2361"/>
+						<pt x="1000" y="54.2361"/>
+					</pts>
+				</flow>
+				<aux x="926.635" y="118.5" width="24" height="24" name="Lønn\ntotalt"/>
+				<connector uid="12" angle="42.7262">
+					<from>Arbeidere</from>
+					<to>Lønn_totalt</to>
+				</connector>
+				<flow x="893.842" y="221.786" name="Ansetter nye arbeidere">
+					<pts>
+						<pt x="850.595" y="221.786"/>
+						<pt x="937.089" y="221.786"/>
+					</pts>
+				</flow>
+				<flow x="1041.42" y="225.952" name="Sparker arbeidere">
+					<pts>
+						<pt x="982.089" y="225.952"/>
+						<pt x="1124.76" y="225.952"/>
+					</pts>
+				</flow>
+				<connector uid="13" angle="95.4504">
+					<from>Lønn_totalt</from>
+					<to>Utgifter</to>
+				</connector>
+				<flow x="772.838" y="53.3333" name="Inntekt">
+					<pts>
+						<pt x="710.833" y="53.3333"/>
+						<pt x="834.842" y="53.3333"/>
+					</pts>
+				</flow>
+				<aux x="630.5" y="215.215" name="Salg av felte trær"/>
+				<connector uid="14" angle="76.4762">
+					<from>Salg_av_felte_trær</from>
+					<to>Inntekt</to>
+				</connector>
+				<connector uid="15" angle="139.224">
+					<from>Feller_trær</from>
+					<to>Salg_av_felte_trær</to>
+				</connector>
+				<aux x="736.334" y="200.786" name="Salgs pris per km2\nfelte trær"/>
+				<connector uid="16" angle="187.763">
+					<from>Salgs_pris_per_km2_felte_trær</from>
+					<to>Salg_av_felte_trær</to>
+				</connector>
+				<connector uid="17" angle="264.446">
+					<from>Arbeidere</from>
+					<to>Felle_kapasitet</to>
+				</connector>
+				<aux x="843.985" y="304.986" name="Felle kapasitet"/>
+				<connector uid="18" angle="270.936">
+					<from>Felle_kapasitet</from>
+					<to>Feller_trær</to>
+				</connector>
+				<aux x="787.961" y="242.786" name="Arbeidere som trengs\nper km2 skog"/>
+				<aux x="1041.42" y="115.5" name="Lønn per\narbeider"/>
+				<connector uid="19" angle="188.303">
+					<from>Lønn_per_arbeider</from>
+					<to>Lønn_totalt</to>
+				</connector>
+				<connector uid="20" angle="349.298">
+					<from>Arbeidere_som_trengs_per_km2_skog</from>
+					<to>Felle_kapasitet</to>
+				</connector>
+				<aux x="358.25" y="200.786" name="Leopard per\nkm2 skog"/>
+				<connector uid="21" angle="293.093">
+					<from>Leoparder</from>
+					<to>Leopard_per_km2_skog</to>
+				</connector>
+				<connector uid="22" angle="131.503">
+					<from>
+						<alias uid="23"/>
+					</from>
+					<to>Leopard_per_km2_skog</to>
+				</connector>
+				<flow x="191.25" y="422" name="Hjortebarn dør\nav sult">
+					<pts>
+						<pt x="191.25" y="391.25"/>
+						<pt x="191.25" y="473.75"/>
+					</pts>
+				</flow>
+				<connector uid="24" angle="136.625">
+					<from>Hjort_dødlighet</from>
+					<to>Hjortebarn_dør_av_sult</to>
+				</connector>
+				<connector uid="25" angle="201.352">
+					<from>Leopard_per_km2_skog</from>
+					<to>Leopard_fødselrate</to>
+				</connector>
+				<stacked_container uid="26" x="20.625" y="780.849" width="562.5" height="473.125">
+					<graph x="20.625" y="780.849" width="562.5" height="473.125" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Leoparder" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="#FFAA00" pen_style="dot_dashed" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Leopardbarn"/>
+						</plot>
+						<plot color="#5500FF" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Leoparder"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Leopard_per_km2_skog"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Leopard_fødselrate"/>
+						</plot>
+						<plot color="#FF7F00" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Leopard_dødelighet"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="27" x="593.279" y="774.709" width="640.75" height="476">
+					<graph x="593.279" y="774.709" width="640.75" height="476" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Hjorter" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hjort"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Hjortebarn"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Hjort_dødlighet"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Hjort_per_km2"/>
+						</plot>
+						<plot color="#7F00FF" pen_style="dot_dashed" pen_width="1" index="4" show_y_axis="true">
+							<entity name="Hjort_fødselrate"/>
+						</plot>
+						<plot color="#0CA0FF" pen_style="dotted" pen_width="1" index="5" show_y_axis="true">
+							<entity name="Matenhet_per_hjort"/>
+						</plot>
+						<plot color="lime" pen_style="dashed" pen_width="1" index="6" show_y_axis="true">
+							<entity name="Hjort_spiser_matenhet"/>
+						</plot>
+						<plot color="blue" pen_width="1" index="7" show_y_axis="true">
+							<entity name="Matenheter"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<flow x="174.375" y="125.09" name="Leopardbarm\ndør av sult">
+					<pts>
+						<pt x="174.375" y="93.0556"/>
+						<pt x="174.375" y="178.125"/>
+					</pts>
+				</flow>
+				<connector uid="28" angle="143.198">
+					<from>Leopard_dødelighet</from>
+					<to>Leopardbarm_dør_av_sult</to>
+				</connector>
+				<stacked_container uid="29" x="1183" y="414.767" width="542" height="348.583">
+					<graph x="1183" y="414.767" width="542" height="348.583" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Trær" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Skogsomeråde_km2"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Felt_skogomeråde_km2"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Felle_kapasitet"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Levbartomeråde_km2"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<aux x="653.071" y="414.471" name="Levbartomeråde\nkm2"/>
+				<connector uid="30" angle="187.284">
+					<from>Skogsomeråde_km2</from>
+					<to>Levbartomeråde_km2</to>
+				</connector>
+				<connector uid="31" angle="37.4762">
+					<from>
+						<alias uid="32"/>
+					</from>
+					<to>Hjort_per_km2</to>
+				</connector>
+				<connector uid="33" angle="105.251">
+					<from>Matenhet_per_hjort</from>
+					<to>Hjort_fødselrate</to>
+				</connector>
+				<connector uid="34" angle="165.723">
+					<from>
+						<alias uid="35"/>
+					</from>
+					<to>Matenhet_per_hjort</to>
+				</connector>
+				<stock x="135.625" y="666.667" name="Matenheter"/>
+				<flow x="244.313" y="666.667" name="Hjort spiser\nmatenhet">
+					<pts>
+						<pt x="158.125" y="666.667"/>
+						<pt x="342.5" y="666.667"/>
+					</pts>
+				</flow>
+				<stock x="365" y="661.619" name="Spiste matenheter"/>
+				<aux x="240.833" y="595.488" name="Matenheter spist\nper hjort"/>
+				<connector uid="36" angle="262.687">
+					<from>Matenheter_spist_per_hjort</from>
+					<to>Hjort_spiser_matenhet</to>
+				</connector>
+				<flow x="240.833" y="739.167" name="Matenheter regenrerer">
+					<pts>
+						<pt x="360" y="679.119"/>
+						<pt x="360" y="739.167"/>
+						<pt x="121.667" y="739.167"/>
+						<pt x="121.667" y="684.167"/>
+					</pts>
+				</flow>
+				<connector uid="37" angle="335.087">
+					<from>Matenhet_per_hjort</from>
+					<to>Matenheter_spist_per_hjort</to>
+				</connector>
+				<connector uid="38" angle="246.871">
+					<from>
+						<alias uid="35"/>
+					</from>
+					<to>Hjort_spiser_matenhet</to>
+				</connector>
+				<connector uid="39" angle="330.945">
+					<from>Hjort</from>
+					<to>Hjort_dør_av_sult</to>
+				</connector>
+				<alias font_style="italic" uid="23" x="497.946" y="230.786" width="45" height="35">
+					<of>Skogsomeråde_km2</of>
+				</alias>
+				<alias font_style="italic" uid="32" x="102" y="253.893" width="24" height="24">
+					<shape type="circle" radius="24"/>
+					<of>Levbartomeråde_km2</of>
+				</alias>
+				<alias font_style="italic" uid="35" x="297.5" y="543.792" width="45" height="35">
+					<of>Hjort</of>
+				</alias>
+				<stacked_container uid="40" x="1176.06" y="43.31" width="544.375" height="365.284">
+					<graph x="1176.06" y="43.31" width="544.375" height="365.284" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Penger" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Penger"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Inntekt"/>
+						</plot>
+						<plot color="#FF7F00" pen_width="1" index="1" right_axis="true" show_y_axis="true">
+							<entity name="Utgifter"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<aux x="986.102" y="312.272" width="24" height="24" name="Ansettelse Rate"/>
+				<connector uid="41" angle="174.056">
+					<from>Ansettelse_Rate</from>
+					<to>Ansetter_nye_arbeidere</to>
+				</connector>
+				<aux x="1053.65" y="294.5" name="Spark Rate"/>
+				<alias font_style="italic" uid="42" x="1084.06" y="346.623" width="51.875" height="38.125">
+					<of>Penger</of>
+				</alias>
+				<connector uid="43" angle="182.402">
+					<from>
+						<alias uid="42"/>
+					</from>
+					<to>Ansettelse_Rate</to>
+				</connector>
+				<connector uid="44" angle="69.4382">
+					<from>
+						<alias uid="42"/>
+					</from>
+					<to>Spark_Rate</to>
+				</connector>
+				<connector uid="45" angle="100.114">
+					<from>Spark_Rate</from>
+					<to>Sparker_arbeidere</to>
+				</connector>
+				<stacked_container uid="46" x="747.173" y="470.488" width="350" height="250">
+					<graph x="747.173" y="470.488" width="350" height="250" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Arbeidere" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Arbeidere"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Ansettelse_Rate"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Spark_Rate"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<connector uid="47" angle="86.0388">
+					<from>Matenheter</from>
+					<to>Matenhet_per_hjort</to>
+				</connector>
+				<connector uid="48" angle="65.5907">
+					<from>Hjort</from>
+					<to>Hjort_blir_spist_av_leopard</to>
+				</connector>
+			</view>
+		</views>
+	</model>
+</xmile>
+
