@@ -121,3 +121,10 @@ Hovedårsaken til bruk av private IPv4 nettverk, er at det er mangel på adresss
 mangel på IPv6 adresser, blir det dermed mindre bruk av private nettverk, og mindre behov for NATing. 
 
 
+Unicast transmission
+In unicast transmission, one sender is connected to one receiver. 
+This is mandatory for conversational services, but can be inefficient for other services since every client demands its own bandwidth. 
+For the case of a single transmitter unicasting a video at B bps to N receivers, the total bandwidth required is NB bps. 
+The advantage of unicast transmission is that there is an intimate link between the sender and receiver and hence a feedback channel 
+can be established to signal errors and thus support retransmission and error control. Unicast streaming is used by operators 
+such as YouTube and Skype.

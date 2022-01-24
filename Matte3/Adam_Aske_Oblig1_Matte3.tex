@@ -1,0 +1,139 @@
+\documentclass[a4paper,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc,url}
+\usepackage{babel,textcomp}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{cleveref}
+\usepackage[cmyk]{xcolor}
+\usepackage{listings}
+
+\lstset {language=C++,    
+backgroundcolor=\color{yellow!20},    
+commentstyle=\color{green},    
+%keywordstyle=\color{blue},    
+basicstyle=\footnotesize}
+\urlstyle{sf}
+\title{Oblig 1 Matte 3}
+\date{\today}
+\author{Adam Aske}
+\newpage
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Del 1}
+Jeg har valgt funksjonen; f(x, y) = sin(PI*x)*sin(PI*y). Omerådet 0 < x < 1, 0 < y < 3 og steg = 0.2.
+Funkjsonen tar inn en array og en størrelse. Først blir arrayen fylt med tilfeldige tall. 
+\begin{lstlisting}[language=C++, caption={trianglesurface.cpp}]
+//Create triangle
+float xmin=0.0f, xmax=1.0f, ymin=0.0f, ymax=3.0f, h=0.2f;
+for (auto x=xmin; x<xmax; x+=h)
+{
+	for (auto y=ymin; y<ymax; y+=h)
+	{
+              float z = func(x, y);
+              mVertices.push_back(Vertex{x,y,z,x,y,z});
+              z = func(x+h, y);
+              mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+              z = func(x, y+h);
+              mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+              mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+              z = func(x+h, y);
+              mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+              z = func(x+h, y+h);
+              mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
+	}
+}
+\end{lstlisting}
+\begin{lstlisting}[language=C++, caption={trianglesurface.hh}]
+static float func(float x, float y){
+       //Matte oblig funksjon
+       return pow(x, 3) * y;
+   }
+\end{lstlisting}
+\section{Lese og skrive til fil}
+\begin{lstlisting}[language=C++, caption={trianglesurface.cpp}]
+void TriangleSurface::readFile(std::string fileName) {
+    	std::ifstream inn;
+       inn.open(fileName.c_str());
+       if (inn.is_open())
+       {
+        	int n;
+             Vertex vertex;
+             inn >> n;
+             mVertices.reserve(n);
+             for (int i=0; i<n; i++) {
+             	inn >> vertex;
+                   mVertices.push_back(vertex);
+              }
+              inn.close();
+          }
+}
+
+void TriangleSurface::writeFile(std::string fileName){
+	std::ofstream wF;
+       wF.open(fileName.c_str())
+       if(wF.is_open())
+       {
+        	wF << mVertices.size() << "\n";
+            for (int i = 0; i < mVertices.size(); i++)
+            {
+                wF << mVertices[i] << "\n";
+            }
+        }
+        else
+        {
+            std::cout << "Failed to write to file.\n";
+        }
+        wF.close();
+}
+\end{lstlisting}
+
+\section{Del 2}
+\section{A}
+Analytisk utregning for volumet av funksjonen.
+\(\int_{0}^{1} \int_{0}^{1} x^3 * y \,dy, dx\)
+\newline
+\(\int_{0}^{1} x^3*y \,dy\) = \(x^3\int y \,dy\) = \(x^3 * (y^2/2) \) = \( x^3y^2/2  \) = \( x^3*1^2/2\) = \(x^3/2\)
+\newline \(\int x^3/2\) = \(1/2 \int x^3\,dx\) = \(1/2* x^4/4\) = \( x^4/8 \)
+\newline\(\int_{0}^{1} \int_{0}^{1} x^3 * y \,dy, dx\) = 1/2
+
+\section{B)}
+For å regne integralet numerisk lagde jeg en funksjon i trianglesurface.cpp og skriver resultatene til en fil.
+Funksjoner gjør det 4 ganger og halverer steg lengden for hver iterasjon. Resultatene blir lagret i Numerisk.txt.
+\begin{lstlisting}[language=C++, caption={trianglesurface.cpp}]
+void TriangleSurface::CalculateNumerical(){
+    	std::ofstream file;
+   	file.open("Numerisk.txt");
+	if(file.is_open())
+       {
+        	float xmin= -1.0f, xmax = 1.0f, ymin = 0.0f, ymax  = 1.0f,h = 0.25f, result = 0;
+             for(int i = 0; i < 4; i++)
+             {
+                for(auto x = xmin; x < xmax; x+=h)
+                {
+                    for(auto y = ymin; y < ymax; y+= h)
+                    {
+                        float z = func(x, y);
+                        result += z;
+                    }
+                }
+            h = h / 2;
+            file << result << "\n";
+            }
+        }
+        else
+        {
+            std::cout << "Failed to write to file.\n";
+        }
+        file.close();
+}
+\end{lstlisting}
+Resultatene ble:
+h1 = 1.78814e-07
+h2 = -4.76837e-07
+h3 = -1.02818e-06
+h4 = 4.12203e-06
+\end{document}

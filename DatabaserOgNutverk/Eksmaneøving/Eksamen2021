@@ -1,0 +1,64 @@
+use Eksamen2021;
+db.createCollection('betaling');
+db.betaling.insert({BetalingNr : 1, KundeNr : 2, Fornavn : "Sissel", Etternavn : "Johnsen", Adresse: "Villavegen 17", FakturaNr : 104,
+    FakturaBeløp: 1200, BetaltBeløp: {1200}, BetalingsDato: 29/3-2019, BetalingsMåte: "Kredittkort"});
+db.betaling.insert({BetalingNr : 1, KundeNr : 2, Fornavn : "Sissel", Etternavn : "Johnsen", Adresse: "Villavegen 17", FakturaNr : 104,
+FakturaBeløp: 1200, Betalinger : [{400, 120, 300}], BetalingsDato: 29/3-2019, BetalingsMåte: "Kredittkort"});
+db.createCollection('innbetaling');
+db.betaling.update({_id : 0, BetaltBeløp : 1200}, {BetaltBeløp: {1200, }});
+3. Drit i den
+
+4. Innbetaling : InnbetalingNr, KundeNr, FakturaNr, Beløp, BetalignsMåte 
+BetalingsMåte : MåteID, BetalingsMåteNavn  
+Faktura : FakturaNr, FakturaBeløp, ForfallsDato, KundeNr
+Kunde : KudneNr, Fornavn, Etternavn, Adresse
+
+db.createCollection
+
+
+
+16b) fc00 = 11111100
+fc99 = 11111100
+fe00 = 11111110
+fd00 = 11111101
+fb00 = 11111011
+
+13.
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<?php
+      $Vert="localhost";
+      $Bruker="root"; 
+      $Passord="";  
+      $Database="Eksamen2021";  
+      $mysqli = new mysqli($Vert, $Bruker, $Passord, $Database);
+      if (mysqli_connect_errno()) {
+           printf( "Ingen forbindelse : %s", mysqli_connect_error() );
+           exit();
+       }
+       $setning = "SELECT * FROM Kunde";
+    //echo $setning;
+    $resultat = $mysqli->query($setning);
+    $rad = $resultat->fetch_row();
+    if ($rad == null)
+    echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+    echo '<table>';
+    echo '<caption><h3>Kunder i Eksamen2021</h3></caption>';
+    echo '<tr><th>KundeNr</th><th>Fornavn</th><th>Etternavn</th><th>Adresse</th>
+           <th>Lagerantall</th><th>Hylle</th></tr>';
+          do {
+                echo '<tr><td>'.$rad[0].'</td>';  //KundeNr
+                echo '<td>'.$rad[1].'</td>';         //Fornavn
+                echo '<td>'.$rad[2].'</td>';         //Etternavn
+                echo '<td>'.$rad[3].'</td></tr>';//Adresse
+           }  while ($rad = $resultat->fetch_row());//tilordning, tester om $rad==0
+    echo '</table>';
+    $mysqli->close();
+?>
+</body>
+</html>

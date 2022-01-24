@@ -1,0 +1,15 @@
+h2 {
+  color: red;
+  text-align: left;
+}
+body {
+  background-color: lightblue;
+}
+table, th, td {
+  border: 1px solid black;
+}
+body {
+  background-image: url('./img/bakgrunn.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
