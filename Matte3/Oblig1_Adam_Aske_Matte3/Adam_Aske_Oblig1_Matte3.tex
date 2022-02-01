@@ -22,13 +22,14 @@ basicstyle=\footnotesize}
 \maketitle
 \tableofcontents
 \newpage
-
+ \section{Github}
+Link til min branch : https://github.com/Hedmark-University-College-SPIM/3Dprog22/tree/AdamA
 \section{Del 1}
 Jeg har valgt funksjonen; f(x, y) = sin(PI*x)*sin(PI*y). Omerådet 0 < x < 1, 0 < y < 3 og steg = 0.2.
 Funkjsonen tar inn en array og en størrelse. Først blir arrayen fylt med tilfeldige tall. 
 \begin{lstlisting}[language=C++, caption={trianglesurface.cpp}]
 //Create triangle
-float xmin=0.0f, xmax=1.0f, ymin=0.0f, ymax=3.0f, h=0.2f;
+float xmin=0.0f, xmax=1.0f, ymin=0.0f, ymax=1.0f, h=0.1f;
 for (auto x=xmin; x<xmax; x+=h)
 {
 	for (auto y=ymin; y<ymax; y+=h)
@@ -109,14 +110,14 @@ void TriangleSurface::CalculateNumerical(){
    	file.open("Numerisk.txt");
 	if(file.is_open())
        {
-        	float xmin= -1.0f, xmax = 1.0f, ymin = 0.0f, ymax  = 1.0f,h = 0.25f, result = 0;
+        	float xmin= 0.0f, xmax = 1.0f, ymin = 0.0f, ymax  = 1.0f,h = 0.1f, result = 0;
              for(int i = 0; i < 4; i++)
              {
                 for(auto x = xmin; x < xmax; x+=h)
                 {
                     for(auto y = ymin; y < ymax; y+= h)
                     {
-                        float z = func(x, y);
+                        float z = func(x, y) * pow(h, 2);
                         result += z;
                     }
                 }
@@ -132,8 +133,13 @@ void TriangleSurface::CalculateNumerical(){
 }
 \end{lstlisting}
 Resultatene ble:
-h1 = 1.78814e-07
-h2 = -4.76837e-07
-h3 = -1.02818e-06
-h4 = 4.12203e-06
+h1 = 0.091125,
+h2 = 0.198297,
+h3 = 0.332908,
+h 4 =0.462652
+
+
+\section{Resultat}
+Den numeriske utregningen går nærmere og nærmere svaret jeg fikk fra manuell utergning; 1/2. 
+
 \end{document}

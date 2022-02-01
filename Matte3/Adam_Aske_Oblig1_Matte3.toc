@@ -1,6 +1,8 @@
 \babel@toc {norsk}{}
-\contentsline {section}{\numberline {1}Del 1}{2}{}%
-\contentsline {section}{\numberline {2}Lese og skrive til fil}{2}{}%
-\contentsline {section}{\numberline {3}Del 2}{3}{}%
-\contentsline {section}{\numberline {4}A}{3}{}%
-\contentsline {section}{\numberline {5}B)}{3}{}%
+\contentsline {section}{\numberline {1}Github}{2}{}%
+\contentsline {section}{\numberline {2}Del 1}{2}{}%
+\contentsline {section}{\numberline {3}Lese og skrive til fil}{2}{}%
+\contentsline {section}{\numberline {4}Del 2}{3}{}%
+\contentsline {section}{\numberline {5}A}{3}{}%
+\contentsline {section}{\numberline {6}B)}{3}{}%
+\contentsline {section}{\numberline {7}Resultat}{4}{}%

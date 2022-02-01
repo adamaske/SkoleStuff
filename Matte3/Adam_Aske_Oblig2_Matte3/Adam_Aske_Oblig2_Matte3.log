@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.27)  24 JAN 2022 22:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.27)  1 FEB 2022 14:29
 entering extended mode
-**./Adam_Aske_Oblig1_Matte3.tex
-(Adam_Aske_Oblig1_Matte3.tex
+**./Adam_Aske_Oblig2_Matte3.tex
+(Adam_Aske_Oblig2_Matte3.tex
 LaTeX2e <2021-06-01>
 L3 programming layer <2021-06-01>
 (C:\Users\adama\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -197,8 +197,8 @@ tex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count278
 \l__pdf_internal_box=\box54
-) (Adam_Aske_Oblig1_Matte3.aux)
-\openout1 = `Adam_Aske_Oblig1_Matte3.aux'.
+) (Adam_Aske_Oblig2_Matte3.aux)
+\openout1 = `Adam_Aske_Oblig2_Matte3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
@@ -241,11 +241,11 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@lstlisting=\count285
- (Adam_Aske_Oblig1_Matte3.toc
+ (Adam_Aske_Oblig2_Matte3.toc
 Package cleveref Info: loaded `norsk' language definitions on input line 1.
 )
 \tf@toc=\write3
-\openout3 = `Adam_Aske_Oblig1_Matte3.toc'.
+\openout3 = `Adam_Aske_Oblig2_Matte3.toc'.
 
  [1
 
@@ -255,27 +255,32 @@ Overfull \hbox (92.5076pt too wide) in paragraph at lines 26--27
 ege-SPIM/3Dprog22/tree/AdamA 
  []
 
-[2]
-Overfull \hbox (134.28726pt too wide) in paragraph at lines 113--114
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--32
+
  []
 
-[3] [4] (Adam_Aske_Oblig1_Matte3.aux
+
+Overfull \hbox (80.498pt too wide) detected at line 42
+\OML/cmm/m/it/10 B \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 A[] \OMS/cmsy/m/n/10  \O
+ML/cmm/m/it/10 A \OT1/cmr/m/n/10 = [] [] = []
+ []
+
+[2] [3] (Adam_Aske_Oblig2_Matte3.aux
 Package cleveref Info: loaded `norsk' language definitions on input line 5.
 ) ) 
 Here is how much of TeX's memory you used:
- 6982 strings out of 478864
- 110364 string characters out of 2848660
- 647750 words of memory out of 3000000
- 24853 multiletter control sequences out of 15000+600000
+ 6908 strings out of 478864
+ 109724 string characters out of 2848660
+ 626750 words of memory out of 3000000
+ 24779 multiletter control sequences out of 15000+600000
  413785 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,66p,242b,1674s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,7n,66p,242b,1771s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcr
 m0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
-00\ecbx0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
-c/dpi600\ecrm0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+00\ecrm0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
+c/dpi600\ecbx0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
 ppen/ec/dpi600\ecrm1000.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfou
 r/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk
 /ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\adama\AppData\Local\MiKTeX\fo
@@ -283,13 +288,15 @@ nts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\adama\AppData\Local\MiK
 TeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/adama/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/adama/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/
-adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7
-.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb>
-Output written on Adam_Aske_Oblig1_Matte3.pdf (4 pages, 128084 bytes).
+adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C
+:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr7.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy7.pfb>
+Output written on Adam_Aske_Oblig2_Matte3.pdf (3 pages, 128753 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
+ 246 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

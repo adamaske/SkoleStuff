@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.27)  24 JAN 2022 22:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.27)  1 FEB 2022 12:35
 entering extended mode
 **./Adam_Aske_Oblig1_Matte3.tex
 (Adam_Aske_Oblig1_Matte3.tex
@@ -255,27 +255,32 @@ Overfull \hbox (92.5076pt too wide) in paragraph at lines 26--27
 ege-SPIM/3Dprog22/tree/AdamA 
  []
 
-[2]
-Overfull \hbox (134.28726pt too wide) in paragraph at lines 113--114
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--31
+
+ []
+
+
+Overfull \hbox (134.28726pt too wide) in paragraph at lines 45--46
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][] 
  []
 
-[3] [4] (Adam_Aske_Oblig1_Matte3.aux
+[2] [3] (Adam_Aske_Oblig1_Matte3.aux
 Package cleveref Info: loaded `norsk' language definitions on input line 5.
 ) ) 
 Here is how much of TeX's memory you used:
- 6982 strings out of 478864
- 110364 string characters out of 2848660
- 647750 words of memory out of 3000000
- 24853 multiletter control sequences out of 15000+600000
+ 6950 strings out of 478864
+ 110130 string characters out of 2848660
+ 637750 words of memory out of 3000000
+ 24821 multiletter control sequences out of 15000+600000
  413785 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,66p,242b,1674s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,7n,66p,242b,1245s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcr
 m0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
-00\ecbx0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
-c/dpi600\ecrm0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+00\ecrm0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
+c/dpi600\ecbx0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
 ppen/ec/dpi600\ecrm1000.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfou
 r/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk
 /ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\adama\AppData\Local\MiKTeX\fo
@@ -285,11 +290,10 @@ l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/adama/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/
 adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
 :/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7
-.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb>
-Output written on Adam_Aske_Oblig1_Matte3.pdf (4 pages, 128084 bytes).
+.pfb>
+Output written on Adam_Aske_Oblig1_Matte3.pdf (3 pages, 107435 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
+ 253 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
