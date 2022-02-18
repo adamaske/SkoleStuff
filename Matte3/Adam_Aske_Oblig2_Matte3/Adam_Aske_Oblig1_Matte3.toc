@@ -1,5 +1,0 @@
-\babel@toc {norsk}{}
-\contentsline {section}{\numberline {1}Github}{2}{}%
-\contentsline {section}{\numberline {2}Del 1}{2}{}%
-\contentsline {section}{\numberline {3}B)}{2}{}%
-\contentsline {section}{\numberline {4}Resultat}{3}{}%
