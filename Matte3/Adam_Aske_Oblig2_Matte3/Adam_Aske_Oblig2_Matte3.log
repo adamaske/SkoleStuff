@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.2.18)  18 FEB 2022 16:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.2.18)  18 FEB 2022 17:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -259,20 +259,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--32
  []
 
 
-Overfull \hbox (80.498pt too wide) detected at line 42
+Overfull \hbox (141.05371pt too wide) detected at line 42
 \OML/cmm/m/it/10 B \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 A[] \OMS/cmsy/m/n/10  \O
 ML/cmm/m/it/10 A \OT1/cmr/m/n/10 = [] [] = []
  []
 
 [2]
-Overfull \hbox (317.84409pt too wide) in paragraph at lines 70--71
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
- []
-
-
-Overfull \hbox (190.37407pt too wide) in paragraph at lines 82--83
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (27.21245pt too wide) in paragraph at lines 70--71
+[][][][][][][][][][][][][][][][][][][][][] 
  []
 
 <./images//MatteOblig2Minstekvadratersmetode.png, id=20, 508.14844pt x 248.4281
@@ -280,20 +274,20 @@ Overfull \hbox (190.37407pt too wide) in paragraph at lines 82--83
 File: ./images//MatteOblig2Minstekvadratersmetode.png Graphic file (type png)
 <use ./images//MatteOblig2Minstekvadratersmetode.png>
 Package pdftex.def Info: ./images//MatteOblig2Minstekvadratersmetode.png  used 
-on input line 86.
+on input line 89.
 (pdftex.def)             Requested size: 345.0pt x 168.67111pt.
-[3 <./images//MatteOblig2Minstekvadratersmetode.png>]
+[3 <./images//MatteOblig2Minstekvadratersmetode.png>] [4]
 (Adam_Aske_Oblig2_Matte3.aux
 Package cleveref Info: loaded `norsk' language definitions on input line 5.
 ) ) 
 Here is how much of TeX's memory you used:
  7299 strings out of 478659
  122404 string characters out of 2845920
- 633344 words of memory out of 3000000
+ 635344 words of memory out of 3000000
  25352 multiletter control sequences out of 15000+600000
  413785 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,7n,62p,293b,1771s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,7n,62p,293b,1245s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcr
 m0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
 00\ecrm0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
@@ -311,9 +305,9 @@ adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C
 /cm/cmr7.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmsy7.pfb>
-Output written on Adam_Aske_Oblig2_Matte3.pdf (3 pages, 143787 bytes).
+Output written on Adam_Aske_Oblig2_Matte3.pdf (4 pages, 148430 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
+ 302 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
