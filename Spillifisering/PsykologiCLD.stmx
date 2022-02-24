@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>PsykologiCLD</name>
+		<uuid>cf6d0e17-e92c-450f-94ad-f7d804a4f691</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.1" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>13</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="cld" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<aux name="Indre motivasjon">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Ytre motivasjon">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Gjør oppgave">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Får poeng">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Opplever rent\nkollektivt">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Ukentlig/Månedlig\nresultater">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Spiller ser at de\nikke har bidratt nokk">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Spiller ser at de\nhar bidratt">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Dårlig samvittighet\n(Forhåpentligvis)">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Andre ser medlemmene\nsom ikke har bidratt">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Gruppepress\n(Placeholder)">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Spillerens\npoeng">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Medlemmer som ikke\nbidrar">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Personlig\navatar drip">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Felles avatar\ntilstand">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Opplever mestring\nog tilhørlighet for\nbidraget sitt">
+				<isee:delay_aux/>
+			</aux>
+			<isee:dependencies>
+				<var name="Indre_motivasjon">
+					<in>&quot;Dårlig_samvittighet_(Forhåpentligvis)&quot;</in>
+					<in>Opplever_rent_kollektivt</in>
+					<in>Opplever_mestring_og_tilhørlighet_for_bidraget_sitt</in>
+				</var>
+				<var name="Ytre_motivasjon">
+					<in>&quot;Gruppepress_(Placeholder)&quot;</in>
+					<in>Personlig_avatar_drip</in>
+					<in>Felles_avatar_tilstand</in>
+					<in>Får_poeng</in>
+				</var>
+				<var name="Gjør_oppgave">
+					<in>Indre_motivasjon</in>
+					<in>Ytre_motivasjon</in>
+				</var>
+				<var name="Får_poeng">
+					<in>Gjør_oppgave</in>
+				</var>
+				<var name="Opplever_rent_kollektivt">
+					<in>Gjør_oppgave</in>
+				</var>
+				<var name="Spiller_ser_at_de_ikke_har_bidratt_nokk">
+					<in>&quot;Ukentlig/Månedlig_resultater&quot;</in>
+				</var>
+				<var name="Spiller_ser_at_de_har_bidratt">
+					<in>&quot;Ukentlig/Månedlig_resultater&quot;</in>
+				</var>
+				<var name='"Dårlig_samvittighet_(Forhåpentligvis)"'>
+					<in>Spiller_ser_at_de_ikke_har_bidratt_nokk</in>
+				</var>
+				<var name="Andre_ser_medlemmene_som_ikke_har_bidratt">
+					<in>Spiller_ser_at_de_ikke_har_bidratt_nokk</in>
+				</var>
+				<var name='"Gruppepress_(Placeholder)"'>
+					<in>Andre_ser_medlemmene_som_ikke_har_bidratt</in>
+				</var>
+				<var name="Spillerens_poeng">
+					<in>Får_poeng</in>
+				</var>
+				<var name="Medlemmer_som_ikke_bidrar">
+					<in>&quot;Gruppepress_(Placeholder)&quot;</in>
+				</var>
+				<var name="Personlig_avatar_drip">
+					<in>Spillerens_poeng</in>
+				</var>
+				<var name="Felles_avatar_tilstand">
+					<in>Medlemmer_som_ikke_bidrar</in>
+					<in>Gjør_oppgave</in>
+				</var>
+				<var name="Opplever_mestring_og_tilhørlighet_for_bidraget_sitt">
+					<in>Spiller_ser_at_de_har_bidratt</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1100" page_height="771" isee:page_cols="2" isee:page_rows="2" zoom="140" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="67" height="55"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="name_only"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<aux font_size="18pt" x="136.696" y="145.714" width="134.5" height="21" name="Indre motivasjon"/>
+				<aux font_size="18pt" x="563.143" y="156.643" width="127.5" height="21" name="Ytre motivasjon"/>
+				<aux font_size="16pt" x="367.268" y="157.929" width="98" height="18" name="Gjør oppgave"/>
+				<connector uid="1" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="25.6269">
+					<from>Indre_motivasjon</from>
+					<to>Gjør_oppgave</to>
+				</connector>
+				<connector uid="2" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="143.313">
+					<from>Ytre_motivasjon</from>
+					<to>Gjør_oppgave</to>
+				</connector>
+				<aux font_size="18pt" x="486.75" y="226.929" width="86.5" height="21" name="Får poeng"/>
+				<connector uid="3" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="18.8947">
+					<from>Får_poeng</from>
+					<to>Ytre_motivasjon</to>
+				</connector>
+				<aux font_size="14pt" x="276.768" y="272.286" width="90.5" height="34" name="Opplever rent\nkollektivt"/>
+				<connector uid="4" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="259.72">
+					<from>Gjør_oppgave</from>
+					<to>Opplever_rent_kollektivt</to>
+				</connector>
+				<text_box uid="5" x="289.286" y="171.643" width="25" height="20.8571">R1</text_box>
+				<aux font_size="18pt" x="326.643" y="423.286" width="147.5" height="44" name="Ukentlig/Månedlig\nresultater"/>
+				<aux font_size="14pt" x="555.286" y="444.714" width="131.5" height="34" name="Spiller ser at de\nikke har bidratt nokk"/>
+				<connector uid="6" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="355.742">
+					<from>&quot;Ukentlig/Månedlig_resultater&quot;</from>
+					<to>Spiller_ser_at_de_ikke_har_bidratt_nokk</to>
+				</connector>
+				<aux font_size="14pt" x="174.268" y="380.714" width="102.5" height="34" name="Spiller ser at de\nhar bidratt"/>
+				<connector uid="7" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="164.782">
+					<from>&quot;Ukentlig/Månedlig_resultater&quot;</from>
+					<to>Spiller_ser_at_de_har_bidratt</to>
+				</connector>
+				<connector uid="8" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="288.752">
+					<from>Gjør_oppgave</from>
+					<to>Får_poeng</to>
+				</connector>
+				<aux font_size="14pt" x="8.57143" y="325.286" width="119.5" height="34" name="Dårlig samvittighet\n(Forhåpentligvis)"/>
+				<connector uid="9" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="215.786">
+					<from>Spiller_ser_at_de_ikke_har_bidratt_nokk</from>
+					<to>&quot;Dårlig_samvittighet_(Forhåpentligvis)&quot;</to>
+				</connector>
+				<aux font_size="14pt" x="757.75" y="341.071" width="153.5" height="34" name="Andre ser medlemmene\nsom ikke har bidratt"/>
+				<connector uid="10" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="358.162">
+					<from>Spiller_ser_at_de_ikke_har_bidratt_nokk</from>
+					<to>Andre_ser_medlemmene_som_ikke_har_bidratt</to>
+				</connector>
+				<aux font_size="14pt" x="799.893" y="192.929" width="88.5" height="34" name="Gruppepress\n(Placeholder)"/>
+				<connector uid="11" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="50.7106">
+					<from>Andre_ser_medlemmene_som_ikke_har_bidratt</from>
+					<to>&quot;Gruppepress_(Placeholder)&quot;</to>
+				</connector>
+				<connector uid="12" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="147.54">
+					<from>&quot;Gruppepress_(Placeholder)&quot;</from>
+					<to>Ytre_motivasjon</to>
+				</connector>
+				<connector uid="13" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="109.534">
+					<from>&quot;Dårlig_samvittighet_(Forhåpentligvis)&quot;</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<aux font_size="14pt" x="559.786" y="318.786" width="65.5" height="34" name="Spillerens\npoeng"/>
+				<connector uid="14" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="231.038">
+					<from>Får_poeng</from>
+					<to>Spillerens_poeng</to>
+				</connector>
+				<aux font_size="16pt" x="787.679" y="56.3571" width="154" height="38" name="Medlemmer som ikke\nbidrar"/>
+				<connector uid="15" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="163.519">
+					<from>Opplever_rent_kollektivt</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<text_box uid="16" x="498" y="177.643" width="24.2857" height="20.8571">R2</text_box>
+				<text_box uid="17" x="621.214" y="264.786" width="33.5714" height="22.2857">R3</text_box>
+				<aux font_size="14pt" x="686.786" y="254.643" width="71.5" height="34" name="Personlig\navatar drip"/>
+				<connector uid="18" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="352.324">
+					<from>Spillerens_poeng</from>
+					<to>Personlig_avatar_drip</to>
+				</connector>
+				<connector uid="19" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="94.5199">
+					<from>Personlig_avatar_drip</from>
+					<to>Ytre_motivasjon</to>
+				</connector>
+				<aux font_size="14pt" x="614.821" y="58.3571" width="85.5" height="34" name="Felles avatar\ntilstand"/>
+				<connector uid="20" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="147.471">
+					<from>Medlemmer_som_ikke_bidrar</from>
+					<to>Felles_avatar_tilstand</to>
+				</connector>
+				<connector uid="21" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="253.998">
+					<from>Felles_avatar_tilstand</from>
+					<to>Ytre_motivasjon</to>
+				</connector>
+				<aux font_size="12pt" x="107.661" y="254.786" width="104" height="49" name="Opplever mestring\nog tilhørlighet for\nbidraget sitt"/>
+				<connector uid="22" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="151.845">
+					<from>Spiller_ser_at_de_har_bidratt</from>
+					<to>Opplever_mestring_og_tilhørlighet_for_bidraget_sitt</to>
+				</connector>
+				<connector uid="23" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="121.118">
+					<from>Opplever_mestring_og_tilhørlighet_for_bidraget_sitt</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<connector uid="24" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="88.4645">
+					<from>Gjør_oppgave</from>
+					<to>Felles_avatar_tilstand</to>
+				</connector>
+				<connector uid="25" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="63.9859">
+					<from>&quot;Gruppepress_(Placeholder)&quot;</from>
+					<to>Medlemmer_som_ikke_bidrar</to>
+				</connector>
+			</view>
+		</views>
+	</model>
+</xmile>
+

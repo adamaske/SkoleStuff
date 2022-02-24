@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>SpillifiseringCLD</name>
+		<uuid>cf6d0e17-e92c-450f-94ad-f7d804a4f691</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.1" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>13</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="cld" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<aux name="Ukentlig/Månedlig\nresultater">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Lage kollektiv">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Lage soner">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Lage oppgaver">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Legger til medlemmer">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Oppgaver i\npoolet">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Oppgaver som\ner gjort">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Medspiller marker\nden som godkjent">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Oppgaver som\ner ikke gjort">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Medspiller marker\nden som ikke godkjent">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Oppgaver til\ngodkjenning">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Medlem gjør oppgave">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Appen delegerer\noppgaver">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Oppgaver fornyes">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Appen logger\noppgaver">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Poeng til\nspiller">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Spiller kjøper\ndrip til avataren sin">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Felles avatar\ntilstand">
+				<isee:delay_aux/>
+			</aux>
+			<isee:dependencies>
+				<var name='"Ukentlig/Månedlig_resultater"'>
+					<in>Appen_logger_oppgaver</in>
+				</var>
+				<var name="Lage_soner">
+					<in>Lage_kollektiv</in>
+				</var>
+				<var name="Lage_oppgaver">
+					<in>Lage_soner</in>
+				</var>
+				<var name="Legger_til_medlemmer">
+					<in>Lage_kollektiv</in>
+				</var>
+				<var name="Oppgaver_i_poolet">
+					<in>Lage_oppgaver</in>
+					<in>Oppgaver_fornyes</in>
+					<in>Appen_delegerer_oppgaver</in>
+				</var>
+				<var name="Oppgaver_som_er_gjort">
+					<in>Medspiller_marker_den_som_godkjent</in>
+				</var>
+				<var name="Medspiller_marker_den_som_godkjent">
+					<in>Oppgaver_til_godkjenning</in>
+				</var>
+				<var name="Oppgaver_som_er_ikke_gjort">
+					<in>Medspiller_marker_den_som_ikke_godkjent</in>
+				</var>
+				<var name="Medspiller_marker_den_som_ikke_godkjent">
+					<in>Oppgaver_til_godkjenning</in>
+				</var>
+				<var name="Oppgaver_til_godkjenning">
+					<in>Medlem_gjør_oppgave</in>
+					<in>Medspiller_marker_den_som_godkjent</in>
+					<in>Medspiller_marker_den_som_ikke_godkjent</in>
+				</var>
+				<var name="Medlem_gjør_oppgave">
+					<in>Appen_delegerer_oppgaver</in>
+					<in>Oppgaver_som_er_ikke_gjort</in>
+				</var>
+				<var name="Appen_delegerer_oppgaver">
+					<in>Oppgaver_i_poolet</in>
+				</var>
+				<var name="Oppgaver_fornyes">
+					<in>Oppgaver_som_er_gjort</in>
+					<in>&quot;Ukentlig/Månedlig_resultater&quot;</in>
+				</var>
+				<var name="Appen_logger_oppgaver">
+					<in>Oppgaver_som_er_gjort</in>
+					<in>Oppgaver_som_er_ikke_gjort</in>
+				</var>
+				<var name="Poeng_til_spiller">
+					<in>Oppgaver_som_er_gjort</in>
+					<in>Spiller_kjøper_drip_til_avataren_sin</in>
+				</var>
+				<var name="Spiller_kjøper_drip_til_avataren_sin">
+					<in>Poeng_til_spiller</in>
+				</var>
+				<var name="Felles_avatar_tilstand">
+					<in>&quot;Ukentlig/Månedlig_resultater&quot;</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1100" page_height="771" zoom="200" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="67" height="55"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="name_only"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<aux font_size="10pt" x="27" y="186.125" width="88.5" height="28" name="Ukentlig/Månedlig\nresultater"/>
+				<aux x="36.75" y="25.875" width="60.25" height="12" name="Lage kollektiv"/>
+				<aux x="174.625" y="32.75" width="48.25" height="12" name="Lage soner"/>
+				<aux x="268.5" y="37.875" width="64.25" height="12" name="Lage oppgaver"/>
+				<connector uid="1" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="9.46232">
+					<from>Lage_kollektiv</from>
+					<to>Lage_soner</to>
+				</connector>
+				<connector uid="2" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="26.2742">
+					<from>Lage_soner</from>
+					<to>Lage_oppgaver</to>
+				</connector>
+				<aux x="45" y="84.25" width="92.25" height="12" name="Legger til medlemmer"/>
+				<connector uid="3" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="292.559">
+					<from>Lage_kollektiv</from>
+					<to>Legger_til_medlemmer</to>
+				</connector>
+				<aux x="270.125" y="93.25" width="48.25" height="26" name="Oppgaver i\npoolet"/>
+				<connector uid="4" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="264.164">
+					<from>Lage_oppgaver</from>
+					<to>Oppgaver_i_poolet</to>
+				</connector>
+				<aux x="281.5" y="309" width="64.25" height="26" name="Oppgaver som\ner gjort"/>
+				<aux x="597.25" y="270.125" width="76.25" height="26" name="Medspiller marker\nden som godkjent"/>
+				<connector uid="5" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="232.595">
+					<from>Medspiller_marker_den_som_godkjent</from>
+					<to>Oppgaver_som_er_gjort</to>
+				</connector>
+				<aux x="345.75" y="248.5" width="64.25" height="26" name="Oppgaver som\ner ikke gjort"/>
+				<aux x="428.25" y="270.125" width="96.25" height="26" name="Medspiller marker\nden som ikke godkjent"/>
+				<connector uid="6" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="236.788">
+					<from>Medspiller_marker_den_som_ikke_godkjent</from>
+					<to>Oppgaver_som_er_ikke_gjort</to>
+				</connector>
+				<aux x="543.5" y="182.625" width="53.25" height="26" name="Oppgaver til\ngodkjenning"/>
+				<connector uid="7" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="196.754">
+					<from>Oppgaver_til_godkjenning</from>
+					<to>Medspiller_marker_den_som_ikke_godkjent</to>
+				</connector>
+				<connector uid="8" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="331.246">
+					<from>Oppgaver_til_godkjenning</from>
+					<to>Medspiller_marker_den_som_godkjent</to>
+				</connector>
+				<aux x="524.5" y="126.25" width="91.25" height="12" name="Medlem gjør oppgave"/>
+				<connector uid="9" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="291.631">
+					<from>Medlem_gjør_oppgave</from>
+					<to>Oppgaver_til_godkjenning</to>
+				</connector>
+				<aux x="349" y="138.25" width="69.25" height="26" name="Appen delegerer\noppgaver"/>
+				<connector uid="10" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="358.044">
+					<from>Oppgaver_i_poolet</from>
+					<to>Appen_delegerer_oppgaver</to>
+				</connector>
+				<connector uid="11" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="39.9406">
+					<from>Appen_delegerer_oppgaver</from>
+					<to>Medlem_gjør_oppgave</to>
+				</connector>
+				<aux x="155.375" y="152.25" width="79.25" height="12" name="Oppgaver fornyes"/>
+				<connector uid="12" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="70.1862">
+					<from>Oppgaver_som_er_ikke_gjort</from>
+					<to>Medlem_gjør_oppgave</to>
+				</connector>
+				<connector uid="13" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="170.718">
+					<from>Oppgaver_som_er_gjort</from>
+					<to>Oppgaver_fornyes</to>
+				</connector>
+				<connector uid="14" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="49.1028">
+					<from>Oppgaver_fornyes</from>
+					<to>Oppgaver_i_poolet</to>
+				</connector>
+				<connector uid="15" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="18.695">
+					<from>&quot;Ukentlig/Månedlig_resultater&quot;</from>
+					<to>Oppgaver_fornyes</to>
+				</connector>
+				<aux x="245.625" y="218" width="56.25" height="26" name="Appen logger\noppgaver"/>
+				<connector uid="16" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="144.227">
+					<from>Oppgaver_som_er_gjort</from>
+					<to>Appen_logger_oppgaver</to>
+				</connector>
+				<connector uid="17" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="141.34">
+					<from>Oppgaver_som_er_ikke_gjort</from>
+					<to>Appen_logger_oppgaver</to>
+				</connector>
+				<aux x="231.875" y="359.5" width="38.25" height="26" name="Poeng til\nspiller"/>
+				<connector uid="18" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="221.538">
+					<from>Oppgaver_som_er_gjort</from>
+					<to>Poeng_til_spiller</to>
+				</connector>
+				<aux x="85.625" y="372" width="82.25" height="26" name="Spiller kjøper\ndrip til avataren sin"/>
+				<connector uid="19" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="217.424">
+					<from>Poeng_til_spiller</from>
+					<to>Spiller_kjøper_drip_til_avataren_sin</to>
+				</connector>
+				<connector uid="20" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="54.1396">
+					<from>Spiller_kjøper_drip_til_avataren_sin</from>
+					<to>Poeng_til_spiller</to>
+				</connector>
+				<connector uid="21" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="201.544">
+					<from>Appen_delegerer_oppgaver</from>
+					<to>Oppgaver_i_poolet</to>
+				</connector>
+				<connector uid="22" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="151.851">
+					<from>Medspiller_marker_den_som_godkjent</from>
+					<to>Oppgaver_til_godkjenning</to>
+				</connector>
+				<connector uid="23" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="16.3895">
+					<from>Medspiller_marker_den_som_ikke_godkjent</from>
+					<to>Oppgaver_til_godkjenning</to>
+				</connector>
+				<aux x="98.125" y="265" width="57.25" height="26" name="Felles avatar\ntilstand"/>
+				<connector uid="24" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="322.651">
+					<from>&quot;Ukentlig/Månedlig_resultater&quot;</from>
+					<to>Felles_avatar_tilstand</to>
+				</connector>
+				<connector uid="25" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="171.331">
+					<from>Appen_logger_oppgaver</from>
+					<to>&quot;Ukentlig/Månedlig_resultater&quot;</to>
+				</connector>
+			</view>
+		</views>
+	</model>
+</xmile>
+
