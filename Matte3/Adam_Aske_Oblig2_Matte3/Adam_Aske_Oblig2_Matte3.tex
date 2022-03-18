@@ -21,9 +21,11 @@ basicstyle=\footnotesize}
 \begin{document}
 \maketitle
 \tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \newpage
  \section{Github}
 Link til min branch : https://github.com/Hedmark-University-College-SPIM/3Dprog22/tree/AdamA
+
 \section{Oppgave 3.4.6}
 Oppgave 3.4.6
 Valgte punkter: (-6, 10), ( -5.9, 6.6), (-3, 4.8), (-3.1, 1.60), (0.1, 0.5), (2.6, 1.1), (3.8, 4.3), (6.7, 5.2)\newline
@@ -34,9 +36,9 @@ y = Ax + e \newline
 =\begin{bmatrix}36 & -6 & 1 \\ 43.8 & -5.9 & 1 \\9 & -3 & 1 \\ 9.6 & -3.1 & 1 \\0 & 0.1 & 1 \\6.7& 2.6 & 1 \\14.4 & 3.8 & 1 \\ 44.9 & 6.7 & 1\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix}
 + \begin{bmatrix} e_1 \\ e_2 \\ e_3 \\ e_4 \\ e_5 \\ e_6 \\ e_7\end{bmatrix}
 \end{equation*}
-
+\begin{equation*}B = A^{T} * A \end{equation*}
 \begin{equation*}
-B = A^{T} * A = \begin{bmatrix}36 & 34.8 & 9 & 9.6 & 0 & 6.7&14.4&44.9\\ -6 & -5.9 &-3&-3.1&0.1&2.6&3.8&6.7\\1 & 1 & 1 & 1& 1 & 1 & 1 & 1\end{bmatrix}
+= \begin{bmatrix}36 & 34.8 & 9 & 9.6 & 0 & 6.7&14.4&44.9\\ -6 & -5.9 &-3&-3.1&0.1&2.6&3.8&6.7\\1 & 1 & 1 & 1& 1 & 1 & 1 & 1\end{bmatrix}
 \begin{bmatrix}36 & -6 & 1 \\ 43.8 & -5.9 & 1 \\9 & -3 & 1 \\ 9.6 & -3.1 & 1 \\0 & 0.1 & 1 \\6.7& 2.6 & 1 \\14.4 & 3.8 & 1 \\ 44.9 & 6.7 & 1\end{bmatrix}
 =\begin{bmatrix}4948.5 & -97.07 & 155.4 \\ -105.11 & 158.6 & -4.8 \\ 155.4 & -3.6 & 8\end{bmatrix}
 \end{equation*} 
@@ -118,7 +120,8 @@ VisualPoint klassen tar inn en vector av Vertex'er, vertexene blir vist som hvit
 De stemmer ikke med hverandre, noe er feil med utregningen.
 \begin{lstlisting}[language=C++, caption={renderwindow.cpp}]
 //Matte oblig 2 4.6.7
-    mMap.insert(std::pair<std::string, VisualObject*>{"CubicPolynomial", new CubicPolynomial(-0.34, -3.586, 9.844, -5.634,0.1f)});
+    mMap.insert(std::pair<std::string, VisualObject*>
+	{"CubicPolynomial", new CubicPolynomial(-0.34, -3.586, 9.844, -5.634,0.1f)});
     std::vector<Vertex> points2;
     points2.push_back(Vertex{ 0.9f, 0.6f, 0 });
     points2.push_back(Vertex{ 2.2f, 2.6f, 0 });
@@ -126,7 +129,8 @@ De stemmer ikke med hverandre, noe er feil med utregningen.
     points2.push_back(Vertex{ 5.9f, 1.6, 0 });
     
     for (auto i = 0; i < points2.size(); i++) {
-        mMap.insert(std::pair<std::string, VisualObject*>{ std::to_string(i*10), new VisualPoint(points2)});
+        mMap.insert(std::pair<std::string, VisualObject*>
+	{ std::to_string(i*10), new VisualPoint(points2)});
     }
 \end{lstlisting}
 \begin{lstlisting}[language=C++, caption={cubicpolynomial.cpp}]
@@ -153,4 +157,54 @@ Resultatet ser ikke riktig ut i mine øyne, men har omregnet matrisene flere gan
 \includegraphics[width=\textwidth]{MatteOblig2Kubiskinterpolasjon}
 
 \section{Oppgave 4.11.6}
+Bezier kurve.
+\newline
+Initialiseringen av Bezier kurven.
+\begin{lstlisting}[language=C++, caption={renderwindow.cpp}]
+//Bezier curve
+    std::vector<QVector3D> controlPoints;
+    controlPoints.push_back(QVector3D(0.f, 0.f, 0.f));
+    controlPoints.push_back(QVector3D(2.f, 3.f, 0.f));
+    controlPoints.push_back(QVector3D(4.f, -3.f, 0.f));
+    controlPoints.push_back(QVector3D(6.f, 3.f, 0.f));
+    mMap.insert(std::pair<std::string, VisualObject*>
+	{"BezierCurve", new BezierCurve(controlPoints)});
+\end{lstlisting}
+\begin{lstlisting}[language=C++, caption={beziercurve.cpp}]
+BezierCurve::BezierCurve(std::vector<QVector3D> controlPoints) {
+    mControlPoints = controlPoints;
+    //Create vertexs from control points
+    for (auto it : mControlPoints) {
+        mControlPointsVertices.push_back
+	(Vertex(it.x(), it.y(), it.z(), 1.f, 1.f, 1.f));
+    }
+    //Visualpoint for displaying control points
+    mControlPointVisual = new VisualPoint(mControlPointsVertices);
+
+    for (float t{}; t < 1.00f; t += 0.01f) {
+        QVector3D point = EvaluateBezier(t);
+
+        mVertices.push_back(Vertex(point.x(), point.y(), point.z()));
+    }
+}
+QVector3D BezierCurve::EvaluateBezier(float t)
+{
+    std::vector<QVector3D> temp;
+
+    //Gets the control points
+    for (int i = 0; i < mControlPoints.size(); i++) {
+        temp.push_back(mControlPoints[i]);
+    }
+    for(int k = temp.size()-1; k > 0; k--)
+    {
+        for(int i = 0; i < k; i++) 
+            //Bezier algoritmen
+            temp[i] = temp[i] * (1 - t) + temp[i + 1] * t;
+    }
+    return temp[0];
+}
+\end{lstlisting}
+\centering
+\includegraphics[width=\textwidth]{MatteOblig2BezierCurveImage}
+
 \end{document}

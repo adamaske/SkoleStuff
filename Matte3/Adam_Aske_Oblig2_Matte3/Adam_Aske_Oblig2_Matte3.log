@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.2.18)  18 FEB 2022 19:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.2.18)  20 FEB 2022 21:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -248,24 +248,23 @@ Package cleveref Info: loaded `norsk' language definitions on input line 1.
  [1
 
 {C:/Users/adama/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (92.5076pt too wide) in paragraph at lines 26--27
+Overfull \hbox (92.5076pt too wide) in paragraph at lines 27--28
 \T1/cmr/m/n/10 Link til min branch : https://github.com/Hedmark-University-Coll
 ege-SPIM/3Dprog22/tree/AdamA 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--32
+Underfull \hbox (badness 10000) in paragraph at lines 30--34
 
  []
 
 
-Overfull \hbox (141.05371pt too wide) detected at line 42
-\OML/cmm/m/it/10 B \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 A[] \OMS/cmsy/m/n/10  \O
-ML/cmm/m/it/10 A \OT1/cmr/m/n/10 = [] [] = []
+Overfull \hbox (90.55627pt too wide) detected at line 44
+\OT1/cmr/m/n/10 = [] [] = []
  []
 
 [2]
-Overfull \hbox (27.21245pt too wide) in paragraph at lines 70--71
+Overfull \hbox (27.21245pt too wide) in paragraph at lines 72--73
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -274,10 +273,10 @@ Overfull \hbox (27.21245pt too wide) in paragraph at lines 70--71
 File: ./images//MatteOblig2Minstekvadratersmetode.png Graphic file (type png)
 <use ./images//MatteOblig2Minstekvadratersmetode.png>
 Package pdftex.def Info: ./images//MatteOblig2Minstekvadratersmetode.png  used 
-on input line 89.
+on input line 91.
 (pdftex.def)             Requested size: 345.0pt x 168.67111pt.
 [3 <./images//MatteOblig2Minstekvadratersmetode.png>]
-Overfull \hbox (63.3618pt too wide) detected at line 115
+Overfull \hbox (63.3618pt too wide) detected at line 117
 [] [] \OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/
 10 x\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10  \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\O
 T1/cmr/m/n/10 34\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 3\OML/c
@@ -287,22 +286,17 @@ mm/m/it/10 :\OT1/cmr/m/n/10 586\OML/cmm/m/it/10 x[] \OT1/cmr/m/n/10 + 9\OML/cmm
  []
 
 
-Overfull \hbox (317.84409pt too wide) in paragraph at lines 121--122
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (88.39806pt too wide) in paragraph at lines 124--125
+[][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (205.67047pt too wide) in paragraph at lines 129--130
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (73.10165pt too wide) in paragraph at lines 133--134
+Overfull \hbox (73.10165pt too wide) in paragraph at lines 137--138
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [4]
-Overfull \hbox (37.41005pt too wide) in paragraph at lines 145--146
+Overfull \hbox (37.41005pt too wide) in paragraph at lines 149--150
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -311,19 +305,30 @@ Overfull \hbox (37.41005pt too wide) in paragraph at lines 145--146
 File: ./images//MatteOblig2Kubiskinterpolasjon.png Graphic file (type png)
 <use ./images//MatteOblig2Kubiskinterpolasjon.png>
 Package pdftex.def Info: ./images//MatteOblig2Kubiskinterpolasjon.png  used on 
-input line 153.
+input line 157.
 (pdftex.def)             Requested size: 345.0pt x 167.2964pt.
-[5 <./images//MatteOblig2Kubiskinterpolasjon.png>] (Adam_Aske_Oblig2_Matte3.aux
+[5 <./images//MatteOblig2Kubiskinterpolasjon.png>]
+Overfull \hbox (6.81725pt too wide) in paragraph at lines 187--188
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+<./images//MatteOblig2BezierCurveImage.png, id=37, 546.54187pt x 314.67563pt>
+File: ./images//MatteOblig2BezierCurveImage.png Graphic file (type png)
+<use ./images//MatteOblig2BezierCurveImage.png>
+Package pdftex.def Info: ./images//MatteOblig2BezierCurveImage.png  used on inp
+ut line 208.
+(pdftex.def)             Requested size: 345.0pt x 198.6356pt.
+[6 <./images//MatteOblig2BezierCurveImage.png>] (Adam_Aske_Oblig2_Matte3.aux
 Package cleveref Info: loaded `norsk' language definitions on input line 5.
 ) ) 
 Here is how much of TeX's memory you used:
- 7335 strings out of 478659
- 123150 string characters out of 2845920
- 646344 words of memory out of 3000000
- 25388 multiletter control sequences out of 15000+600000
+ 7373 strings out of 478659
+ 123984 string characters out of 2845920
+ 645344 words of memory out of 3000000
+ 25426 multiletter control sequences out of 15000+600000
  413785 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,7n,62p,293b,1682s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,7n,62p,293b,1684s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcr
 m0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
 00\ecrm0800.pk> <C:\Users\adama\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
@@ -341,9 +346,9 @@ adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C
 /cm/cmr7.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb><C:/Users/adama/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmsy7.pfb>
-Output written on Adam_Aske_Oblig2_Matte3.pdf (5 pages, 157363 bytes).
+Output written on Adam_Aske_Oblig2_Matte3.pdf (6 pages, 164797 bytes).
 PDF statistics:
- 314 PDF objects out of 1000 (max. 8388607)
+ 325 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
