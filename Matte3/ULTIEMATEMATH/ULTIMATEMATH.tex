@@ -62,7 +62,7 @@ for (auto x=xmin; x<xmax; x+=h)
 {
 	for (auto y=ymin; y<ymax; y+=h)
 	{
-              float z = func(x, y);
+              float z = func(x, y); 
               mVertices.push_back(Vertex{x,y,z,x,y,z});
               z = func(x+h, y);
               mVertices.push_back(Vertex{x+h,y,z,x,y,z});
@@ -417,21 +417,269 @@ deriverer fir vi \(p'(x) = 3ax^2 + 2bx + c\). x0 (-2, -15/2), x1(3,4) x2(-2,23/2
 \section{Oppgaver uke 6}
 
 \subsection{4.6.1}
+x0 = (-2, -15/2), x1 = (1/2, 15/16), x2 = (2, -2/3) og x3 = (3,0)
+Sett opp tredjegrads polynomet\newline
+f(x) = ax^3 + bx^2 + cx + d.\newline
+-15/2 = a * -2^3 + b * -2^2 + -2c + d\newline
+15/16 = a* 1/2^3 + b * 1/2^2 + 1/2c + d\newline
+-2/3 = a*2^3 + b * 2^2 + 2c + d\newline
+0 = a * 3^3 + b * 3^2 + 3c + d\newline
 
+A= \begin{bmatrix}
+        -8 & 4 & -2 & 1 \\ 
+        0,125 & 0,25 & 0,5 & 1 \\ 
+        8 & 4 & 2 & 1 \\
+        27 & 9 & 3 & 1 \\ 
+    \end{bmatrix}
+B= \begin{bmatrix} -15/2 \\ 15/16 \\ -2/3 \\ 0 \end{bmatrix}
+\newline x = A^-1 * b\newline
+A^-1  * b = \begin{bmatrix}
+        -0,02 & 0,106666667 & -0,166666667 & 0,08  \\ 
+        0,11 & -0,32 & 0,25 & -0,04  \\ 
+        -0,17 & -0,426666667 & 0,916666667 & -0,32  \\ 
+        0,06 & 1,28 & -0,5 & 0,16  \\ 
+    \end{bmatrix} * \begin{bmatrix} -15/2 \\ 15/16 \\ -2/3 \\ 0 \end{bmatrix} = 
+    \begin{bmatrix}
+        0,361111111  \\ 
+        -1,291666667  \\ 
+        0,263888889  \\ 
+        1,083333333  \\ 
+    \end{bmatrix}\newline
+    f(x) = f(x) = a * 0,1361^3 - b* 1.29^2 + 0,26x + 1.\newline
+    
 \subsection{4.6.2}
+x0 = (0, 1), x1 = (1/2, 9/16), x2 = (3/2, -5/16) og x3 = (3,4)
+Sett opp tredjegrads polynomet\newline
+f(x) = ax^3 + bx^2 + cx + d.\newline
+1 = a *1^3 + b * 1^2 + 1c + d\newline
+9/16 = a *1/2^3 + b * 1/2^2 + 1/2c + d\newline
+-5/16 = a*3/2^3 + b * 3/2^2 + 3/2c + d\newline
+4 = a * 3^3 + b * 3^2 + 3c + d\newline
 
+A = \begin{bmatrix}
+        1 & 1 & 1 & 1  \\
+        0,125 & 0,25 & 0,5 & 1  \\ 
+        3,375 & 2,25 & 1,5 & 1  \\ 
+        27 & 9 & 3 & 1  \\ 
+    \end{tabular} 
+B = \begin{bmatrix}  1 \\  0,5625 \\  -0,3125 \\ 4 \\ \end{bmatrix}\newline
+x = A^-1 * b = \begin{bmatrix}
+        2 & -0,8 & -1,333333333 & 0,133333333 \\ 
+        -10 & 4,4 & 6 & -0,4 \\ 
+        13,5 & -7,2 & -6,666666667 & 0,366666667 \\ 
+        -4,5 & 3,6 & 2 & -0,1 \\ 
+    \end{bmatrix} * \begin{bmatrix}  1 \\ 0,5625 \\-0,3125 \\4 \\  \end{bmatrix} = \begin{bmatrix} 2,5 \\  -11 \\ 13 \\  -3,5 \\  \end{tabular}\newline
+    f(x) = f(x) = a * 2.5^3 - b*11^2 + 13x -3.5.\newline
+ 
+\subsection{4.6.3}
+\subsubsection{1}
+(-1, 0), (0,1), (1,0)\newline
+f(x) = ax^2 + bx + c\newline
+0 = a* -1^2 - 1b + c\newline
+1 = a* 0^2 + 0 * b + c\newline
+0 = a* 1^2 + 1b + c\newline
+
+A = \begin{bmatrix}
+        1 & -1 & 1  \\
+        0 & 0 & 1  \\ 
+        1 & 1 & 1 \\ 
+    \end{tabular} 
+B = \begin{bmatrix}  0 \\ 1 \\  0 \\\end{bmatrix}\newline    
+x = A^-1 * b =\begin{bmatrix}
+        0,5 & -1 & 0,5 \\ 
+        -0,5 & 0 & 0,5 \\ 
+        0 & 1 & 0 \\ 
+        \end{bmatrix} * \begin{bmatrix}  0 \\ 1 \\  0 \\\end{bmatrix} = 
+        \begin{bmatrix}  -1 \\ 0 \\  1 \\\end{bmatrix}\newline
+        f(x) = a*-1^2 + 1\newline
+\subsubsection{2}
+(-1,0), (-1/2, \sqrt{3}/2), (1/2, \sqrt{3}/2), (1,0)\newline
+f(x) = ax^3 + bx^2 + cx + d.\newline
+0 = a *-1^3 + b * -1^2 - 1c + d\newline
+\sqrt{3}/2 = a *-1/2^3 + b * -1/2^2 - 1/2c + d\newline
+\sqrt{3}/2 = a*1/2^3 + b * 1/2^2 + 1/2c + d\newline
+0 = a * 1^3 + b * 1^2 + 1c + d\newline
+A = \begin{bmatrix}
+        -1 & 1 & -1 & 1 \\ 
+        -0,125 & 0,25 & -0,5 & 1 \\ 
+        0,125 & 0,25 & 0,5 & 1 \\ 
+        1 & 1 & 1 & 1 \\ 
+    \end{bmatrix}
+x = A^-1 * b =  \begin{bmatrix}
+        -0,67 & 1,33 & -1,33 & 0,67 \\ 
+        0,67 & -0,67 & -0,67 & 0,67 \\ 
+        0,17 & -1,33 & 1,33 & -0,17 \\ 
+        -0,17 & 0,67 & 0,67 & -0,17 \\ 
+    \end{bmatrix} * \begin{bmatrix}
+        0,00 \\ 
+        0,87 \\ 
+        0,87 \\ 
+        0,00 \\ 
+    \end{bmatrix} = \begin{bmatrix}
+        0,00 \\
+        -1,15 \\ 
+        0,00 \\ 
+        1,15 \\ 
+    \end{bmatrix}
+f(x) = a * 0 + b* -1,15^3 + 0 + 1,15
 \subsection{4.6.4}
+\subsubsection{1}
+(0, 0), (\pi/2,1), (\pi,0)\newline
+f(x) = ax^2 + bx + c\newline
+0 = a* 0^2 + 0b + c\newline
+1 = a* (\pi/2)^2 + \pi/2 * b + c\newline
+0 = a* \pi^2 + \pi * b + c\newline
+A = \begin{bmatrix}
+        0 & 0 & 1 \\ 
+        2,4674011 & 1,570796327 & 1 \\ 
+        9,869604401 & 3,141592654 & 1 \\
+    \end{bmatrix}
+    
+x = A^-1 * b = \begin{bmatrix}
+        0,202642367 & -0,405284735 & 0,202642367 \\ 
+        -0,954929659 & 1,273239545 & -0,318309886 \\ 
+        1 & 0 & 0 \\ 
+    \end{bmatrix} *  \begin{bmatrix}
+        0 \\ 
+        1 \\ 
+        0 \\ 
+    \end{bmatrix} = \begin{bmatrix}
+        -0,4 \\
+        1,2 \\ 
+        0 \\ 
+    \end{bmatrix}\newline
+    f(x) = a * -0,4^2 + 1,2 * b + 0
+\subsubsection{2}
 
+
+\subsection{4.6.5}
+\subsubsection{1}
+p0(1,0), p1(\pi, 0), p'(x0) = 1, p'(x1) = -1\newline
+f(x) = a*x^3 + b*x^2 + c*x + d\newline
+f'(x) = 3a*x^2 + 2b*x + c\newline
+
+0 = a * 1^3  + b * 1^2  + c * 1 + d\newline
+0 = a * \pi^3 + b * \pi^2 + c * \pi + d\newline
+1 = 3a*1^2 + 2b * 1 + c\newline
+-1 = 3a*-1^2 + 2b * -1 + c\newline
+
+A = \begin{bmatrix}
+        1 & 1 & 1 & 1 \\ 
+        31,00627668 & 9,869604401 & 3,141592654 & 1 \\
+        0 & 3 & 2 & 1 \\ 
+        0 & 3 & -2 & 1 \\ 
+    \end{bmatrix}\newline
+x = A^-1 * b = \begin{bmatrix}
+        0,099729808 & 0,029035095 & -0,112119014 & -0,016645889 \\
+        -0,450135096 & 0,014517548 & 0,318940493 & 0,116677055 \\ 
+        0 & 0 & 0,25 & -0,25 \\ 
+        1,350405287 & -0,043552643 & -0,456821479 & 0,149968834 \\ 
+    \end{bmatrix} * \begin{bmatrix}
+        0 \\ 
+        0 \\ 
+        1 \\
+        -1\\ 
+    \end{bmatrix} = \begin{bmatrix}
+        -0.09 \\ 
+        0.2 \\ 
+        0.5 \\
+        -0.6\\ 
+    \end{bmatrix}\newline
+    f(x) = a*-0.09^3 + b * 0.2^2 + c * 0.5 - 0.6
 \subsection{4.6.6}
+\subsubsection{1}
 
+\subsubsection{2}
+\subsection{4.6.7}
+Gjort i oblig 2
 \section{Oppgaver uke 7}
 
+\subsection{Eksempel 4.7.1}
+Vi kan sette opp en tredjegradsfunksjon på potensform som tidligere, med uttrykket for den deriverte:\newline
+\centering
+p(x) = ax^3 + bx^2 +xc + d\newline
+p'(x) = 3ax^2 + 2bx + c\newline\newline
+
+La oss se på et eksempel hvor vi interpolere en funksjon i punktene (x0, y0) og (x1, y1) hvor x0 < x1. Vi tegner figur og setter inn noen tall. \newline
+1. Endepunkter til intervallet: x0 = 1/2, y0 = 1/4, x1 = 2, y1 = 3/4\newline
+2. De deriverte i endepunktene y'0 = 2 og y'1 = 1/2, dette er vilkårlige tall
+
+\subsubsection{Interpolasjonsbetingelser}
+Ved kubisk Hermite interoplasjon på intervallet [x0, x1] krever vi\newline
+p(x0) = y0, p(x1) = y1\newline
+p'(x0) = y'0, p'(x1) = y'1\newline
+
+p(x) = y0 -> = p(x) = ax^3 + bx^2 +xc + d = y0\newline
+p'(x1) = y'0 = 3ax^2 + 2bx + c = y'1\newline
+Setter inn tall:\newline
+x0 = 1/2 -> a * (1/2)^3 + b * (1/2)^2 + 1/2 c + d = \frac{1}{8}a + \frac{1}{4} + 1/2c + d = y0 = \frac{1}{4}\newline
+x1 = 2 -> 8a + 4b + 2c + d = y1 = \frac{1}{4}\newline
+
+p'(x0) = y'0 = 2 = p'(1/2) = \(\frac{3}{4} a + b + c\) = 2\newline
+p'(x1) = y'1 = 1/2 = p'(2) = 12a + 4b + c = 1/2\newline
+
+
 \subsection{4.9.3}
+Kubiske Hermite interpolasjon av \(x^{4}\) på intervallet [0, 1]. Bruk lignene 4.4 og 4.5 og sett opp de to lignene for interpolasjon i endebpuktene, deretter de to ligningene for interpolasjon av de deriverte i endepunktene.\newline\newline
+Sett så opp ligningene på matriseform\(Ax = b hvor x^{T} = [ a b c d ] og b^{T} = [ y0 y1 y'0 y'1]\). Vis at. Sett opp interpolasjonspolynomet. \newline\newline
+1. Sett opp veridene. 
+2. Finn h
+3. Finn q og c via formel
+4. Finn p(x) via formelen
+5. Kontrollerer
+6. Sette opp matrise
+f(x) = x^4   hvor x er mellom 0 og 1. f'(x) = 4x^3 \newline
+h = 1, x0 = 0, x1 = 1, y0 = 0, y1 = 1, y'0 = 0, y'1 = 4\newline
+h = x1 -x0
+Finner q og c
+q = \(\frac{3\frac{y1-y0}{h}-2y'0-y1'}{h} = 3-0-4 = -1\)\newline
+c = \( \frac{-2+0+4}{h^2=1} = 2   				\)\newline
+Bruker formelen = 
+p(x)= y0 + y'0(x - x0) + q(x-x0)^2 + c(x-x0)^3\newline
+p(x)= y0 + y'0(x - x0) - (x-x0)^2 + 2(x-x0)^3
+x0 = 0 så x blir x, y0 = 0, y'0 = 0\newline
+p(x)=  - x^2 + 2x^3\quad p'(x)= -2x + 6x^2\newline
+Vi vet at p(x0) = y0 = 0, p(x1) = y1 = -1+2 = 1\newline
+Vi vet at p'(x0) = y'0 = 0\quad p'(x1) = y'0 = -2*1 + 6*1^2 = -2 + 6 = 4\newline
+Dette stemmer
+(0, 0) (1,1) 
+f(0) =  a*x^3 + b*x^2 + c*x + d = 0 + 0 + 0 + 1
+f(1) = a*x^3 + b*x^2 + c*x + d = 1 + 1 + 1 + 1
+f'(0) = 3a*x^2 + 2b*x + c = 0 + 0 + 1 + 0
+f'(1)= 3a*x^2 + 2b*x + c = 3 + 2 + 1 + 0
 
 \subsection{4.9.4}
+Bestem interpolant for disse fire interpolasjonsbetingelsene
 
-\subsection{4.9.5}
+1.Setter først opp matrise,  her bruker alle funksjonene de samme t veridene, så alle vil ha denne A matrisen
+(t0, y0)1 = 0 + 0 + 0 + 1
+(t1, y1)0 = 1 + 1 + 1 + 1
+(t0, y'0)0 = 0 + 0 + 1 + 0 
+(t1, y'1)0 = 3 + 2+ 1 + 0
 
+Setter b = b^T = [y0 y1 y'0 y'1]
+
+3. x = A^-1 * b
+
+4.  Svartet er Hermit itnerpo
+
+1. t0 = 0, y0 = 1, y'0 = -3, t1 = 1, y1 = 0, y'1 = 0, h = 1.\newline
+b1^T  [1 0 -3 0]
+
+x = A^-1 * b = \begin{bmatrix} -1 &3 &-3 & 1 &\end{bmatrix}
+2. t0 = 0, y0 = 0, y'0 = 3, t1 = 1, y1 = 0, y'1 = 0, h = 1.\newline
+b2^T = [y0 y1 y'0 y'1] = [0 0 3 0]
+x = A^-1 * b = \begin{bmatrix} 3 &-6 &3 & 0 &\end{bmatrix}
+3. t0 = 0, y0 = 0, y'0 = 0, t1 = 1, y1 = 0, y'1 = -3, h = 1.\newline
+b3^T = [y0 y1 y'0 y'1] = [0 0 0 -3]
+x = A^-1 * b = \begin{bmatrix} -1 &3 &-3 & 1 &\end{bmatrix}
+4. t0 = 0, y0 = 0, y'0 = 0, t1 = 1, y1 = 1, y'1 = 3, h = 1.\newline
+b4^T = [y0 y1 y'0 y'1] = [0 1 0 3]
+x = A^-1 * b = \begin{bmatrix} -1 &3 &-3 & 1 &\end{bmatrix}
+
+3 og 4 ikke renget ferdig men er rikitg
+
+b0(t) = -1* t ^3 + 3t^2 -3 t + 1 osv osv;)
 \subsection{4.11.4}
 
 \subsection{4.11.5}
@@ -439,11 +687,27 @@ deriverer fir vi \(p'(x) = 3ax^2 + 2bx + c\). x0 (-2, -15/2), x1(3,4) x2(-2,23/2
 
 \section{Oppgaver uke 8}
 \subsection{1}
-Gitt kontrollpunkter (5,1), (1,2) og (3,4). Bruk deCasteljau's algoritme til å tegne opp den tilhørende kvadratiske Bezierkurven. Kontroller svaret ved utregning (bruk ligning 4.16).
+Gitt kontrollpunkter (5,1), (1,2) og (3,4). Bruk deCasteljau's algoritme til å tegne opp den tilhørende kvadratiske Bezierkurven. Kontroller svaret ved utregning (bruk ligning 4.16).\newline
+A= (5,1)  B=(1,2)  C=(3,4) t = 0.5
+AB = tA + tB = 2.5,0.5 + 0.5+1 = 3,1.5
+BC = tB +tC = 0.5, 1 + 1.5,2 = 2,3
+ABC = tAB + tBC = 1.5, 0.75 + 1,1.5 = 2.5, 2.25 
+
 \subsection{2}
 Gitt kontrollpunkter (1,2), (3,4) og (3,1). Bruk deCasteljau's algoritme til å tegne opp den tilhørende kvadratiske Bezierkurven. Kontroller svaret ved utregning (bruk ligning 4.16).
+A=(1,2), B=(3,4), C=(3,1)
+AB = tA + tB = 0.5, 1 + 1.5, 2 = 2, 3
+BC = tB + tC = 1.5, 2 + 1.5, 0,5 = 3, 2.5
+ABC = tAB+ tBC= 1, 1.5 + 1.5, 1.25 = 2.5, 2.75
 \subsection{3}
 Gitt kontrollpunkter (5,1), (1,2), (3,4) og (3,1). Bruk nå deCasteljau's algoritme til å tegne opp den tilhørende kvadratiske Bezierkurven. Kontroller svaret ved utregning (bruk ligning 4.16).
+A= (5,1)  B=(1,2)  C=(3,4), D = (3,1)
+AB=tA+tB	= 2.5,0.5 + 0.5,1 = (3, 1.5)
+BC=tB+tC = 0.5, 1 + 1.5, 2 = (2, 3)
+CD=tC+tD= 1.5, 2 + 1.5, 0.5 =(3, 2.5)
+ABC=tAB+tBC= 1.5, 0.75 + 1,1.5= (2.5, 2.25)
+BCD=tBC+tCD= 1,1.5 + 1.5, 1.25 = (2.5, 2.75)
+ABCD=tABC+tBCD = 1.25, 1.125 + 1.25 + 1.37) = 2.5, 2.55
 \subsection{4}
 Gitt kontrollpunkter (5,1), (1,2) og (3,4). Bruk Neville's algoritme til å tegne opp den kvadratiske kurven som interpolerer kontrollpunktene. Kontroller svaret ved utregning som vist i 5.1.4.
 \subsection{5}
@@ -466,27 +730,59 @@ Oppgave 6.2.14
 I tillegg til ukeoppgaver som har vært gitt, kan dere gjøre følgende tidligere eksamensoppgaver:
 \subsection{2018}
 \subsubsection{1}
-La x0 = 0, x1 = 1, y0 = 0 og y1 = 1 og gitt funksjonen g(x) = sin \pi/2 * x. La p(x)
-være polynomet for kubisk Hermite interpolasjon av g på intervallet [0,1].
-a) Regn ut y'0 = g'(0), y'1 = g'(1) og sett opp interpolasjonsporblemet på matriseform Ax = b hvor b^T = [y0, y1,  y'0 y'1]
+La x0 = 0, x1 = 1, y0 = 0 og y1 = 1 og gitt funksjonen \(g(x) = sin \pi/2 * x\). La p(x)
+være polynomet for kubisk Hermite interpolasjon av g på intervallet [0,1].\newline
+a) Regn ut y'0 = g'(0), y'1 = g'(1) og sett opp interpolasjonsporblemet på matriseform Ax = b hvor \(b^T = [y0, y1,  y'0 y'1]\)\newline
+
+
 b) Bruk resultatet fra a) til å bestemme interpolasjonspolynomet til p(x).
 \subsubsection{2a-d}
-Gitt funksjonen f(x, y) = \(e^−(x^2+y^2)\), 0 ≤ x ≤ 1, 0 ≤ y ≤ 1.
-a)Regn ut f(i/2, j/2) hvor i = 0,1,2 og j = 0,1,2
-b)Bestem de partiellderiverte f/dx(1/2, 1/2) og f/dy(1/2, 1/2).
+Gitt funksjonen f(x, y) = \(e^{-(x^2+y^2)}\), 0 ≤ x ≤ 1, 0 ≤ y ≤ 1.\newline\newline
+a)Regn ut f(i/2, j/2) hvor i = 0,1,2 og j = 0,1,2\newline\newline
+\quad\quad\quad i = 0 \quad \ i = 1 \quad i = 2\newline
+j = 2\quad f(0, 1) =  e^{-1}	\quad	f(1/2, 1) = e^{-\frac{4}{5}}	\quad	f(1,1) =e^{-2}				\newline
+j = 1\quad f(0, 1/2) = e^{-\frac{1}{4}}	\quad f(1/2, 1/2) = e^{-\frac{1}{2}}\quad	f(1, 1/2)=e^{-\frac{5}{4}}\newline
+j = 0\quad f(0,0) = 1 \quad f(1/2, 0)=e^{-\frac{1}{4}} \quad f(1,0)=e^{-1}	\newline
+
+b)Bestem de partiellderiverte f/dx(1/2, 1/2) og f/dy(1/2, 1/2).\newline\newline
+ \(\frac{df}{dx}=-2x e^{-(x^2+y^2)}\)\newline
+ \(\frac{df}{dx}=-2y e^{-(x^2+y^2)}\) \newline
+ \(\frac{df}{dx}(1/2, 1/2) = -e^{-\frac{1}{2}}\) \newline
+ \(\frac{df}{dy}(1/2, 1/2) = -e^{-\frac{1}{2}}\) \newline
 c)Bruk f(1/2, 1/2) og de partiellderiverte til å finne en normalvektor til f(x,y) i punktet (1/2, 1/2).
-Vi antar nå at vi kjenner de 9 punktene med funksjonserdier fra a), men at funksjonen er ukjent.
-d)Forklar hva slags funksjon z=f(x,y) vi da kan lage. Tegn figur.
+Vi antar nå at vi kjenner de 9 punktene med funksjonserdier fra a), men at funksjonen er ukjent.\newline\newline
+d)Forklar hva slags funksjon z=f(x,y) vi da kan lage. Tegn figur.\newline\newline
 \subsubsection{3a}
 Gitt kontrollpunktene (1,1), (0,1), (0,0) og (1,0). Skisser en kubisk Bezier
 kurve med disse kontrollpunktene. Forklar og tegn hvordan du bruker
 deCasteljau algoritmen.
 \subsection{2019}
 \subsubsection{2}
-I en annen spill-scene i xy-planet er fire trofeer/items plassert på posisjonene (0,1), (1,2), (2,0) og (4,2). En NPC skal patruljere langs et tredjegradspolynom som interpolerer disse punktene.
+I en annen spill-scene i xy-planet er fire trofeer/items plassert på posisjonene (0,1), (1,2), (2,0) og (4,2). En NPC skal patruljere langs et tredjegradspolynom som interpolerer disse punktene.\newline\newline
 a) Sett opp interpolasjonsproblemet på formen Ax=b hvor A er en 4x4
-matrise og x og b er 4-dimensjonale vektorer.
-b) Bestem ligningen for tredjegradspolynomet som interpolerer punktene.
+matrise og x og b er 4-dimensjonale vektorer.\newline
+f(x) = a*x^3 + b *x^2 + c * x + d\newline
+1 = a * 0 + b * 0 + c * 0 + d\newline
+2 = a * 1 + b * 1 + c * 1 + d\newline
+0 = a * 2^3 + b * 2^2 + 2c + d\newline
+2 = a * 4^3 + b * 4^2 + 4c d\newline
+
+A = \begin{bmatrix}
+	0 & 0 & 0 & 1 \\
+	1 & 1 & 1 & 1 \\
+	16 & 4 & 2 & 1 \\
+	256 & 16 & 4 & 1
+\end{bmatrix}
+x = A^-1 * b = \begin{bmatrix}
+        -0,02 & 0,05 & -0,04 & 0,01 \\ 
+        0,63 & -1,33 & 0,75 & -0,04 \\ 
+        -1,61 & 2,29 & -0,71 & 0,04 \\ 
+        1,00 & 0,00 & 0,00 & 0,00 \\ 
+    \end{tabular} * \begin{bmatrix} 1\\2\\0\\2\end{bmatrix} =  \begin{bmatrix} 0.09\\-2,13\\3.04\\1\end{bmatrix}\newline
+
+b) Bestem ligningen for tredjegradspolynomet som interpolerer punktene.\newline
+
+f(x) = a * 0.09^3 + b * -2,13^2 + 3.04*c + 1
 \subsubsection{3}
 
 \subsection{2020}
