@@ -708,12 +708,19 @@ CD=tC+tD= 1.5, 2 + 1.5, 0.5 =(3, 2.5)
 ABC=tAB+tBC= 1.5, 0.75 + 1,1.5= (2.5, 2.25)
 BCD=tBC+tCD= 1,1.5 + 1.5, 1.25 = (2.5, 2.75)
 ABCD=tABC+tBCD = 1.25, 1.125 + 1.25 + 1.37) = 2.5, 2.55
+
 \subsection{4}
-Gitt kontrollpunkter (5,1), (1,2) og (3,4). Bruk Neville's algoritme til å tegne opp den kvadratiske kurven som interpolerer kontrollpunktene. Kontroller svaret ved utregning som vist i 5.1.4.
+Gitt kontrollpunkter (5,1), (1,2) og (3,4). Bruk Neville's algoritme til å tegne opp den kvadratiske kurven som interpolerer kontrollpunktene. Kontroller svaret ved utregning som vist i 5.1.4.\newline
+
+
+
 \subsection{5}
 Gitt kontrollpunkter (1,2), (3,4) og (3,1). Bruk Neville's algoritme til å tegne opp den kvadratiske kurven som interpolerer kontrollpunktene. Kontroller svaret ved utregning som vist i 5.1.4.
 \subsection{6}
-Gitt kontrollpunkter (5,1), (1,2), (3,4) og (3,1). Bruk nå Neville's algoritme til å tegne opp den kubiske kurven som interpolerer kontrollpunktene. Kontroller svaret ved utregning som vist i 5.1.4.
+Gitt kontrollpunkter (5,1), (1,2), (3,4) og (3,1). Bruk nå Neville's algoritme til å tegne opp den kubiske kurven som interpolerer kontrollpunktene. Kontroller svaret ved utregning som vist i 5.1.4.\newline
+
+
+
 \section{Oppgaver uke 10}
 \subsection{1}
 Gitt en trekant med hjørner P(0,1), Q(1.5, 0) og R(2.5, 1) (som  på figur 6.2 eller rett og slett trekant  på figur 6.3). Regn ut de barysentriske koordinatene med hensyn på P, Q og R for  punktene:
@@ -734,8 +741,33 @@ La x0 = 0, x1 = 1, y0 = 0 og y1 = 1 og gitt funksjonen \(g(x) = sin \pi/2 * x\).
 være polynomet for kubisk Hermite interpolasjon av g på intervallet [0,1].\newline
 a) Regn ut y'0 = g'(0), y'1 = g'(1) og sett opp interpolasjonsporblemet på matriseform Ax = b hvor \(b^T = [y0, y1,  y'0 y'1]\)\newline
 
+x0 = 0, x1 = 1, y0=0, y1 = 1
+g(x) = sin (\pi / 2 )*x
+g'(x) = sin (\pi / 2 )*x = cos (\pi x/ 2) * \pi /2 = (\pi cos(\pi x/2)) /2
+y'0 = g'(0)  = (\pi cos(\pi 0/2)) /2 = cos(0) * \pi / 2 = \pi / 2
+y'1 = g'(1)  = (\pi cos(\pi 1/2)) /2 = cos(\pi 1/2) * \pi / 2 = 0
 
+Sette opp matrise
+p(x) = ax^3 + bc^2 + cx + d
+p'(x) = 3ax^2 + 2b + c
+
+x0 -> 0 = a * 0^3  + b *0^2  + c * 0 + d = 0 + 0 + 0 + 0\newline
+x1 ->1 = a * 1^3 + b * 1i^2 + c * 1 + d = 1 + 1 + 1 + 1\newline
+x0 ->\pi/2 = 3a*0^2 + 2b * 0 + c = 0 + 0 + 1 + 0\newline
+x1 ->0 = 3a*1^2 + 2b * 1 + c = 3 + 2 + +1 +0\newline
+
+A = \begin{bmatrix}  0 & 0 & 0 & 0 \\  
+					1 & 1 & 1 & 1 \\
+ 					0 & 0 & 1 & 0 \\ 
+ 					3 & 2 & 1 & 0\end{bmatrix}
+b^T = \begin{bmatrix} 0 & 1 & \pi / 2 & 0 \end{bmatrix}
+x^T = \begin{bmatrix} a & b & c & d \end{bmatrix}
 b) Bruk resultatet fra a) til å bestemme interpolasjonspolynomet til p(x).
+Vi har to ukjente fra c og d som allerede er deriverte =  \pi / 2 og 0
+c = \pi / 2, d = 0
+p'(y'0) =  
+
+
 \subsubsection{2a-d}
 Gitt funksjonen f(x, y) = \(e^{-(x^2+y^2)}\), 0 ≤ x ≤ 1, 0 ≤ y ≤ 1.\newline\newline
 a)Regn ut f(i/2, j/2) hvor i = 0,1,2 og j = 0,1,2\newline\newline
@@ -749,6 +781,7 @@ b)Bestem de partiellderiverte f/dx(1/2, 1/2) og f/dy(1/2, 1/2).\newline\newline
  \(\frac{df}{dx}=-2y e^{-(x^2+y^2)}\) \newline
  \(\frac{df}{dx}(1/2, 1/2) = -e^{-\frac{1}{2}}\) \newline
  \(\frac{df}{dy}(1/2, 1/2) = -e^{-\frac{1}{2}}\) \newline
+
 c)Bruk f(1/2, 1/2) og de partiellderiverte til å finne en normalvektor til f(x,y) i punktet (1/2, 1/2).
 Vi antar nå at vi kjenner de 9 punktene med funksjonserdier fra a), men at funksjonen er ukjent.\newline\newline
 d)Forklar hva slags funksjon z=f(x,y) vi da kan lage. Tegn figur.\newline\newline
@@ -756,6 +789,14 @@ d)Forklar hva slags funksjon z=f(x,y) vi da kan lage. Tegn figur.\newline\newlin
 Gitt kontrollpunktene (1,1), (0,1), (0,0) og (1,0). Skisser en kubisk Bezier
 kurve med disse kontrollpunktene. Forklar og tegn hvordan du bruker
 deCasteljau algoritmen.
+t = 0.5
+AB = tA + (1-t)B = (0.5, 0.5) + (0, 0.5) = (0.5, 1)
+BC = tB + tC =  (0, 0.5) + 0 = 0, 0.5
+CD = tC + tD = 0 + 0.5, 0 = 0.5, 0
+ABC = tAB + tBC = 0.25, 0.5 + 0, 0.25 = 0.25, 0.75
+BCD = tBC + tCD = (0, 0.25) + (0.25, 0) = 0.25, 0.25
+ABCD = tABC + tBCD = (0.125, 0.375) + 0.125, 0.125 = 0.25, 0.5
+
 \subsection{2019}
 \subsubsection{2}
 I en annen spill-scene i xy-planet er fire trofeer/items plassert på posisjonene (0,1), (1,2), (2,0) og (4,2). En NPC skal patruljere langs et tredjegradspolynom som interpolerer disse punktene.\newline\newline
@@ -784,9 +825,70 @@ b) Bestem ligningen for tredjegradspolynomet som interpolerer punktene.\newline
 
 f(x) = a * 0.09^3 + b * -2,13^2 + 3.04*c + 1
 \subsubsection{3}
+A=(0,1), B=(1,2), C=(4,2) og D=(2,0).
+A)Tegn opp kontroll polygonet, vis hvordan du bruker DeCastljau til å finne t = 0.5
+B) Bruk castello til å regne ut
+AB = tA + (1-t)B = (0, 0.5) + (0.5, 1) = (0.5, 1.5)
+BC = tB + tC = (0.5, 1) + (2, 1) = 2.5, 2
+CD = tC + tD = (2, 1) + (1, 0) = (3, 1)
+ABC = tAB + tBC = (0.25, 0.75) + (1.125, 1) = 1.5, 1.75)
+BCD = tBC + tCD = (1.125, 1) + (1.5, 0.5) = 2.675 + 1.5
+ABCD = tABC + tBCD = 1.875, 0.875 + 0.8375, 0.75 = 2,125 , 1.625
 
+Vi antar videre at (0,0), A, (0,2), B, D, (4,0) og C er noder til en triangulering i omerådet  [0,4] x [0,2] i xy-planet. 
+Denne rekkefølgen definerer indekseringen til nodene. 
+c) Sett opp en triangluering med noder og naboer for disse trekantene. DCB skal utgjøre en av trekantene
+Setter opp nodenes kordinater
+0, 0\newline
+0, 1\newline
+0, 2\newline
+1, 2\newline
+2, 0\newline
+4, 0\newline
+4, 2\newline
+
+d)Anta at hver node har en zverdi gitt ved f(x, y) = xy og at < verdien for alle andre punkter skal regner ut ved hjelp av triangelene. Regn ut z-verdien til NPC-en for en parameterverdi t = 1/2. 
+Vi vet at P= (2.125, 1.625), Denne ligger i DCB
+Kryssprodukt regel: \left(u_1,\:u_2,\:u_3\right)\times \left(v_1,\:v_2,\:v_3\right)=\left(u_2v_3-u_3v_2,\:u_3v_1-u_1v_3,\:u_1v_2-u_2v_1\right)
+x = x1 * x2 = C-D * B-D = (2,2) * (-1,2) =(2*2+1*2) = 6\newline
+P-C =(2.125, 1.625)-(4,2) = (-2.125, -0.375)\newline
+P-B = (2.125, 1.625) -(1,2) = (1.125, -0.375)\newline
+P-D = (2.125, 1.625) - (2,0) = (0.125, 1.625)\newline
+2. Finne u = PDC\newline
+u1 = C-P u2 = D-P\newline
+u = (P-D) * (P-C)  / 6 = (0.125, 1.625) * (-2.125, -0.375) = (0.125*-0.375 - 1.625*-0.375) = -0,046875 + 0,609375 = 0.5\newline
+2. Finne v = PBD\newline
+v = (P-C) * (P-B) / 6= (-2.125, -0.375) * (1.125, -0.375) = \newline
+3.Finne w = PCB\newline
+w = (P-B) * (P-D) / 6 =  (1.125, -0.375) * (0.125, 1.625) =\newline
+
+u = \dfrac{u1*u2}{x1*x2}
+v = \dfrac{v1*v2}{x1*x2}
+w = \dfrac{w1*w2}{x1*x2}
 \subsection{2020}
 \subsubsection{1}
+Gitt funksjonen f(x, y) = \(x^2 - 2x + 1- 1/2x^2 y 0 xy - 1/2y\), 0 ≤ x ≤ 1, 0 ≤ y ≤ 1.\newline\newline
+a)Regn ut f(1/2,1/2)og f(1, 1)\newline\newline
+
+f(1,1) = 1- 2 + 1 - 0.5 + 1 - 0.5 = 0
+f(1/2) = 1/4 - 1/2*1/4*1/2 = 1/4 - 1/8 * 1/2 = 1/4 - 1/16 = 4/16 - 1/16 = 3/16
+
+Stasjonære punkter = Dobbel x derivert, dobbel y derivert og x derivert og y derivert, 
+\quad\quad\quad i = 0 \quad \ i = 1 \quad i = 2\newline
+j = 2\quad f(0, 1) =  e^{-1}	\quad	f(1/2, 1) = e^{-\frac{4}{5}}	\quad	f(1,1) =e^{-2}				\newline
+j = 1\quad f(0, 1/2) = e^{-\frac{1}{4}}	\quad f(1/2, 1/2) = e^{-\frac{1}{2}}\quad	f(1, 1/2)=e^{-\frac{5}{4}}\newline
+j = 0\quad f(0,0) = 1 \quad f(1/2, 0)=e^{-\frac{1}{4}} \quad f(1,0)=e^{-1}	\newline
+
+b)Bestem de partiellderiverte f/dx(1/2, 1/2) og f/dy(1/2, 1/2).\newline\newline
+ \(\frac{df}{dx}=-2x e^{-(x^2+y^2)}\)\newline
+ \(\frac{df}{dx}=-2y e^{-(x^2+y^2)}\) \newline
+ \(\frac{df}{dx}(1/2, 1/2) = -e^{-\frac{1}{2}}\) \newline
+ \(\frac{df}{dy}(1/2, 1/2) = -e^{-\frac{1}{2}}\) \newline
+
+c)Bruk f(1/2, 1/2) og de partiellderiverte til å finne en normalvektor til f(x,y) i punktet (1/2, 1/2).
+Vi antar nå at vi kjenner de 9 punktene med funksjonserdier fra a), men at funksjonen er ukjent.\newline\newline
+d)Forklar hva slags funksjon z=f(x,y) vi da kan lage. Tegn figur.\newline\newline
+
 
 \subsubsection{3}
 \end{document}
