@@ -74,3 +74,9 @@
 \contentsline {subsection}{\numberline {10.3}2020}{22}{}%
 \contentsline {subsubsection}{\numberline {10.3.1}1}{22}{}%
 \contentsline {subsubsection}{\numberline {10.3.2}3}{22}{}%
+\contentsline {section}{\numberline {11}Oblig 4 Øving}{22}{}%
+\contentsline {subsection}{\numberline {11.1}2018 3b}{22}{}%
+\contentsline {subsection}{\numberline {11.2}2019}{22}{}%
+\contentsline {subsubsection}{\numberline {11.2.1}3c}{22}{}%
+\contentsline {subsubsection}{\numberline {11.2.2}4}{23}{}%
+\contentsline {subsection}{\numberline {11.3}2020 1e}{23}{}%
