@@ -54,38 +54,38 @@
 				<non_negative/>
 			</stock>
 			<aux name="Indre motivasjon">
-				<eqn>Kompetanse+Autonomi+Tilhørlighet</eqn>
+				<eqn>Kompetanse+Autonomi+Tilhørlighet*Procededural_Knowledge</eqn>
 			</aux>
 			<group name="Psykologi" run="false">
+				<entity name="Føler_mer_autonomi"/>
 				<entity name="Bygger_kompetanse"/>
+				<entity name="Autonomi"/>
+				<entity name="Tilhørlighet"/>
 				<entity name="Kompetanse"/>
-				<entity name="Mister_kompetanse"/>
+				<entity name="Opplever_mer_tilhørlighet"/>
+				<entity name="Opplever_mindre_tilhørlighet"/>
 				<entity name="Kompetanse_per_oppgave_gjort"/>
 				<entity name="Autonomi_per_oppgave_gjort"/>
 				<entity name="Spiller_ser_at_de_har_bidratt_selv"/>
+				<entity name="Spiller_ser_at_de_ikke_har_bidratt_selv"/>
+				<entity name="Mister_kompetanse"/>
+				<entity name="Føler_mindre_autonomi"/>
 				<entity name="Spiller_ser_at_andre_har_bidratt"/>
 				<entity name="Spiler_ser_at_andre_ikke_har_bidratt"/>
-				<entity name="Spiller_ser_at_de_ikke_har_bidratt_selv"/>
-				<entity name="Autonomi"/>
-				<entity name="Føler_mindre_autonomi"/>
-				<entity name="Føler_mer_autonomi"/>
-				<entity name="Tilhørlighet"/>
-				<entity name="Opplever_mindre_tilhørlighet"/>
-				<entity name="Opplever_mer_tilhørlighet"/>
 				<entity name="Ytremotivasjon"/>
-				<entity name="Får_mer_ytre_motivasjon"/>
-				<entity name="Mister_ytre_motivasjon"/>
 				<entity name="Motivasjon_per_oppgradering_av_avatar"/>
-				<entity name="Nedgang_av_motivasjon_over_tid"/>
+				<entity name="Mister_ytre_motivasjon"/>
 				<entity name="Indre_motivasjon"/>
 				<entity name="Motivasjon_til_å_gjøre_oppgave"/>
+				<entity name="Får_mer_ytre_motivasjon"/>
+				<entity name="Nedgang_av_motivasjon_over_tid"/>
 			</group>
 			<flow name="Opplever mer tilhørlighet">
 				<eqn>Spiller_ser_at_andre_har_bidratt*30</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Opplever mindre tilhørlighet">
-				<eqn>Spiler_ser_at_andre_ikke_har_bidratt*30</eqn>
+				<eqn>Spiler_ser_at_andre_ikke_har_bidratt*20</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Føler mindre autonomi">
@@ -93,7 +93,7 @@
 				<non_negative/>
 			</flow>
 			<flow name="Mister kompetanse">
-				<eqn>Spiller_ser_at_de_ikke_har_bidratt_selv*10</eqn>
+				<eqn>Spiller_ser_at_de_ikke_har_bidratt_selv*100</eqn>
 				<non_negative/>
 			</flow>
 			<aux name="Motivasjon til\nå gjøre oppgave">
@@ -118,17 +118,17 @@
 				<eqn>5</eqn>
 			</aux>
 			<flow name="Mister ytre motivasjon">
-				<eqn>Nedgang_av_motivasjon_over_tid*Ytremotivasjon</eqn>
+				<eqn>(Nedgang_av_motivasjon_over_tid*Ytremotivasjon)</eqn>
 				<non_negative/>
 			</flow>
 			<aux name="Nedgang av\nmotivasjon over tid">
-				<eqn>TIME*0.01</eqn>
+				<eqn>TIME*(0.01*App_usage)</eqn>
 			</aux>
 			<aux name="Spiller ser at de\nhar bidratt selv">
 				<eqn>Får_ukentlige_resultater</eqn>
 			</aux>
 			<aux name="Spiller ser at de\nikke har bidratt selv">
-				<eqn>Får_ukentlige_resultater</eqn>
+				<eqn>(Får_ukentlige_resultater* (0.2))</eqn>
 			</aux>
 			<aux name="Spiller ser at andre\nhar bidratt">
 				<eqn>Får_ukentlige_resultater</eqn>
@@ -235,12 +235,12 @@
 				<entity name="Antall_oppgaver_per_sone"/>
 				<entity name="Soner"/>
 				<entity name="Antall_medlemmer"/>
+				<entity name="Spiller_gjør_ferdig_oppgave"/>
 				<entity name="Spiller_sine_uferdige_oppgaver"/>
 				<entity name="Spiller_sine_ferdige_oppgaver"/>
-				<entity name="Spiller_gjør_ferdig_oppgave"/>
 				<entity name="Andel_av_oppgaver_som_blir_godkjent"/>
-				<entity name="Uferdige_oppgaver_blir_fornyet"/>
 				<entity name="Tømmer_oppgavene_ukentlig"/>
+				<entity name="Uferdige_oppgaver_blir_fornyet"/>
 				<entity name="Andel_av_oppgaver_som_ble_gjort"/>
 				<entity name="Får_ukentlige_resultater"/>
 				<entity name="Flow_2"/>
@@ -263,6 +263,75 @@
 			<aux name="Andel av oppgaver\nsom ble gjort">
 				<eqn>((Spiller_sine_uferdige_oppgaver+Spiller_sine_ferdige_oppgaver)/(Spiller_sine_uferdige_oppgaver+1))</eqn>
 			</aux>
+			<stock name="Procededural Knowledge">
+				<eqn>10</eqn>
+				<inflow>Tutorials</inflow>
+				<inflow>Tips_and_tricks</inflow>
+				<inflow>Reinforces_habits</inflow>
+				<non_negative/>
+			</stock>
+			<group name="Learning" run="false">
+				<entity name="Tutorials"/>
+				<entity name="Tips_and_tricks"/>
+				<entity name="Tasks_failed_percentage"/>
+				<entity name="Redoes_task"/>
+				<entity name="Procededural_Knowledge"/>
+				<entity name="Redone_Tasks"/>
+				<entity name="Stuck_on_task_percentage"/>
+				<entity name="Fails_task_again"/>
+				<entity name="Practice"/>
+				<entity name="Creates_habit"/>
+				<entity name="Reinforces_habits"/>
+				<entity name="App_usage"/>
+				<entity name="Routine"/>
+			</group>
+			<flow name="Tutorials">
+				<eqn>0.3*Practice</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Tips and tricks">
+				<eqn>0.3*Practice</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Practice">
+				<eqn>Redone_Tasks*Motivasjon_til_å_gjøre_oppgave</eqn>
+			</aux>
+			<stock name="Redone Tasks">
+				<eqn>0</eqn>
+				<inflow>Redoes_task</inflow>
+				<outflow>Fails_task_again</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Redoes task">
+				<eqn>Spiller_gjør_ferdig_oppgave*Tasks_failed_percentage</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Tasks failed percentage">
+				<eqn>0.2</eqn>
+			</aux>
+			<flow name="Fails task again">
+				<eqn>Spiller_gjør_ferdig_oppgave*Stuck_on_task_percentage</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Stuck on task percentage">
+				<eqn>0.1</eqn>
+			</aux>
+			<flow name="Creates habit">
+				<eqn>Spiller_gjør_ferdig_oppgave*0.1</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Routine">
+				<eqn>0</eqn>
+				<inflow>Creates_habit</inflow>
+				<non_negative/>
+			</stock>
+			<aux name="App usage">
+				<eqn>Routine+Motivasjon_til_å_gjøre_oppgave</eqn>
+			</aux>
+			<flow name="Reinforces habits">
+				<eqn>Routine</eqn>
+				<non_negative/>
+			</flow>
 			<isee:dependencies>
 				<var name="Føler_mer_autonomi">
 					<in>Autonomi_per_oppgave_gjort</in>
@@ -278,6 +347,7 @@
 					<in>Kompetanse</in>
 					<in>Autonomi</in>
 					<in>Tilhørlighet</in>
+					<in>Procededural_Knowledge</in>
 				</var>
 				<var name="Opplever_mer_tilhørlighet">
 					<in>Spiller_ser_at_andre_har_bidratt</in>
@@ -304,6 +374,9 @@
 					<in>Nedgang_av_motivasjon_over_tid</in>
 					<in>Ytremotivasjon</in>
 				</var>
+				<var name="Nedgang_av_motivasjon_over_tid">
+					<in>App_usage</in>
+				</var>
 				<var name="Spiller_ser_at_de_har_bidratt_selv">
 					<in>Får_ukentlige_resultater</in>
 				</var>
@@ -320,8 +393,8 @@
 					<in>Kjøper_oppgradering_til_avatar</in>
 				</var>
 				<var name="Spiller_gjør_ferdig_oppgave">
-					<in>Motivasjon_til_å_gjøre_oppgave</in>
 					<in>Andel_av_oppgaver_som_blir_godkjent</in>
+					<in>Motivasjon_til_å_gjøre_oppgave</in>
 				</var>
 				<var name="Oppgaver_fornyes">
 					<in>Antall_oppgaver_per_sone</in>
@@ -363,6 +436,34 @@
 				<var name="Andel_av_oppgaver_som_ble_gjort">
 					<in>Spiller_sine_uferdige_oppgaver</in>
 					<in>Spiller_sine_ferdige_oppgaver</in>
+				</var>
+				<var name="Tutorials">
+					<in>Practice</in>
+				</var>
+				<var name="Tips_and_tricks">
+					<in>Practice</in>
+				</var>
+				<var name="Practice">
+					<in>Redone_Tasks</in>
+					<in>Motivasjon_til_å_gjøre_oppgave</in>
+				</var>
+				<var name="Redoes_task">
+					<in>Spiller_gjør_ferdig_oppgave</in>
+					<in>Tasks_failed_percentage</in>
+				</var>
+				<var name="Fails_task_again">
+					<in>Stuck_on_task_percentage</in>
+					<in>Spiller_gjør_ferdig_oppgave</in>
+				</var>
+				<var name="Creates_habit">
+					<in>Spiller_gjør_ferdig_oppgave</in>
+				</var>
+				<var name="App_usage">
+					<in>Routine</in>
+					<in>Motivasjon_til_å_gjøre_oppgave</in>
+				</var>
+				<var name="Reinforces_habits">
+					<in>Routine</in>
 				</var>
 			</isee:dependencies>
 		</variables>
@@ -406,7 +507,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="1.42857" zoom="140" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="3" isee:page_rows="2" zoom="60" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -458,8 +559,8 @@
 				<stock label_side="top" x="684.482" y="119.679" name="Ytremotivasjon"/>
 				<stock x="224.286" y="361.875" name="Tilhørlighet"/>
 				<stock x="218.702" y="53.5992" width="45" height="35" name="Kompetanse"/>
-				<aux x="517.375" y="392.641" name="Indre motivasjon"/>
-				<group locked="false" x="23.1746" y="27.9048" width="1369.92" height="417.889" name="Psykologi">
+				<aux x="590.153" y="284.308" name="Indre motivasjon"/>
+				<group locked="false" x="23.1746" y="27.9048" width="923.92" height="417.889" name="Psykologi">
 					<item uid="1"/>
 					<item uid="2"/>
 					<item uid="3"/>
@@ -469,6 +570,7 @@
 					<item uid="7"/>
 					<item uid="8"/>
 					<item uid="9"/>
+					<item uid="10"/>
 				</group>
 				<flow x="129.331" y="363.375" name="Opplever mer tilhørlighet">
 					<pts>
@@ -482,28 +584,28 @@
 						<pt x="374.375" y="361.875"/>
 					</pts>
 				</flow>
-				<connector uid="10" angle="278.113">
-					<from>
-						<alias uid="4"/>
-					</from>
-					<to>Indre_motivasjon</to>
-				</connector>
-				<connector uid="11" angle="270">
+				<connector uid="11" angle="278.113">
 					<from>
 						<alias uid="5"/>
 					</from>
 					<to>Indre_motivasjon</to>
 				</connector>
-				<connector uid="12" angle="259.719">
+				<connector uid="12" angle="270">
 					<from>
 						<alias uid="6"/>
 					</from>
 					<to>Indre_motivasjon</to>
 				</connector>
-				<flow x="315.789" y="238.75" name="Føler mindre autonomi">
+				<connector uid="13" angle="259.719">
+					<from>
+						<alias uid="7"/>
+					</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<flow x="315.789" y="244.306" name="Føler mindre autonomi">
 					<pts>
-						<pt x="263.702" y="238.75"/>
-						<pt x="391.875" y="238.75"/>
+						<pt x="263.702" y="244.306"/>
+						<pt x="391.875" y="244.306"/>
 					</pts>
 				</flow>
 				<flow x="314.539" y="70" name="Mister kompetanse">
@@ -512,35 +614,35 @@
 						<pt x="389.375" y="70"/>
 					</pts>
 				</flow>
-				<aux x="590.5" y="393.891" name="Motivasjon til\nå gjøre oppgave"/>
-				<connector uid="13" angle="359.021">
+				<aux x="663.278" y="285.558" name="Motivasjon til\nå gjøre oppgave"/>
+				<connector uid="14" angle="359.021">
 					<from>Indre_motivasjon</from>
 					<to>Motivasjon_til_å_gjøre_oppgave</to>
 				</connector>
 				<aux x="145.601" y="113.625" name="Kompetanse per\noppgave gjort"/>
-				<connector uid="14" angle="88.5461">
+				<connector uid="15" angle="88.5461">
 					<from>Kompetanse_per_oppgave_gjort</from>
 					<to>Bygger_kompetanse</to>
 				</connector>
 				<aux x="146.036" y="166.849" name="Autonomi per\noppgave gjort"/>
-				<connector uid="15" angle="271.184">
+				<connector uid="16" angle="271.184">
 					<from>Autonomi_per_oppgave_gjort</from>
 					<to>Føler_mer_autonomi</to>
 				</connector>
-				<flow x="598.357" y="119.554" name="Får mer ytre motivasjon">
+				<flow x="598.357" y="119.679" name="Får mer ytre motivasjon">
 					<pts>
-						<pt x="534.732" y="119.554"/>
-						<pt x="661.982" y="119.554"/>
+						<pt x="534.732" y="119.679"/>
+						<pt x="661.982" y="119.679"/>
 					</pts>
 				</flow>
 				<aux x="539.25" y="46.375" name="Motivasjon per\noppgradering av avatar"/>
-				<connector uid="16" angle="308.928">
+				<connector uid="17" angle="308.88">
 					<from>Motivasjon_per_oppgradering_av_avatar</from>
 					<to>Får_mer_ytre_motivasjon</to>
 				</connector>
-				<connector uid="17" angle="211.524">
+				<connector uid="18" angle="211.524">
 					<from>
-						<alias uid="9"/>
+						<alias uid="10"/>
 					</from>
 					<to>Motivasjon_til_å_gjøre_oppgave</to>
 				</connector>
@@ -551,11 +653,11 @@
 					</pts>
 				</flow>
 				<aux x="769.17" y="52" name="Nedgang av\nmotivasjon over tid"/>
-				<connector uid="18" angle="270">
+				<connector uid="19" angle="270">
 					<from>Nedgang_av_motivasjon_over_tid</from>
 					<to>Mister_ytre_motivasjon</to>
 				</connector>
-				<connector uid="19" angle="32.1104">
+				<connector uid="20" angle="32.1104">
 					<from>Ytremotivasjon</from>
 					<to>Mister_ytre_motivasjon</to>
 				</connector>
@@ -563,31 +665,31 @@
 				<aux x="369.437" y="145.724" name="Spiller ser at de\nikke har bidratt selv"/>
 				<aux x="127.601" y="298.25" name="Spiller ser at andre\nhar bidratt"/>
 				<aux x="305.486" y="298.25" name="Spiler ser at andre ikke har bidratt"/>
-				<connector uid="20" angle="98.9723">
+				<connector uid="21" angle="98.9723">
 					<from>Spiller_ser_at_de_har_bidratt_selv</from>
 					<to>Bygger_kompetanse</to>
 				</connector>
-				<connector uid="21" angle="261.127">
+				<connector uid="22" angle="261.127">
 					<from>Spiller_ser_at_de_har_bidratt_selv</from>
 					<to>Føler_mer_autonomi</to>
 				</connector>
-				<connector uid="22" angle="17.9376">
+				<connector uid="23" angle="17.9376">
 					<from>Spiler_ser_at_andre_ikke_har_bidratt</from>
 					<to>Føler_mindre_autonomi</to>
 				</connector>
-				<connector uid="23" angle="338.457">
+				<connector uid="24" angle="338.457">
 					<from>Spiler_ser_at_andre_ikke_har_bidratt</from>
 					<to>Opplever_mindre_tilhørlighet</to>
 				</connector>
-				<connector uid="24" angle="212.864">
+				<connector uid="25" angle="212.864">
 					<from>Spiller_ser_at_andre_har_bidratt</from>
 					<to>Opplever_mer_tilhørlighet</to>
 				</connector>
-				<connector uid="25" angle="295.107">
+				<connector uid="26" angle="295.107">
 					<from>Spiller_ser_at_de_ikke_har_bidratt_selv</from>
 					<to>Føler_mindre_autonomi</to>
 				</connector>
-				<connector uid="26" angle="51.2329">
+				<connector uid="27" angle="51.2329">
 					<from>Spiller_ser_at_de_ikke_har_bidratt_selv</from>
 					<to>Mister_kompetanse</to>
 				</connector>
@@ -603,15 +705,15 @@
 						<pt x="547" y="595.179"/>
 					</pts>
 				</flow>
-				<connector uid="27" angle="310.02">
+				<connector uid="28" angle="310.02">
 					<from>
-						<alias uid="2"/>
+						<alias uid="1"/>
 					</from>
 					<to>Føler_mer_autonomi</to>
 				</connector>
-				<connector uid="28" angle="49.1767">
+				<connector uid="29" angle="49.1767">
 					<from>
-						<alias uid="2"/>
+						<alias uid="1"/>
 					</from>
 					<to>Bygger_kompetanse</to>
 				</connector>
@@ -633,9 +735,9 @@
 						<pt x="373.571" y="815"/>
 					</pts>
 				</flow>
-				<connector uid="29" angle="233.26">
+				<connector uid="30" angle="233.307">
 					<from>
-						<alias uid="8"/>
+						<alias uid="4"/>
 					</from>
 					<to>Får_mer_ytre_motivasjon</to>
 				</connector>
@@ -652,19 +754,19 @@
 				<stock x="213.571" y="815.714" name="Spillers poeng"/>
 				<aux x="550.125" y="503.75" name="Andel av oppgaver\nsom blir godkjent"/>
 				<aux x="878.125" y="503.75" name="Får ukentlige\nresultater"/>
-				<connector uid="30" angle="0">
+				<connector uid="31" angle="0">
 					<from>
-						<alias uid="1"/>
+						<alias uid="2"/>
 					</from>
 					<to>Spiller_ser_at_de_ikke_har_bidratt_selv</to>
 				</connector>
-				<connector uid="31" angle="351.988">
+				<connector uid="32" angle="351.988">
 					<from>
 						<alias uid="3"/>
 					</from>
 					<to>Spiler_ser_at_andre_ikke_har_bidratt</to>
 				</connector>
-				<connector uid="32" angle="186.741">
+				<connector uid="33" angle="186.742">
 					<from>
 						<alias uid="3"/>
 					</from>
@@ -677,122 +779,85 @@
 				<aux x="156.679" y="498.143" width="18" height="18" name="Antall oppgaver\nper sone"/>
 				<aux x="71.9286" y="498.143" width="18" height="18" name="Soner"/>
 				<aux x="368.437" y="496.214" name="Antall medlemmer"/>
-				<connector uid="33" angle="150.046">
+				<connector uid="34" angle="150.046">
 					<from>
-						<alias uid="34"/>
+						<alias uid="35"/>
 					</from>
 					<to>Andel_av_oppgaver_som_blir_godkjent</to>
 				</connector>
-				<connector uid="35" angle="210.466">
+				<connector uid="36" angle="210.466">
 					<from>Andel_av_oppgaver_som_blir_godkjent</from>
 					<to>Spiller_gjør_ferdig_oppgave</to>
 				</connector>
-				<connector uid="36" angle="308.414">
+				<connector uid="37" angle="308.414">
 					<from>
-						<alias uid="37"/>
+						<alias uid="38"/>
 					</from>
 					<to>Flow_2</to>
 				</connector>
-				<connector uid="38" angle="283.4">
+				<connector uid="39" angle="283.4">
 					<from>
-						<alias uid="39"/>
+						<alias uid="40"/>
 					</from>
 					<to>Spiller_gjør_ferdig_oppgave</to>
 				</connector>
-				<connector uid="40" angle="274.574">
+				<connector uid="41" angle="274.574">
 					<from>Antall_oppgaver_per_sone</from>
 					<to>Oppgaver_fornyes</to>
 				</connector>
-				<connector uid="41" angle="74.1886">
+				<connector uid="42" angle="74.1886">
 					<from>Oppgaver</from>
 					<to>Andel_oppgaver_som_spiller_skal_gjøre</to>
 				</connector>
-				<connector uid="42" angle="275.964">
+				<connector uid="43" angle="275.964">
 					<from>
-						<alias uid="43"/>
+						<alias uid="44"/>
 					</from>
 					<to>Får_poeng</to>
 				</connector>
-				<connector uid="44" angle="283.927">
+				<connector uid="45" angle="283.927">
 					<from>Andel_oppgaver_som_spiller_skal_gjøre</from>
 					<to>Appen_delegerer_oppgaver</to>
 				</connector>
-				<connector uid="45" angle="265.878">
+				<connector uid="46" angle="265.878">
 					<from>Soner</from>
 					<to>Oppgaver_fornyes</to>
 				</connector>
-				<connector uid="46" angle="192.458">
+				<connector uid="47" angle="192.458">
 					<from>Antall_medlemmer</from>
 					<to>Andel_oppgaver_som_spiller_skal_gjøre</to>
 				</connector>
-				<connector uid="47" angle="246.533">
+				<connector uid="48" angle="246.533">
 					<from>Poeng_per_oppgave</from>
 					<to>Får_poeng</to>
 				</connector>
-				<connector uid="48" angle="66.4677">
+				<connector uid="49" angle="66.4677">
 					<from>Spillers_poeng</from>
 					<to>Spiller_kan_oppgradere_avatar</to>
 				</connector>
-				<connector uid="49" angle="307.83">
+				<connector uid="50" angle="307.83">
 					<from>Spiller_kan_oppgradere_avatar</from>
 					<to>Kjøper_oppgradering_til_avatar</to>
 				</connector>
-				<connector uid="50" angle="251.222">
+				<connector uid="51" angle="251.222">
 					<from>Kost_for_oppgrader_av_avatar</from>
 					<to>Kjøper_oppgradering_til_avatar</to>
 				</connector>
-				<group locked="false" x="21.8651" y="474.571" width="1399.45" height="555.071" name="Spillifisering">
-					<item uid="39"/>
-					<item uid="34"/>
-					<item uid="51"/>
-					<item uid="37"/>
-					<item uid="43"/>
+				<group locked="false" x="19.8651" y="473.571" width="990.45" height="555.071" name="Spillifisering">
+					<item uid="35"/>
 					<item uid="52"/>
+					<item uid="40"/>
+					<item uid="38"/>
+					<item uid="44"/>
 				</group>
 				<connector uid="53" angle="180">
 					<from>
-						<alias uid="1"/>
+						<alias uid="2"/>
 					</from>
 					<to>Spiller_ser_at_de_har_bidratt_selv</to>
 				</connector>
-				<alias font_style="italic" uid="4" x="442" y="315.224" width="45" height="35">
-					<of>Kompetanse</of>
-				</alias>
-				<alias font_style="italic" uid="5" x="494.875" y="315.224" width="45" height="35">
-					<of>Autonomi</of>
-				</alias>
-				<alias font_style="italic" uid="6" x="548.25" y="315.224" width="45" height="35">
-					<of>Tilhørlighet</of>
-				</alias>
-				<alias font_style="italic" uid="39" x="447.937" y="494.75" width="18" height="18">
-					<of>Motivasjon_til_å_gjøre_oppgave</of>
-				</alias>
-				<alias font_style="italic" uid="9" x="667.722" y="315.224" width="45" height="35">
-					<of>Ytremotivasjon</of>
-				</alias>
-				<alias font_style="italic" uid="34" x="628.25" y="496.714" width="45" height="35">
-					<of>Kompetanse</of>
-				</alias>
-				<alias font_style="italic" uid="2" x="64.875" y="139.849" width="18" height="18">
-					<of>Spiller_gjør_ferdig_oppgave</of>
-				</alias>
-				<alias font_style="italic" uid="8" x="643.982" y="37.375" width="18" height="18">
-					<of>Kjøper_oppgradering_til_avatar</of>
-				</alias>
-				<alias font_style="italic" label_side="bottom" uid="1" x="283.821" y="136.724" width="18" height="18">
-					<of>Får_ukentlige_resultater</of>
-				</alias>
-				<alias font_style="italic" uid="3" x="215.286" y="277.821" width="18" height="18">
-					<of>Får_ukentlige_resultater</of>
-				</alias>
-				<alias font_style="italic" uid="37" x="79" y="863.5" width="18" height="18">
-					<of>Kjøper_oppgradering_til_avatar</of>
-				</alias>
-				<alias font_style="italic" uid="43" x="79" y="735.107" width="18" height="18">
-					<of>Spiller_gjør_ferdig_oppgave</of>
-				</alias>
-				<stacked_container uid="52" x="410.732" y="724.762" width="819.109" height="299.444">
-					<graph x="410.732" y="724.762" width="819.109" height="299.444" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+				<stacked_container uid="54" x="1024.92" y="629.845" width="724.109" height="398.341">
+					<graph x="1024.92" y="629.845" width="724.109" height="398.341" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
 						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Spiller_sine_ferdige_oppgaver"/>
 						</plot>
@@ -813,7 +878,7 @@
 						<pt x="729.444" y="595"/>
 					</pts>
 				</flow>
-				<connector uid="54" angle="29.3951">
+				<connector uid="55" angle="29.3951">
 					<from>Spiller_sine_ferdige_oppgaver</from>
 					<to>Tømmer_oppgavene_ukentlig</to>
 				</connector>
@@ -824,12 +889,12 @@
 						<pt x="571.429" y="691.429"/>
 					</pts>
 				</flow>
-				<connector uid="55" angle="307.575">
+				<connector uid="56" angle="307.575">
 					<from>Spiller_sine_uferdige_oppgaver</from>
 					<to>Uferdige_oppgaver_blir_fornyet</to>
 				</connector>
-				<stacked_container uid="7" x="443.937" y="42" width="594.269" height="320.698" minimized="true">
-					<graph x="443.937" y="42" width="594.269" height="320.698" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+				<stacked_container uid="57" x="-27.7297" y="1043.67" width="877.429" height="390.698">
+					<graph x="-27.7297" y="1043.67" width="877.429" height="390.698" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
 						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Autonomi"/>
 						</plot>
@@ -847,29 +912,210 @@
 						</plot>
 					</graph>
 				</stacked_container>
-				<alias font_style="italic" uid="51" x="621.722" y="700.429" width="18" height="18">
-					<of>Får_ukentlige_resultater</of>
-				</alias>
-				<connector uid="56" angle="201.475">
+				<connector uid="58" angle="201.475">
 					<from>
-						<alias uid="51"/>
+						<alias uid="52"/>
 					</from>
 					<to>Uferdige_oppgaver_blir_fornyet</to>
 				</connector>
-				<connector uid="57" angle="48.9188">
+				<connector uid="59" angle="48.9188">
 					<from>
-						<alias uid="51"/>
+						<alias uid="52"/>
 					</from>
 					<to>Tømmer_oppgavene_ukentlig</to>
 				</connector>
 				<aux x="538" y="642.857" name="Andel av oppgaver\nsom ble gjort"/>
-				<connector uid="58" angle="336.49">
+				<connector uid="60" angle="336.49">
 					<from>Spiller_sine_uferdige_oppgaver</from>
 					<to>Andel_av_oppgaver_som_ble_gjort</to>
 				</connector>
-				<connector uid="59" angle="236.87">
+				<connector uid="61" angle="236.87">
 					<from>Spiller_sine_ferdige_oppgaver</from>
 					<to>Andel_av_oppgaver_som_ble_gjort</to>
+				</connector>
+				<alias font_style="italic" uid="5" x="514.778" y="206.891" width="45" height="35">
+					<of>Kompetanse</of>
+				</alias>
+				<alias font_style="italic" uid="6" x="567.653" y="206.891" width="45" height="35">
+					<of>Autonomi</of>
+				</alias>
+				<alias font_style="italic" uid="7" x="621.028" y="206.891" width="45" height="35">
+					<of>Tilhørlighet</of>
+				</alias>
+				<alias font_style="italic" uid="40" x="447.937" y="494.75" width="18" height="18">
+					<of>Motivasjon_til_å_gjøre_oppgave</of>
+				</alias>
+				<alias font_style="italic" uid="10" x="740.5" y="206.891" width="45" height="35">
+					<of>Ytremotivasjon</of>
+				</alias>
+				<alias font_style="italic" uid="35" x="628.25" y="496.714" width="45" height="35">
+					<of>Kompetanse</of>
+				</alias>
+				<alias font_style="italic" uid="1" x="64.875" y="139.849" width="18" height="18">
+					<of>Spiller_gjør_ferdig_oppgave</of>
+				</alias>
+				<alias font_style="italic" uid="4" x="643.982" y="37.375" width="18" height="18">
+					<of>Kjøper_oppgradering_til_avatar</of>
+				</alias>
+				<alias font_style="italic" label_side="bottom" uid="2" x="283.821" y="136.724" width="18" height="18">
+					<of>Får_ukentlige_resultater</of>
+				</alias>
+				<alias font_style="italic" uid="3" x="215.286" y="277.821" width="18" height="18">
+					<of>Får_ukentlige_resultater</of>
+				</alias>
+				<alias font_style="italic" uid="38" x="79" y="863.5" width="18" height="18">
+					<of>Kjøper_oppgradering_til_avatar</of>
+				</alias>
+				<alias font_style="italic" uid="44" x="79" y="735.107" width="18" height="18">
+					<of>Spiller_gjør_ferdig_oppgave</of>
+				</alias>
+				<alias font_style="italic" uid="52" x="621.722" y="700.429" width="18" height="18">
+					<of>Får_ukentlige_resultater</of>
+				</alias>
+				<stock x="1210.82" y="85.6364" name="Procededural Knowledge"/>
+				<group locked="false" x="959" y="34.1818" width="685.909" height="420.364" name="Learning">
+					<item uid="62"/>
+					<item uid="63"/>
+				</group>
+				<flow x="1099.39" y="78.1818" name="Tutorials">
+					<pts>
+						<pt x="1010.45" y="78.1818"/>
+						<pt x="1188.32" y="78.1818"/>
+					</pts>
+				</flow>
+				<flow x="1110.77" y="134.545" name="Tips and tricks">
+					<pts>
+						<pt x="1000.91" y="134.545"/>
+						<pt x="1208.64" y="134.545"/>
+						<pt x="1208.64" y="103.136"/>
+					</pts>
+				</flow>
+				<aux x="1198.18" y="178.091" name="Practice"/>
+				<alias font_style="italic" uid="62" x="1119.77" y="183.727" width="18" height="18">
+					<of>Spiller_gjør_ferdig_oppgave</of>
+				</alias>
+				<connector uid="64" angle="153.518">
+					<from>Practice</from>
+					<to>Tips_and_tricks</to>
+				</connector>
+				<connector uid="65" angle="76.4768">
+					<from>Practice</from>
+					<to>Tutorials</to>
+				</connector>
+				<stock x="1165.82" y="262.273" name="Redone Tasks"/>
+				<flow x="1084.84" y="262.273" name="Redoes task">
+					<pts>
+						<pt x="1026.36" y="262.273"/>
+						<pt x="1143.32" y="262.273"/>
+					</pts>
+				</flow>
+				<connector uid="66" angle="188.655">
+					<from>
+						<alias uid="62"/>
+					</from>
+					<to>Redoes_task</to>
+				</connector>
+				<aux x="1068.23" y="310.909" name="Tasks failed percentage"/>
+				<connector uid="67" angle="29.7449">
+					<from>Tasks_failed_percentage</from>
+					<to>Redoes_task</to>
+				</connector>
+				<connector uid="68" angle="24.444">
+					<from>Redone_Tasks</from>
+					<to>Practice</to>
+				</connector>
+				<flow x="1239.43" y="265.909" name="Fails task again">
+					<pts>
+						<pt x="1188.32" y="265.909"/>
+						<pt x="1314.55" y="265.909"/>
+					</pts>
+				</flow>
+				<aux x="1204.09" y="321.636" name="Stuck on task percentage"/>
+				<connector uid="69" angle="57.6181">
+					<from>Stuck_on_task_percentage</from>
+					<to>Fails_task_again</to>
+				</connector>
+				<connector uid="70" angle="2.58359">
+					<from>
+						<alias uid="62"/>
+					</from>
+					<to>Fails_task_again</to>
+				</connector>
+				<stacked_container uid="71" x="855.777" y="1040.36" width="846.515" height="397.302">
+					<graph x="855.777" y="1040.36" width="846.515" height="397.302" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Redone_Tasks"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Procededural_Knowledge"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="1" show_y_axis="true">
+							<entity name="App_usage"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<alias font_style="italic" uid="63" x="1270.03" y="213.17" width="18" height="18">
+					<of>Motivasjon_til_å_gjøre_oppgave</of>
+				</alias>
+				<connector uid="72" angle="151.401">
+					<from>
+						<alias uid="63"/>
+					</from>
+					<to>Practice</to>
+				</connector>
+				<flow label_side="bottom" x="1332.14" y="180.682" width="18" height="18" name="Creates habit">
+					<pts>
+						<pt x="1275.45" y="189.682"/>
+						<pt x="1406.82" y="189.682"/>
+					</pts>
+				</flow>
+				<connector uid="73" angle="39.7578">
+					<from>
+						<alias uid="62"/>
+					</from>
+					<to>Creates_habit</to>
+				</connector>
+				<stock x="1429.32" y="189.682" name="Routine"/>
+				<aux x="1362.13" y="219.849" width="18" height="18" name="App usage"/>
+				<connector uid="74" angle="260.547">
+					<from>Routine</from>
+					<to>App_usage</to>
+				</connector>
+				<connector uid="75" angle="355.852">
+					<from>
+						<alias uid="63"/>
+					</from>
+					<to>App_usage</to>
+				</connector>
+				<flow x="1314.47" y="83.125" name="Reinforces habits">
+					<pts>
+						<pt x="1395.63" y="83.125"/>
+						<pt x="1233.32" y="83.125"/>
+					</pts>
+				</flow>
+				<alias color="blue" background="white" font_style="italic" uid="8" x="471.187" y="273.258" width="45" height="35">
+					<shape type="rectangle" width="45" height="35"/>
+					<of>Procededural_Knowledge</of>
+				</alias>
+				<connector uid="76" angle="3.82522">
+					<from>
+						<alias uid="8"/>
+					</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<connector uid="77" angle="121.919">
+					<from>Routine</from>
+					<to>Reinforces_habits</to>
+				</connector>
+				<alias color="blue" background="white" font_style="italic" uid="9" x="851.125" y="51.1818" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>App_usage</of>
+				</alias>
+				<connector uid="78" angle="156.307">
+					<from>
+						<alias uid="9"/>
+					</from>
+					<to>Nedgang_av_motivasjon_over_tid</to>
 				</connector>
 			</view>
 		</views>
