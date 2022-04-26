@@ -66,6 +66,21 @@
 			<aux name="Spillers avatar\ntilstand">
 				<isee:delay_aux/>
 			</aux>
+			<aux name="Antagonisme mot\nmedlemmer">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Antagonisme mot\nkollektivet">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Opplever gevinst fra andre\nmedlemmer sitt arbeid">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Andre medlemmer opplever gevinst fra spiller sitt arbeid">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Ønske om å gjøre minst mulig for mest mulig gevinst">
+				<isee:delay_aux/>
+			</aux>
 			<isee:dependencies>
 				<var name="Indre_motivasjon">
 					<in>Kompetanse</in>
@@ -80,6 +95,7 @@
 				<var name='"Gjør_oppgave_/Bidrar"'>
 					<in>Indre_motivasjon</in>
 					<in>Ytre_motivasjon</in>
+					<in>Ønske_om_å_gjøre_minst_mulig_for_mest_mulig_gevinst</in>
 				</var>
 				<var name="Resultater">
 					<in>&quot;Gjør_oppgave_/Bidrar&quot;</in>
@@ -89,6 +105,7 @@
 				</var>
 				<var name="Spiller_ser_at_de_ikke_har_birdatt_selv">
 					<in>Resultater</in>
+					<in>Ønske_om_å_gjøre_minst_mulig_for_mest_mulig_gevinst</in>
 				</var>
 				<var name="Spiller_ser_at_de_har_bidratt_selv">
 					<in>Resultater</in>
@@ -111,12 +128,31 @@
 				<var name="Tilhørlighet">
 					<in>Spiller_ser_at_andre_har_bidratt</in>
 					<in>Spiller_ser_at_andre_ikke_har_bidratt</in>
+					<in>Opplever_gevinst_fra_andre_medlemmer_sitt_arbeid</in>
 				</var>
 				<var name="Spiller_får_poeng">
 					<in>&quot;Gjør_oppgave_/Bidrar&quot;</in>
 				</var>
 				<var name="Spillers_avatar_tilstand">
 					<in>Spiller_får_poeng</in>
+				</var>
+				<var name="Antagonisme_mot_medlemmer">
+					<in>Antagonisme_mot_kollektivet</in>
+					<in>Spiller_ser_at_andre_ikke_har_bidratt</in>
+					<in>Tilhørlighet</in>
+				</var>
+				<var name="Antagonisme_mot_kollektivet">
+					<in>Antagonisme_mot_medlemmer</in>
+				</var>
+				<var name="Opplever_gevinst_fra_andre_medlemmer_sitt_arbeid">
+					<in>Resultater</in>
+				</var>
+				<var name="Andre_medlemmer_opplever_gevinst_fra_spiller_sitt_arbeid">
+					<in>Resultater</in>
+				</var>
+				<var name="Ønske_om_å_gjøre_minst_mulig_for_mest_mulig_gevinst">
+					<in>Antagonisme_mot_kollektivet</in>
+					<in>Antagonisme_mot_medlemmer</in>
 				</var>
 			</isee:dependencies>
 		</variables>
@@ -160,7 +196,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="2" isee:page_rows="2" zoom="140" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="39.2857" isee:scroll_y="54.2857" zoom="140" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -196,9 +232,9 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="24pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux x="245.304" y="44.4997" width="72.25" height="12" name="Indre motivasjon"/>
-				<aux x="705.304" y="106.143" width="69.25" height="12" name="Ytre motivasjon"/>
-				<aux x="578.572" y="222" width="58.25" height="26" name="Gjør oppgave\n/Bidrar"/>
+				<aux x="273.161" y="155.928" width="72.25" height="12" name="Indre motivasjon"/>
+				<aux x="853.25" y="241.143" width="69.25" height="12" name="Ytre motivasjon"/>
+				<aux font_size="16pt" x="715.393" y="349.75" width="98" height="38" name="Gjør oppgave\n/Bidrar"/>
 				<connector uid="1" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="33.1909">
 					<from>Indre_motivasjon</from>
 					<to>&quot;Gjør_oppgave_/Bidrar&quot;</to>
@@ -207,20 +243,20 @@
 					<from>Ytre_motivasjon</from>
 					<to>&quot;Gjør_oppgave_/Bidrar&quot;</to>
 				</connector>
-				<aux x="253.482" y="413.572" width="45.25" height="12" name="Resultater"/>
-				<aux x="767.411" y="270.714" width="57.25" height="26" name="Felles avatar\ntilstand"/>
+				<aux font_size="14pt" x="269.714" y="523.001" width="68.5" height="16" name="Resultater"/>
+				<aux x="915.357" y="405.714" width="57.25" height="26" name="Felles avatar\ntilstand"/>
 				<connector uid="3" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="35.759">
 					<from>Felles_avatar_tilstand</from>
 					<to>Ytre_motivasjon</to>
 				</connector>
-				<aux x="695.482" y="141.643" width="14.25" height="12" name="Tid"/>
-				<aux x="13.0893" y="295.571" width="85.25" height="26" name="Spiller ser at de\nikke har birdatt selv"/>
-				<aux x="163.518" y="295.571" width="67.25" height="26" name="Spiller ser at de\nhar bidratt selv"/>
-				<aux x="298.821" y="295.571" width="70.25" height="26" name="Spiller ser at\nandre har bidratt"/>
-				<aux x="429.679" y="295.571" width="90.25" height="26" name="Spiller ser at\nandre ikke har bidratt"/>
-				<aux x="85.5174" y="179.714" width="54.25" height="12" name="Kompetanse"/>
-				<aux x="260.804" y="179.714" width="41.25" height="12" name="Autonomi"/>
-				<aux x="433.697" y="179.714" width="46.25" height="12" name="Tilhørlighet"/>
+				<aux x="911.286" y="288.143" width="14.25" height="12" name="Tid"/>
+				<aux x="13.4464" y="405.125" width="85.25" height="26" name="Spiller ser at de\nikke har birdatt selv"/>
+				<aux x="163.875" y="405.125" width="67.25" height="26" name="Spiller ser at de\nhar bidratt selv"/>
+				<aux x="355.428" y="404.5" width="70.25" height="26" name="Spiller ser at\nandre har bidratt"/>
+				<aux x="488.786" y="396.964" width="90.25" height="26" name="Spiller ser at\nandre ikke har bidratt"/>
+				<aux x="85.8745" y="289.268" width="54.25" height="12" name="Kompetanse"/>
+				<aux x="288.661" y="291.143" width="41.25" height="12" name="Autonomi"/>
+				<aux x="490.304" y="288.643" width="46.25" height="12" name="Tilhørlighet"/>
 				<connector uid="4" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="96.009">
 					<from>Spiller_ser_at_de_ikke_har_birdatt_selv</from>
 					<to>Kompetanse</to>
@@ -285,16 +321,16 @@
 					<from>&quot;Gjør_oppgave_/Bidrar&quot;</from>
 					<to>Felles_avatar_tilstand</to>
 				</connector>
-				<connector uid="20" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="354.864">
+				<connector uid="20" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="131.434">
 					<from>Tid</from>
 					<to>Ytre_motivasjon</to>
 				</connector>
-				<aux x="752.875" y="386.143" width="70.25" height="12" name="Spiller får poeng"/>
-				<connector uid="21" angle="273.441">
+				<aux x="899.393" y="523.286" width="70.25" height="12" name="Spiller får poeng"/>
+				<connector uid="21" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="273.441">
 					<from>&quot;Gjør_oppgave_/Bidrar&quot;</from>
 					<to>Spiller_får_poeng</to>
 				</connector>
-				<aux x="930.054" y="172.286" width="62.25" height="26" name="Spillers avatar\ntilstand"/>
+				<aux x="1060.5" y="319.161" width="62.25" height="26" name="Spillers avatar\ntilstand"/>
 				<connector uid="22" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="354.596">
 					<from>Spiller_får_poeng</from>
 					<to>Spillers_avatar_tilstand</to>
@@ -303,9 +339,58 @@
 					<from>Spillers_avatar_tilstand</from>
 					<to>Ytre_motivasjon</to>
 				</connector>
-				<text_box font_size="18pt" uid="24" x="519.929" y="223.143" width="30" height="23.7143">R1</text_box>
-				<text_box font_size="18pt" uid="25" x="740.5" y="198.286" width="30" height="23.7143">R2</text_box>
-				<text_box font_size="18pt" uid="26" x="875.5" y="296.714" width="30" height="23.7143">R3</text_box>
+				<text_box font_size="18pt" uid="24" x="641" y="264.928" width="30" height="23.7143">R1</text_box>
+				<text_box font_size="18pt" uid="25" x="888.446" y="333.286" width="30" height="23.7143">R2</text_box>
+				<text_box font_size="18pt" uid="26" x="1023.45" y="431.714" width="30" height="23.7143">R3</text_box>
+				<aux x="386.911" y="522.376" width="75.25" height="26" name="Antagonisme mot\nmedlemmer"/>
+				<aux x="132.625" y="518.001" width="75.25" height="26" name="Antagonisme mot\nkollektivet"/>
+				<connector uid="27" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="216.81">
+					<from>Antagonisme_mot_medlemmer</from>
+					<to>Antagonisme_mot_kollektivet</to>
+				</connector>
+				<connector uid="28" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="53.7737">
+					<from>Antagonisme_mot_kollektivet</from>
+					<to>Antagonisme_mot_medlemmer</to>
+				</connector>
+				<connector uid="29" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="260.875">
+					<from>Spiller_ser_at_andre_ikke_har_bidratt</from>
+					<to>Antagonisme_mot_medlemmer</to>
+				</connector>
+				<aux x="611.393" y="430.571" width="115.25" height="26" name="Opplever gevinst fra andre\nmedlemmer sitt arbeid"/>
+				<aux x="345.411" y="249.768" width="119.25" height="26" name="Andre medlemmer opplever gevinst fra spiller sitt arbeid"/>
+				<connector uid="30" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="89.3573">
+					<from>Resultater</from>
+					<to>Andre_medlemmer_opplever_gevinst_fra_spiller_sitt_arbeid</to>
+				</connector>
+				<connector uid="31" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="310.766">
+					<from>Resultater</from>
+					<to>Opplever_gevinst_fra_andre_medlemmer_sitt_arbeid</to>
+				</connector>
+				<aux x="211.911" y="621.928" width="122.25" height="26" name="Ønske om å gjøre minst mulig for mest mulig gevinst"/>
+				<connector uid="32" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="83.7537">
+					<from>Opplever_gevinst_fra_andre_medlemmer_sitt_arbeid</from>
+					<to>Tilhørlighet</to>
+				</connector>
+				<connector uid="33" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="274.962">
+					<from>Antagonisme_mot_kollektivet</from>
+					<to>Ønske_om_å_gjøre_minst_mulig_for_mest_mulig_gevinst</to>
+				</connector>
+				<connector uid="34" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="324.445">
+					<from>Ønske_om_å_gjøre_minst_mulig_for_mest_mulig_gevinst</from>
+					<to>&quot;Gjør_oppgave_/Bidrar&quot;</to>
+				</connector>
+				<connector uid="35" font_size="18pt" polarity="+" isee:polarity_placement="outside" angle="177.067">
+					<from>Ønske_om_å_gjøre_minst_mulig_for_mest_mulig_gevinst</from>
+					<to>Spiller_ser_at_de_ikke_har_birdatt_selv</to>
+				</connector>
+				<connector uid="36" font_size="18pt" polarity="+" isee:polarity_placement="inside" angle="241.481">
+					<from>Antagonisme_mot_medlemmer</from>
+					<to>Ønske_om_å_gjøre_minst_mulig_for_mest_mulig_gevinst</to>
+				</connector>
+				<connector uid="37" font_size="18pt" polarity="-" isee:polarity_placement="inside" angle="333.768">
+					<from>Tilhørlighet</from>
+					<to>Antagonisme_mot_medlemmer</to>
+				</connector>
 			</view>
 		</views>
 	</model>

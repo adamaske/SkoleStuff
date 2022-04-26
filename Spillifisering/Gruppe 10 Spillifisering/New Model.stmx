@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>New Model</name>
+		<uuid>2afd38a0-09b6-4949-a4a0-8dbd40eed4ee</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.00833333" method="Euler" time_units="Days" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>180</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<group name="Psykologi" run="false">
+				<entity name="Kompetanse"/>
+				<entity name="Autonomi"/>
+				<entity name="Spiller_ser_at_de_ikke_har_bidratt_selv"/>
+				<entity name="Spiller_ser_at_de_har_bidratt_selv"/>
+				<entity name="Flow_1"/>
+				<entity name="Flow_4"/>
+				<entity name="Autonomi_gevinst_for_ferdige_oppgaver"/>
+				<entity name="Gevinst_kompetanse_for_ferdige_oppgaver"/>
+				<entity name="Spiller_ser_at_andre_har_bidratt"/>
+				<entity name="Spiller_ser_at_andre_ikke_har_bidratt"/>
+				<entity name="Flow_3"/>
+				<entity name="Flow_2"/>
+				<entity name="Tap_av_autonomi_for_uferdige_oppgaver"/>
+				<entity name="Tap_av_kompetanse_for_uferdige_oppgaver"/>
+				<entity name="Indre_motivasjon"/>
+				<entity name="Andre_medlemmer_motivasjon_til_å_gjøre_oppgave"/>
+				<entity name="Andre_medlemmer_TOC_verdi"/>
+				<entity name="Motivasjon_til_å_gjøre_oppgave"/>
+				<entity name="Spiller_TOC_verdi"/>
+				<entity name="Tilhørlighet"/>
+				<entity name="Tilhørlighet_gevinst_for_gjorte_oppgaver"/>
+				<entity name="Flow_5"/>
+				<entity name="Flow_6"/>
+				<entity name="Tap_av_tilhørlighet_for_uferdige_oppgaver"/>
+			</group>
+			<stock name="Kompetanse">
+				<eqn>10</eqn>
+				<inflow>Flow_1</inflow>
+				<outflow>Flow_2</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Autonomi">
+				<eqn>10</eqn>
+				<inflow>Flow_3</inflow>
+				<outflow>Flow_4</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Tilhørlighet">
+				<eqn>10</eqn>
+				<inflow>Flow_5</inflow>
+				<outflow>Flow_6</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Flow 1">
+				<eqn>Gevinst_kompetanse_for_ferdige_oppgaver*(1+Andel_av_spillers_oppgaver_gjort)*Spiller_ser_at_de_har_bidratt_selv</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Flow 2">
+				<eqn>Spiller_ser_at_de_ikke_har_bidratt_selv*Tap_av_kompetanse_for_uferdige_oppgaver*(1-Andel_av_spillers_oppgaver_gjort)</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Spiller ser at de ikke har bidratt selv">
+				<eqn>Ukentlig_rapport</eqn>
+			</aux>
+			<aux name="Spiller ser at de har bidratt selv">
+				<eqn>Ukentlig_rapport</eqn>
+			</aux>
+			<aux name="Spiller ser at andre har bidratt">
+				<eqn>Ukentlig_rapport</eqn>
+			</aux>
+			<aux name="Spiller ser at andre ikke har bidratt">
+				<eqn>Ukentlig_rapport</eqn>
+			</aux>
+			<flow name="Spiller gjør\nferdig oppgave">
+				<eqn>Motivasjon_til_å_gjøre_oppgave</eqn>
+				<non_negative/>
+				<gf>
+					<xscale min="0" max="100"/>
+					<yscale min="0" max="2"/>
+					<ypts>0,0.096,0.237,0.342,0.439,0.535,0.675,0.877,1.158,1.684,2</ypts>
+				</gf>
+			</flow>
+			<aux name="Ukentlig rapport">
+				<eqn>PULSE(1, 7, 7)</eqn>
+			</aux>
+			<flow name="Flow 3">
+				<eqn>Spiller_ser_at_de_har_bidratt_selv*Autonomi_gevinst_for_ferdige_oppgaver*Spiller_ser_at_andre_har_bidratt*(1+Andel_av_spillers_oppgaver_gjort)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Flow 4">
+				<eqn>Spiller_ser_at_de_ikke_har_bidratt_selv*Tap_av_autonomi_for_uferdige_oppgaver*Spiller_ser_at_andre_ikke_har_bidratt*(1-Andel_av_spillers_oppgaver_gjort)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Flow 5">
+				<eqn>Spiller_ser_at_andre_har_bidratt*Tilhørlighet_gevinst_for_gjorte_oppgaver*(1-Andel_av_fellesskapets_oppgaver_gjort)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Flow 6">
+				<eqn>Spiller_ser_at_andre_ikke_har_bidratt*Tap_av_tilhørlighet_for_uferdige_oppgaver*Andel_av_fellesskapets_oppgaver_gjort</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Tap av kompetanse for uferdige oppgaver">
+				<eqn>10</eqn>
+			</aux>
+			<aux name="Gevinst kompetanse for\nferdige oppgaver">
+				<eqn>10</eqn>
+			</aux>
+			<aux name="Autonomi gevinst for ferdige oppgaver">
+				<eqn>10</eqn>
+			</aux>
+			<aux name="Tap av autonomi for uferdige oppgaver">
+				<eqn>10</eqn>
+			</aux>
+			<aux name="Tap av tilhørlighet for uferdige oppgaver">
+				<eqn>10</eqn>
+			</aux>
+			<aux name="Tilhørlighet gevinst for gjorte oppgaver">
+				<eqn>10</eqn>
+			</aux>
+			<stock name="Fellesskapet uferdige oppgaver">
+				<eqn>0</eqn>
+				<inflow>Appen_delegerer_til_andre_medlemmer</inflow>
+				<outflow>Andre_medlemmer_gjør_ferdig_oppgave</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Fellesskapet\nferdige oppgaver">
+				<eqn>0</eqn>
+				<inflow>Andre_medlemmer_gjør_ferdig_oppgave</inflow>
+				<outflow>Flow_8</outflow>
+				<non_negative/>
+			</stock>
+			<group name="Spillifisering" run="false">
+				<entity name="Flow_8"/>
+				<entity name="Andel_av_spillers_oppgaver_gjort"/>
+				<entity name="Spiller_ferdige_oppgaver"/>
+				<entity name="Spiller_gjør_ferdig_oppgave"/>
+				<entity name="Appen_delegerer_til_andre_medlemmer"/>
+				<entity name="Appen_delegerer_til_spiller"/>
+				<entity name="Andre_medlemmer_gjør_ferdig_oppgave"/>
+				<entity name="Antall_oppgaver"/>
+				<entity name="Andel_av_fellesskapets_oppgaver_gjort"/>
+				<entity name="Antall_medlemmer"/>
+				<entity name="Ukentlig_rapport"/>
+				<entity name="Uferdige_oppgaver"/>
+				<entity name="Fellesskapet_ferdige_oppgaver"/>
+				<entity name="Flow_7"/>
+				<entity name="Spiller_uferdige_oppgaver"/>
+				<entity name="Fellesskapet_uferdige_oppgaver"/>
+				<entity name="Oppgaver_fornyes"/>
+			</group>
+			<stock name="Spiller\nuferdige oppgaver">
+				<eqn>0</eqn>
+				<inflow>Appen_delegerer_til_spiller</inflow>
+				<outflow>Spiller_gjør_ferdig_oppgave</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Spiller\nferdige oppgaver">
+				<eqn>0</eqn>
+				<inflow>Spiller_gjør_ferdig_oppgave</inflow>
+				<outflow>Flow_7</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Andre medlemmer gjør ferdig oppgave">
+				<eqn>Andre_medlemmer_motivasjon_til_å_gjøre_oppgave</eqn>
+				<non_negative/>
+				<gf>
+					<xscale min="0" max="2"/>
+					<yscale min="0" max="2"/>
+					<ypts>0,0.07,0.175,0.281,0.439,0.605,0.781,0.982,1.228,1.57,2</ypts>
+				</gf>
+			</flow>
+			<stock name="Uferdige oppgaver">
+				<eqn>0</eqn>
+				<inflow>Oppgaver_fornyes</inflow>
+				<outflow>Appen_delegerer_til_spiller</outflow>
+				<outflow>Appen_delegerer_til_andre_medlemmer</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Appen delegerer til spiller">
+				<eqn>Uferdige_oppgaver*(1/Antall_medlemmer)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Appen delegerer til andre medlemmer">
+				<eqn>Uferdige_oppgaver*((Antall_medlemmer-1)/Antall_medlemmer)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Oppgaver fornyes">
+				<eqn>PULSE(Antall_oppgaver,  7, 7)</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Antall oppgaver">
+				<eqn>10</eqn>
+			</aux>
+			<aux name="Antall medlemmer">
+				<eqn>5</eqn>
+			</aux>
+			<aux name="Motivasjon til å gjøre oppgave">
+				<eqn>Indre_motivasjon*Spiller_TOC_verdi</eqn>
+			</aux>
+			<aux name="Andre medlemmer\nmotivasjon til å gjøre oppgave">
+				<eqn>Indre_motivasjon*Andre_medlemmer_TOC_verdi</eqn>
+			</aux>
+			<aux name="Andel av spillers oppgaver gjort">
+				<eqn>IF((Spiller_uferdige_oppgaver+Spiller_ferdige_oppgaver) &gt; 0) THEN Spiller_ferdige_oppgaver/(Spiller_uferdige_oppgaver+Spiller_ferdige_oppgaver) ELSE 0</eqn>
+			</aux>
+			<aux name="Andel av fellesskapets\noppgaver gjort">
+				<eqn>IF((Fellesskapet_ferdige_oppgaver+Fellesskapet_uferdige_oppgaver) &gt; 0) THEN Fellesskapet_ferdige_oppgaver/(Fellesskapet_ferdige_oppgaver+Fellesskapet_uferdige_oppgaver) ELSE 0</eqn>
+			</aux>
+			<aux name="Indre motivasjon">
+				<eqn>(Kompetanse+Autonomi+Tilhørlighet)/3</eqn>
+			</aux>
+			<flow name="Flow 7">
+				<eqn>PULSE(Spiller_ferdige_oppgaver,  7,  8)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Flow 8">
+				<eqn>PULSE(Fellesskapet_ferdige_oppgaver, 7, 8)</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Spiller TOC verdi">
+				<eqn>0.5</eqn>
+			</aux>
+			<aux name="Andre medlemmer TOC verdi">
+				<eqn>0.2</eqn>
+			</aux>
+			<isee:dependencies>
+				<var name="Flow_1">
+					<in>Spiller_ser_at_de_har_bidratt_selv</in>
+					<in>Gevinst_kompetanse_for_ferdige_oppgaver</in>
+					<in>Andel_av_spillers_oppgaver_gjort</in>
+				</var>
+				<var name="Flow_2">
+					<in>Spiller_ser_at_de_ikke_har_bidratt_selv</in>
+					<in>Tap_av_kompetanse_for_uferdige_oppgaver</in>
+					<in>Andel_av_spillers_oppgaver_gjort</in>
+				</var>
+				<var name="Spiller_ser_at_de_ikke_har_bidratt_selv">
+					<in>Ukentlig_rapport</in>
+				</var>
+				<var name="Spiller_ser_at_de_har_bidratt_selv">
+					<in>Ukentlig_rapport</in>
+				</var>
+				<var name="Spiller_ser_at_andre_har_bidratt">
+					<in>Ukentlig_rapport</in>
+				</var>
+				<var name="Spiller_ser_at_andre_ikke_har_bidratt">
+					<in>Ukentlig_rapport</in>
+				</var>
+				<var name="Spiller_gjør_ferdig_oppgave">
+					<in>Motivasjon_til_å_gjøre_oppgave</in>
+				</var>
+				<var name="Flow_3">
+					<in>Spiller_ser_at_de_har_bidratt_selv</in>
+					<in>Autonomi_gevinst_for_ferdige_oppgaver</in>
+					<in>Spiller_ser_at_andre_har_bidratt</in>
+					<in>Andel_av_spillers_oppgaver_gjort</in>
+				</var>
+				<var name="Flow_4">
+					<in>Spiller_ser_at_de_ikke_har_bidratt_selv</in>
+					<in>Tap_av_autonomi_for_uferdige_oppgaver</in>
+					<in>Spiller_ser_at_andre_ikke_har_bidratt</in>
+					<in>Andel_av_spillers_oppgaver_gjort</in>
+				</var>
+				<var name="Flow_5">
+					<in>Spiller_ser_at_andre_har_bidratt</in>
+					<in>Tilhørlighet_gevinst_for_gjorte_oppgaver</in>
+					<in>Andel_av_fellesskapets_oppgaver_gjort</in>
+				</var>
+				<var name="Flow_6">
+					<in>Spiller_ser_at_andre_ikke_har_bidratt</in>
+					<in>Tap_av_tilhørlighet_for_uferdige_oppgaver</in>
+					<in>Andel_av_fellesskapets_oppgaver_gjort</in>
+				</var>
+				<var name="Andre_medlemmer_gjør_ferdig_oppgave">
+					<in>Andre_medlemmer_motivasjon_til_å_gjøre_oppgave</in>
+				</var>
+				<var name="Appen_delegerer_til_spiller">
+					<in>Antall_medlemmer</in>
+					<in>Uferdige_oppgaver</in>
+				</var>
+				<var name="Appen_delegerer_til_andre_medlemmer">
+					<in>Antall_medlemmer</in>
+					<in>Uferdige_oppgaver</in>
+				</var>
+				<var name="Oppgaver_fornyes">
+					<in>Antall_oppgaver</in>
+				</var>
+				<var name="Motivasjon_til_å_gjøre_oppgave">
+					<in>Indre_motivasjon</in>
+					<in>Spiller_TOC_verdi</in>
+				</var>
+				<var name="Andre_medlemmer_motivasjon_til_å_gjøre_oppgave">
+					<in>Indre_motivasjon</in>
+					<in>Andre_medlemmer_TOC_verdi</in>
+				</var>
+				<var name="Andel_av_spillers_oppgaver_gjort">
+					<in>Spiller_uferdige_oppgaver</in>
+					<in>Spiller_ferdige_oppgaver</in>
+				</var>
+				<var name="Andel_av_fellesskapets_oppgaver_gjort">
+					<in>Fellesskapet_ferdige_oppgaver</in>
+					<in>Fellesskapet_uferdige_oppgaver</in>
+				</var>
+				<var name="Indre_motivasjon">
+					<in>Kompetanse</in>
+					<in>Autonomi</in>
+					<in>Tilhørlighet</in>
+				</var>
+				<var name="Flow_7">
+					<in>Spiller_ferdige_oppgaver</in>
+				</var>
+				<var name="Flow_8">
+					<in>Fellesskapet_ferdige_oppgaver</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="2" isee:page_rows="2" zoom="120" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="18"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<group locked="false" x="10" y="23.2857" width="1070.71" height="526.143" name="Psykologi">
+					<item uid="1"/>
+					<item uid="2"/>
+					<item uid="3"/>
+					<item uid="4"/>
+					<item uid="5"/>
+					<item uid="6"/>
+					<item uid="7"/>
+					<item uid="8"/>
+				</group>
+				<stock x="230.357" y="113.214" width="45" height="35" name="Kompetanse"/>
+				<stock x="252.857" y="275.714" name="Autonomi"/>
+				<stock x="253.571" y="452.857" name="Tilhørlighet"/>
+				<flow x="173.75" y="129.286" name="Flow 1">
+					<pts>
+						<pt x="117.143" y="129.286"/>
+						<pt x="230.357" y="129.286"/>
+					</pts>
+				</flow>
+				<flow x="334.607" y="130" name="Flow 2">
+					<pts>
+						<pt x="275.357" y="130"/>
+						<pt x="417.857" y="130"/>
+					</pts>
+				</flow>
+				<aux x="340.714" y="195" name="Spiller ser at de ikke har bidratt selv"/>
+				<aux x="174.857" y="195" name="Spiller ser at de har bidratt selv"/>
+				<aux x="173.5" y="363.571" name="Spiller ser at andre har bidratt"/>
+				<aux x="334.964" y="363.571" name="Spiller ser at andre ikke har bidratt"/>
+				<flow x="414.625" y="833.715" name="Spiller gjør\nferdig oppgave">
+					<pts>
+						<pt x="341.643" y="833.715"/>
+						<pt x="499.607" y="833.715"/>
+					</pts>
+				</flow>
+				<alias font_style="italic" uid="9" x="594.22" y="598.429" width="18" height="18">
+					<of>Spiller_gjør_ferdig_oppgave</of>
+				</alias>
+				<aux x="45.1429" y="731.714" width="18" height="18" name="Ukentlig rapport"/>
+				<alias font_style="italic" uid="1" x="248.786" y="186" width="18" height="18">
+					<of>Ukentlig_rapport</of>
+				</alias>
+				<flow x="170.893" y="276.429" name="Flow 3">
+					<pts>
+						<pt x="111.429" y="276.429"/>
+						<pt x="230.357" y="276.429"/>
+					</pts>
+				</flow>
+				<flow x="334.964" y="275" name="Flow 4">
+					<pts>
+						<pt x="275.357" y="275"/>
+						<pt x="418.571" y="275"/>
+					</pts>
+				</flow>
+				<flow x="174.821" y="457.857" name="Flow 5">
+					<pts>
+						<pt x="118.571" y="457.857"/>
+						<pt x="231.071" y="457.857"/>
+					</pts>
+				</flow>
+				<flow x="335.679" y="451.429" name="Flow 6">
+					<pts>
+						<pt x="276.071" y="451.429"/>
+						<pt x="419.286" y="451.429"/>
+					</pts>
+				</flow>
+				<connector uid="10" angle="161.061">
+					<from>Spiller_ser_at_de_har_bidratt_selv</from>
+					<to>Flow_1</to>
+				</connector>
+				<connector uid="11" angle="25.56">
+					<from>Spiller_ser_at_de_ikke_har_bidratt_selv</from>
+					<to>Flow_2</to>
+				</connector>
+				<connector uid="12" angle="200.462">
+					<from>Spiller_ser_at_de_har_bidratt_selv</from>
+					<to>Flow_3</to>
+				</connector>
+				<connector uid="13" angle="342.255">
+					<from>Spiller_ser_at_de_ikke_har_bidratt_selv</from>
+					<to>Flow_4</to>
+				</connector>
+				<connector uid="14" angle="0">
+					<from>
+						<alias uid="1"/>
+					</from>
+					<to>Spiller_ser_at_de_ikke_har_bidratt_selv</to>
+				</connector>
+				<connector uid="15" angle="175.217">
+					<from>
+						<alias uid="1"/>
+					</from>
+					<to>Spiller_ser_at_de_har_bidratt_selv</to>
+				</connector>
+				<aux x="425.429" y="77.7143" name="Tap av kompetanse for uferdige oppgaver"/>
+				<aux x="84.2857" y="77.7143" name="Gevinst kompetanse for\nferdige oppgaver"/>
+				<connector uid="16" angle="297.526">
+					<from>Gevinst_kompetanse_for_ferdige_oppgaver</from>
+					<to>Flow_1</to>
+				</connector>
+				<connector uid="17" angle="254.65">
+					<from>Tap_av_kompetanse_for_uferdige_oppgaver</from>
+					<to>Flow_2</to>
+				</connector>
+				<aux x="73.5714" y="216.571" name="Autonomi gevinst for ferdige oppgaver"/>
+				<aux x="437.571" y="216.571" name="Tap av autonomi for uferdige oppgaver"/>
+				<connector uid="18" angle="231.483">
+					<from>Tap_av_autonomi_for_uferdige_oppgaver</from>
+					<to>Flow_4</to>
+				</connector>
+				<connector uid="19" angle="306.529">
+					<from>Autonomi_gevinst_for_ferdige_oppgaver</from>
+					<to>Flow_3</to>
+				</connector>
+				<connector uid="20" angle="160.405">
+					<from>Spiller_ser_at_andre_har_bidratt</from>
+					<to>Flow_3</to>
+				</connector>
+				<connector uid="21" angle="9.97922">
+					<from>Spiller_ser_at_andre_ikke_har_bidratt</from>
+					<to>Flow_4</to>
+				</connector>
+				<connector uid="22" angle="336.096">
+					<from>Spiller_ser_at_andre_ikke_har_bidratt</from>
+					<to>Flow_6</to>
+				</connector>
+				<connector uid="23" angle="202.549">
+					<from>Spiller_ser_at_andre_har_bidratt</from>
+					<to>Flow_5</to>
+				</connector>
+				<aux label_side="bottom" x="444.143" y="397.286" name="Tap av tilhørlighet for uferdige oppgaver"/>
+				<aux x="85" y="397.286" name="Tilhørlighet gevinst for gjorte oppgaver"/>
+				<connector uid="24" angle="306.611">
+					<from>Tilhørlighet_gevinst_for_gjorte_oppgaver</from>
+					<to>Flow_5</to>
+				</connector>
+				<connector uid="25" angle="223.721">
+					<from>Tap_av_tilhørlighet_for_uferdige_oppgaver</from>
+					<to>Flow_6</to>
+				</connector>
+				<alias font_style="italic" uid="3" x="243.857" y="354.571" width="18" height="18">
+					<of>Ukentlig_rapport</of>
+				</alias>
+				<connector uid="26" angle="6.07246">
+					<from>
+						<alias uid="3"/>
+					</from>
+					<to>Spiller_ser_at_andre_ikke_har_bidratt</to>
+				</connector>
+				<connector uid="27" angle="178.807">
+					<from>
+						<alias uid="3"/>
+					</from>
+					<to>Spiller_ser_at_andre_har_bidratt</to>
+				</connector>
+				<stock x="319.143" y="670.714" name="Fellesskapet uferdige oppgaver"/>
+				<stock x="499.607" y="653.214" width="45" height="35" name="Fellesskapet\nferdige oppgaver"/>
+				<group locked="true" x="7.714" y="568.857" width="950.714" height="482.571" name="Spillifisering">
+					<item uid="28"/>
+					<item uid="29"/>
+					<item uid="9"/>
+				</group>
+				<stock x="319.143" y="833.715" name="Spiller\nuferdige oppgaver"/>
+				<stock label_side="top" x="499.607" y="816.215" width="45" height="35" name="Spiller\nferdige oppgaver"/>
+				<flow x="414.625" y="670.714" name="Andre medlemmer gjør ferdig oppgave">
+					<pts>
+						<pt x="341.643" y="670.714"/>
+						<pt x="499.607" y="670.714"/>
+					</pts>
+				</flow>
+				<stock x="154.286" y="677.143" name="Uferdige oppgaver"/>
+				<flow x="219.821" y="838.571" name="Appen delegerer til spiller">
+					<pts>
+						<pt x="155" y="694.643"/>
+						<pt x="155" y="838.571"/>
+						<pt x="296.643" y="838.571"/>
+					</pts>
+				</flow>
+				<flow x="230.714" y="673.929" name="Appen delegerer til andre medlemmer">
+					<pts>
+						<pt x="176.786" y="673.929"/>
+						<pt x="296.643" y="673.929"/>
+					</pts>
+				</flow>
+				<flow x="81.9643" y="677.857" name="Oppgaver fornyes">
+					<pts>
+						<pt x="32.1429" y="677.857"/>
+						<pt x="131.786" y="677.857"/>
+					</pts>
+				</flow>
+				<aux x="45.1429" y="616.429" width="18" height="18" name="Antall oppgaver"/>
+				<aux x="248.857" y="739.571" width="13.7143" height="13.7143" name="Antall medlemmer"/>
+				<connector uid="30" angle="286.212">
+					<from>Antall_oppgaver</from>
+					<to>Oppgaver_fornyes</to>
+				</connector>
+				<connector uid="31" angle="279.462">
+					<from>Antall_medlemmer</from>
+					<to>Appen_delegerer_til_spiller</to>
+				</connector>
+				<connector uid="32" angle="307.333">
+					<from>Uferdige_oppgaver</from>
+					<to>Appen_delegerer_til_spiller</to>
+				</connector>
+				<connector uid="33" angle="87.1376">
+					<from>Antall_medlemmer</from>
+					<to>Appen_delegerer_til_andre_medlemmer</to>
+				</connector>
+				<connector uid="34" angle="345.964">
+					<from>Uferdige_oppgaver</from>
+					<to>Appen_delegerer_til_andre_medlemmer</to>
+				</connector>
+				<aux x="752.738" y="213" name="Motivasjon til å gjøre oppgave"/>
+				<alias font_style="italic" uid="28" x="405.625" y="758.857" width="18" height="18">
+					<of>Motivasjon_til_å_gjøre_oppgave</of>
+				</alias>
+				<connector uid="35" angle="290.171">
+					<from>
+						<alias uid="28"/>
+					</from>
+					<to>Spiller_gjør_ferdig_oppgave</to>
+				</connector>
+				<aux x="606.5" y="208.119" name="Andre medlemmer\nmotivasjon til å gjøre oppgave"/>
+				<alias font_style="italic" uid="29" x="419.286" y="573.857" width="18" height="18">
+					<of>Andre_medlemmer_motivasjon_til_å_gjøre_oppgave</of>
+				</alias>
+				<connector uid="36" angle="261.162">
+					<from>
+						<alias uid="29"/>
+					</from>
+					<to>Andre_medlemmer_gjør_ferdig_oppgave</to>
+				</connector>
+				<aux x="409.143" y="881" width="18" height="18" name="Andel av spillers oppgaver gjort"/>
+				<aux x="414.625" y="722.714" name="Andel av fellesskapets\noppgaver gjort"/>
+				<connector uid="37" angle="293.467">
+					<from>Spiller_uferdige_oppgaver</from>
+					<to>Andel_av_spillers_oppgaver_gjort</to>
+				</connector>
+				<connector uid="38" angle="243.346">
+					<from>Spiller_ferdige_oppgaver</from>
+					<to>Andel_av_spillers_oppgaver_gjort</to>
+				</connector>
+				<connector uid="39" angle="221.445">
+					<from>Fellesskapet_ferdige_oppgaver</from>
+					<to>Andel_av_fellesskapets_oppgaver_gjort</to>
+				</connector>
+				<connector uid="40" angle="306.538">
+					<from>Fellesskapet_uferdige_oppgaver</from>
+					<to>Andel_av_fellesskapets_oppgaver_gjort</to>
+				</connector>
+				<alias font_style="italic" uid="2" x="236" y="41" width="18" height="18">
+					<of>Andel_av_spillers_oppgaver_gjort</of>
+				</alias>
+				<alias font_style="italic" uid="8" x="246.714" y="493.857" width="18" height="18">
+					<of>Andel_av_fellesskapets_oppgaver_gjort</of>
+				</alias>
+				<connector uid="41" angle="196.699">
+					<from>
+						<alias uid="2"/>
+					</from>
+					<to>Flow_1</to>
+				</connector>
+				<connector uid="42" angle="347.196">
+					<from>
+						<alias uid="2"/>
+					</from>
+					<to>Flow_2</to>
+				</connector>
+				<alias font_style="italic" uid="4" x="244.571" y="304.143" width="18" height="18">
+					<of>Andel_av_spillers_oppgaver_gjort</of>
+				</alias>
+				<connector uid="43" angle="352.983">
+					<from>
+						<alias uid="4"/>
+					</from>
+					<to>Flow_4</to>
+				</connector>
+				<connector uid="44" angle="189.759">
+					<from>
+						<alias uid="4"/>
+					</from>
+					<to>Flow_3</to>
+				</connector>
+				<connector uid="45" angle="0">
+					<from>
+						<alias uid="8"/>
+					</from>
+					<to>Flow_6</to>
+				</connector>
+				<connector uid="46" angle="183.814">
+					<from>
+						<alias uid="8"/>
+					</from>
+					<to>Flow_5</to>
+				</connector>
+				<aux x="664.286" y="148" name="Indre motivasjon"/>
+				<alias font_style="italic" uid="5" x="641.786" y="68.9286" width="45" height="35">
+					<of>Autonomi</of>
+				</alias>
+				<alias font_style="italic" uid="6" x="552.5" y="68.9286" width="45" height="35">
+					<of>Kompetanse</of>
+				</alias>
+				<alias font_style="italic" uid="7" x="742.5" y="68.9286" width="45" height="35">
+					<of>Tilhørlighet</of>
+				</alias>
+				<connector uid="47" angle="306.209">
+					<from>
+						<alias uid="6"/>
+					</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<connector uid="48" angle="270">
+					<from>
+						<alias uid="5"/>
+					</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<connector uid="49" angle="232.306">
+					<from>
+						<alias uid="7"/>
+					</from>
+					<to>Indre_motivasjon</to>
+				</connector>
+				<connector uid="50" angle="297.176">
+					<from>Indre_motivasjon</from>
+					<to>Motivasjon_til_å_gjøre_oppgave</to>
+				</connector>
+				<stacked_container uid="51" x="973.571" y="31.7857" width="636.964" height="362.429">
+					<graph x="973.571" y="31.7857" width="636.964" height="362.429" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Autonomi"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Kompetanse"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Tilhørlighet"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Indre_motivasjon"/>
+						</plot>
+						<plot color="#FF7F00" pen_width="1" index="4" show_y_axis="true">
+							<entity name="Motivasjon_til_å_gjøre_oppgave"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<connector uid="52" angle="259.354">
+					<from>Indre_motivasjon</from>
+					<to>Andre_medlemmer_motivasjon_til_å_gjøre_oppgave</to>
+				</connector>
+				<flow x="593.22" y="836.667" name="Flow 7">
+					<pts>
+						<pt x="544.607" y="836.667"/>
+						<pt x="665.833" y="836.667"/>
+					</pts>
+				</flow>
+				<flow x="594.22" y="665.167" width="18" height="18" name="Flow 8">
+					<pts>
+						<pt x="544.607" y="674.167"/>
+						<pt x="685.833" y="674.167"/>
+					</pts>
+				</flow>
+				<connector uid="53" angle="23.5385">
+					<from>Fellesskapet_ferdige_oppgaver</from>
+					<to>Flow_8</to>
+				</connector>
+				<connector uid="54" angle="22.5574">
+					<from>Spiller_ferdige_oppgaver</from>
+					<to>Flow_7</to>
+				</connector>
+				<aux x="822.5" y="190.119" name="Spiller TOC verdi"/>
+				<connector uid="55" angle="203.824">
+					<from>Spiller_TOC_verdi</from>
+					<to>Motivasjon_til_å_gjøre_oppgave</to>
+				</connector>
+				<aux x="594.167" y="275" name="Andre medlemmer TOC verdi"/>
+				<connector uid="56" angle="86.8202">
+					<from>Andre_medlemmer_TOC_verdi</from>
+					<to>Andre_medlemmer_motivasjon_til_å_gjøre_oppgave</to>
+				</connector>
+			</view>
+		</views>
+	</model>
+	<isee:controls>
+		<isee:control priority="interactive" name="Tap_av_autonomi_for_uferdige_oppgaver" value="12.5071369451251"/>
+		<isee:control priority="interactive" name="Autonomi_gevinst_for_ferdige_oppgaver" value="10.2904309752786"/>
+		<isee:control priority="interactive" name="Tap_av_kompetanse_for_uferdige_oppgaver" value="0.788085457629981"/>
+	</isee:controls>
+</xmile>
+
